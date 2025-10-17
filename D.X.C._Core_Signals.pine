@@ -1,0 +1,678 @@
+//@version=5
+indicator("D.X.C. Core Signals", "DXC Core", true, max_labels_count=200, max_lines_count=100)
+
+// ============================================================================
+// CANDLE VISIBILITY CONTROL - HIDE HISTORY ON 5M AND BELOW
+// ============================================================================
+
+var g_DISPLAY = "Display Control"
+auto_hide_history = input.bool(true, "Auto-Hide History on ≤5M", tooltip="Automatically hide all history on 5M and lower timeframes to show only current day", group=g_DISPLAY)
+manual_hide_history = input.bool(false, "Manual Hide History", tooltip="Manually hide all history regardless of timeframe", group=g_DISPLAY)
+
+// ============================================================================
+// CORE BTMM SETTINGS
+// ============================================================================
+
+var g_MAIN = "BTMM Core Settings"
+enable_btmm = input.bool(true, "Enable BTMM Methods", group=g_MAIN)
+show_cycle_tracking = input.bool(true, "Show 3-Day Cycle", group=g_MAIN)
+show_asian_range = input.bool(true, "Show Asian Range & Levels", group=g_MAIN)
+show_session_timing = input.bool(true, "Show Session Timing", group=g_MAIN)
+
+var g_EMAS = "Steve Mauro EMAs"
+enable_all_emas = input.bool(true, "Enable All EMAs", group=g_EMAS)
+show_signal_emas = input.bool(true, "Signal EMAs (5,13)", group=g_EMAS)
+show_balance_ema = input.bool(true, "Balance EMA (50)", group=g_EMAS)
+show_home_ema = input.bool(true, "Home Base EMA (200)", group=g_EMAS)
+show_trend_ema = input.bool(true, "Trend EMA (800)", group=g_EMAS)
+show_macro_ema = input.bool(true, "Macro EMA (3200)", group=g_EMAS)
+
+// ============================================================================
+// SIGNAL BASED CANDLE COLORING SYSTEM
+// ============================================================================
+
+var g_SIGNAL_CANDLES = "Signal Based Candles"
+enable_signal_candles = input.bool(true, "Enable Signal Based Candles", group=g_SIGNAL_CANDLES)
+
+// Signal candle color settings
+extreme_buy_color = input.color(color.new(color.aqua, 0), "Extreme Buy Signals (W⭐)", group=g_SIGNAL_CANDLES)
+extreme_sell_color = input.color(color.new(color.fuchsia, 0), "Extreme Sell Signals (M⭐)", group=g_SIGNAL_CANDLES)
+
+ema200_buy_color = input.color(color.new(color.green, 0), "EMA200 Buy Signals (W🎯)", group=g_SIGNAL_CANDLES)
+ema200_sell_color = input.color(color.new(color.maroon, 0), "EMA200 Sell Signals (M🎯)", group=g_SIGNAL_CANDLES)
+
+regular_buy_color = input.color(color.new(color.yellow, 0), "Regular Buy Signals (W)", group=g_SIGNAL_CANDLES)
+regular_sell_color = input.color(color.new(color.yellow, 0), "Regular Sell Signals (M)", group=g_SIGNAL_CANDLES)
+
+institutional_bull_color = input.color(color.new(color.white, 0), "Institutional Bull (🏛️)", group=g_SIGNAL_CANDLES)
+institutional_bear_color = input.color(color.new(color.red, 0), "Institutional Bear (🏛️)", group=g_SIGNAL_CANDLES)
+
+london_long_color = input.color(color.new(color.red, 0), "London Long Signals", group=g_SIGNAL_CANDLES)
+london_short_color = input.color(color.new(color.red, 0), "London Short Signals", group=g_SIGNAL_CANDLES)
+
+nyc_reversal_color = input.color(color.new(color.silver, 0), "NYC Reversal Signals", group=g_SIGNAL_CANDLES)
+
+default_bull_color = input.color(color.new(color.rgb(0, 204, 204), 20), "Default Bullish Candles", group=g_SIGNAL_CANDLES)
+default_bear_color = input.color(color.new(color.rgb(79, 134, 252), 20), "Default Bearish Candles", group=g_SIGNAL_CANDLES)
+
+// Transparency settings
+signal_transparency = input.int(0, "Signal Candle Transparency", minval=0, maxval=80, group=g_SIGNAL_CANDLES)
+default_transparency = input.int(20, "Default Candle Transparency", minval=0, maxval=80, group=g_SIGNAL_CANDLES)
+
+// Option to show signal strength through candle border
+show_signal_borders = input.bool(true, "Show Signal Borders", group=g_SIGNAL_CANDLES)
+border_width = input.int(2, "Signal Border Width", minval=1, maxval=5, group=g_SIGNAL_CANDLES)
+
+// Signal information display
+show_signal_info = input.bool(true, "Show Signal Info on Candles", group=g_SIGNAL_CANDLES)
+info_size = input.string("tiny", "Info Text Size", options=["tiny", "small", "normal"], group=g_SIGNAL_CANDLES)
+
+show_strength_dots = input.bool(false, "Show Signal Strength Dots", group=g_SIGNAL_CANDLES)
+show_signal_summary = input.bool(false, "Show Signal Summary Table", group=g_SIGNAL_CANDLES)
+
+var g_RISK = "Risk Management"
+risk_reward_ratio = input.float(2.0, "Risk:Reward Ratio", minval=1.0, maxval=5.0, group=g_RISK)
+stop_loss_atr = input.float(1.5, "Stop Loss ATR Multiplier", minval=0.5, maxval=3.0, group=g_RISK)
+pip_multiplier = input.float(10000, "Pip Multiplier", options=[100, 1000, 10000, 100000], tooltip="Use 10000 for major pairs (EUR/USD, GBP/USD), 100 for JPY pairs (USD/JPY), 100000 for some CFDs", group=g_RISK)
+
+// ============================================================================
+// SIGNAL HIERARCHY SETTINGS
+// ============================================================================
+
+var g_FILTER = "Signal Filtering"
+enable_signal_hierarchy = input.bool(true, "Enable Signal Hierarchy", tooltip="Prevents conflicting signals after institutional candles", group=g_FILTER)
+institutional_cooldown_bars = input.int(8, "Institutional Signal Cooldown (bars)", minval=3, maxval=20, tooltip="Number of bars to wait before allowing opposite signals", group=g_FILTER)
+show_filtered_signals = input.bool(false, "Show Filtered Signals (Debug)", tooltip="Shows signals that were filtered out", group=g_FILTER)
+
+// ============================================================================
+// TIMEFRAME AND VISIBILITY CONTROL
+// ============================================================================
+
+tf_in_minutes = timeframe.in_seconds() / 60
+show_sessions_tf = tf_in_minutes <= 240
+show_asian_range_tf = tf_in_minutes < 60
+enable_sessions = show_session_timing and show_sessions_tf
+enable_labels = tf_in_minutes <= 240
+
+// Determine if we should hide historical data
+should_hide_history = (auto_hide_history and tf_in_minutes <= 5) or manual_hide_history
+
+// Calculate start of current trading day (5 PM EST start)
+current_day_start = timestamp("GMT-5", year(timenow, "GMT-5"), month(timenow, "GMT-5"), dayofmonth(timenow, "GMT-5"), 17, 0, 0)
+if timenow < current_day_start
+    current_day_start := current_day_start - 24 * 60 * 60 * 1000
+
+// Current day filter for all elements
+is_current_day = not should_hide_history or time >= current_day_start or tf_in_minutes >= 15
+
+// ============================================================================
+// SIGNAL MEMORY VARIABLES
+// ============================================================================
+
+var int last_institutional_signal_bar = na
+var bool last_institutional_was_bearish = false
+var int last_strong_signal_bar = na
+var bool last_strong_was_bearish = false
+
+// ============================================================================
+// STEVE MAURO'S CORE EMAs
+// ============================================================================
+
+ema5 = ta.ema(close, 5)
+ema13 = ta.ema(close, 13)
+ema50 = ta.ema(close, 50)
+ema200 = ta.ema(close, 200)
+ema800 = ta.ema(close, 800)
+ema3200 = ta.ema(close, 3200)
+
+// Plot EMAs conditionally with current day filter and master toggle
+plot(enable_all_emas and show_signal_emas and enable_btmm and is_current_day ? ema5 : na, "EMA 5", color.yellow, linewidth=1)
+plot(enable_all_emas and show_signal_emas and enable_btmm and is_current_day ? ema13 : na, "EMA 13", color.red, linewidth=2)
+plot(enable_all_emas and show_balance_ema and enable_btmm and is_current_day ? ema50 : na, "EMA 50", color.aqua, linewidth=2)
+plot(enable_all_emas and show_home_ema and enable_btmm and is_current_day ? ema200 : na, "EMA 200", color.white, linewidth=3)
+plot(enable_all_emas and show_trend_ema and enable_btmm and is_current_day ? ema800 : na, "EMA 800", color.blue, linewidth=3)
+plot(enable_all_emas and show_macro_ema and enable_btmm and is_current_day ? ema3200 : na, "EMA 3200", color.purple, linewidth=4)
+
+// ============================================================================
+// SESSION TIMING - CURRENT DAY FILTERED - NO ASIAN SIGNALS
+// ============================================================================
+
+asian_session_time = enable_sessions and is_current_day ? time(timeframe.period, "1700-0000", "America/New_York") : na
+london_session_time = enable_sessions and is_current_day ? time(timeframe.period, "0200-0900", "America/New_York") : na
+ny_session_time = enable_sessions and is_current_day ? time(timeframe.period, "0930-1600", "America/New_York") : na
+
+asian_session = not na(asian_session_time)
+london_session = not na(london_session_time)
+ny_session = not na(ny_session_time)
+
+// ============================================================================
+// 3-DAY CYCLE TRACKING - CURRENT DAY AWARE
+// ============================================================================
+
+var int cycle_day = 1
+var int cycle_reset_bar = na
+
+new_asian = enable_sessions and asian_session and not asian_session[1] and is_current_day
+daily_change = timeframe.change("1D") and is_current_day
+
+if daily_change or (new_asian and enable_sessions)
+    if na(cycle_reset_bar) or bar_index - cycle_reset_bar > (tf_in_minutes <= 15 ? 288 : tf_in_minutes <= 60 ? 72 : 18)
+        cycle_day := 1
+        cycle_reset_bar := bar_index
+    else
+        cycle_day := cycle_day + 1
+        if cycle_day > 3
+            cycle_day := 1
+            cycle_reset_bar := bar_index
+
+// ============================================================================
+// ASIAN RANGE TRACKING - CURRENT DAY FILTERED
+// ============================================================================
+
+var array<float> pivot_highs = array.new<float>()
+var array<float> pivot_lows = array.new<float>()
+var array<int> pivot_start_bars = array.new<int>()
+var array<line> pivot_high_lines = array.new<line>()
+var array<line> pivot_low_lines = array.new<line>()
+
+var array<box> asian_range_boxes = array.new<box>()
+var array<int> asian_start_times = array.new<int>()
+
+asian_range_active = enable_sessions and show_asian_range and enable_btmm and show_asian_range_tf and is_current_day
+
+max_sessions = should_hide_history ? 1 : 
+               (tf_in_minutes >= 15 and tf_in_minutes <= 60) ? 50 :
+               tf_in_minutes <= 5 ? 3 : 10
+
+// Reset arrays for current day view
+if should_hide_history and tf_in_minutes <= 5 and timeframe.change("1D")
+    while array.size(pivot_highs) > 0
+        array.pop(pivot_highs)
+        array.pop(pivot_lows)
+        array.pop(pivot_start_bars)
+        if array.size(pivot_high_lines) > 0
+            old_line = array.pop(pivot_high_lines)
+            if not na(old_line)
+                line.delete(old_line)
+        if array.size(pivot_low_lines) > 0
+            old_line = array.pop(pivot_low_lines)
+            if not na(old_line)
+                line.delete(old_line)
+    
+    while array.size(asian_range_boxes) > 0
+        old_box = array.pop(asian_range_boxes)
+        if not na(old_box)
+            box.delete(old_box)
+        if array.size(asian_start_times) > 0
+            array.pop(asian_start_times)
+
+// Asian range management with current day filtering
+if new_asian and asian_range_active
+    array.unshift(pivot_highs, high)
+    array.unshift(pivot_lows, low)
+    array.unshift(pivot_start_bars, bar_index)
+    array.unshift(pivot_high_lines, na)
+    array.unshift(pivot_low_lines, na)
+    array.unshift(asian_range_boxes, na)
+    array.unshift(asian_start_times, time)
+    
+    while array.size(pivot_highs) > max_sessions
+        old_high_line = array.pop(pivot_high_lines)
+        old_low_line = array.pop(pivot_low_lines)
+        old_box = array.pop(asian_range_boxes)
+        if not na(old_high_line)
+            line.delete(old_high_line)
+        if not na(old_low_line)
+            line.delete(old_low_line)
+        if not na(old_box)
+            box.delete(old_box)
+        array.pop(pivot_highs)
+        array.pop(pivot_lows)
+        array.pop(pivot_start_bars)
+        array.pop(asian_start_times)
+
+if asian_session and asian_range_active and array.size(pivot_highs) > 0
+    current_high = math.max(array.get(pivot_highs, 0), high)
+    current_low = math.min(array.get(pivot_lows, 0), low)
+    array.set(pivot_highs, 0, current_high)
+    array.set(pivot_lows, 0, current_low)
+
+// Update current Asian range for dashboard
+var float asian_high = na
+var float asian_low = na
+if array.size(pivot_highs) > 0
+    asian_high := array.get(pivot_highs, 0)
+    asian_low := array.get(pivot_lows, 0)
+
+// ============================================================================
+// ASIAN RANGE BREAKOUT TRACKING - CURRENT DAY
+// ============================================================================
+
+var bool asian_range_broken_high = false
+var bool asian_range_broken_low = false
+var bool asian_breakout_occurred = false
+var bool asian_stop_hunt_bullish = false
+var bool asian_stop_hunt_bearish = false
+
+atr = ta.atr(14)
+
+if new_asian and asian_range_active
+    asian_range_broken_high := false
+    asian_range_broken_low := false
+    asian_breakout_occurred := false
+    asian_stop_hunt_bullish := false
+    asian_stop_hunt_bearish := false
+
+if (london_session or ny_session) and not na(asian_high) and not na(asian_low) and is_current_day
+    atr_buffer = atr * 0.5
+    
+    if low < (asian_low - atr_buffer) and close > asian_low and not asian_stop_hunt_bullish
+        asian_stop_hunt_bullish := true
+        asian_breakout_occurred := true
+        
+    if high > (asian_high + atr_buffer) and close < asian_high and not asian_stop_hunt_bearish
+        asian_stop_hunt_bearish := true
+        asian_breakout_occurred := true
+    
+    if high > asian_high and close > asian_high and not asian_range_broken_high
+        asian_range_broken_high := true
+        asian_breakout_occurred := true
+    if low < asian_low and close < asian_low and not asian_range_broken_low
+        asian_range_broken_low := true
+        asian_breakout_occurred := true
+
+price_inside_asian_range() =>
+    if na(asian_high) or na(asian_low)
+        false
+    else
+        close <= asian_high and close >= asian_low
+
+apply_asian_breakout_filter() =>
+    if na(asian_high) or na(asian_low) or not show_asian_range_tf
+        false
+    else
+        (london_session or ny_session) and (price_inside_asian_range() or not asian_breakout_occurred)
+
+// ============================================================================
+// SIGNAL GENERATION - NO ASIAN SESSION SIGNALS
+// ============================================================================
+
+var int last_signal_bar = na
+
+days_since_signal = math.floor((timenow - time) / (24 * 60 * 60 * 1000))
+within_signal_history = should_hide_history ? (days_since_signal <= 0 and is_current_day) : 
+                       tf_in_minutes == 60 ? true : 
+                       (tf_in_minutes >= 15 and tf_in_minutes < 60) ? days_since_signal <= 730 :
+                       tf_in_minutes >= 240 ? days_since_signal <= 730 :
+                       days_since_signal <= 730
+
+london_long = tf_in_minutes < 60 and show_asian_range_tf and london_session and not na(asian_high) and close > asian_high and ema5 > ema13 and close > ema50 and within_signal_history and is_current_day
+london_short = tf_in_minutes < 60 and show_asian_range_tf and london_session and not na(asian_low) and close < asian_low and ema5 < ema13 and close < ema50 and within_signal_history and is_current_day
+
+nyc_reversal_long = tf_in_minutes < 60 and ny_session and close > ema200 and close[1] <= ema200 and ema5 > ema13 and within_signal_history and is_current_day
+nyc_reversal_short = tf_in_minutes < 60 and ny_session and close < ema200 and close[1] >= ema200 and ema5 < ema13 and within_signal_history and is_current_day
+
+// ============================================================================
+// HIGHER TIMEFRAME BIAS
+// ============================================================================
+
+htf_timeframe = tf_in_minutes <= 60 ? "240" : "1D"
+htf_close = request.security(syminfo.tickerid, htf_timeframe, close, lookahead=barmerge.lookahead_off)
+htf_ema13 = request.security(syminfo.tickerid, htf_timeframe, ta.ema(close, 13), lookahead=barmerge.lookahead_off)
+htf_ema50 = request.security(syminfo.tickerid, htf_timeframe, ta.ema(close, 50), lookahead=barmerge.lookahead_off)
+
+higher_tf_bullish = htf_close > htf_ema13 and htf_ema13 > htf_ema50
+higher_tf_bearish = htf_close < htf_ema13 and htf_ema13 < htf_ema50
+
+// ============================================================================
+// DAILY EXTREMES
+// ============================================================================
+
+daily_high_precise = request.security(syminfo.tickerid, "1D", high, lookahead=barmerge.lookahead_off)
+daily_low_precise = request.security(syminfo.tickerid, "1D", low, lookahead=barmerge.lookahead_off)
+
+extreme_threshold_tight = atr * 1.0
+at_high_of_day = math.abs(close - daily_high_precise) <= extreme_threshold_tight and close >= daily_high_precise * 0.999
+at_low_of_day = math.abs(close - daily_low_precise) <= extreme_threshold_tight and close <= daily_low_precise * 1.001
+
+// ============================================================================
+// MOMENTUM AND PATTERN DETECTION
+// ============================================================================
+
+body_size = math.abs(close - open)
+upper_wick = high - math.max(close, open)
+lower_wick = math.min(close, open) - low
+candle_range = high - low
+
+momentum_body_threshold = atr * 0.7
+momentum_wick_ratio = 0.3
+momentum_close_threshold = 0.8
+
+bullish_momentum = close > open and body_size >= momentum_body_threshold and
+                   upper_wick <= (candle_range * momentum_wick_ratio) and
+                   (close - low) >= (candle_range * momentum_close_threshold)
+
+bearish_momentum = close < open and body_size >= momentum_body_threshold and
+                   lower_wick <= (candle_range * momentum_wick_ratio) and
+                   (high - close) >= (candle_range * momentum_close_threshold)
+
+flexible_bullish_momentum = close > open and body_size >= (atr * 0.4)
+flexible_bearish_momentum = close < open and body_size >= (atr * 0.4)
+
+// ============================================================================
+// SMART MONEY SIGNALS - NO ASIAN SESSION SIGNALS
+// ============================================================================
+
+london_or_ny_session = london_session or ny_session
+
+ema13_bull_cross = close > ema13 and close[1] <= ema13 and is_current_day
+ema13_bear_cross = close < ema13 and close[1] >= ema13 and is_current_day
+
+tf_multiplier = tf_in_minutes <= 15 ? 1.0 : tf_in_minutes <= 60 ? 1.5 : tf_in_minutes <= 240 ? 2.0 : 3.0
+institutional_body_threshold = atr * (0.8 * tf_multiplier)
+institutional_close_strength = tf_in_minutes <= 60 ? 0.6 : 0.5
+
+institutional_bull_candle_raw = ema13_bull_cross and close > open and 
+                               body_size >= institutional_body_threshold and
+                               (close - low) >= (candle_range * institutional_close_strength) and
+                               not asian_session
+
+institutional_bear_candle_raw = ema13_bear_cross and close < open and
+                               body_size >= institutional_body_threshold and
+                               (high - close) >= (candle_range * institutional_close_strength) and
+                               not asian_session
+
+institutional_bull_candle = institutional_bull_candle_raw and within_signal_history and is_current_day
+institutional_bear_candle = institutional_bear_candle_raw and within_signal_history and is_current_day
+
+bars_since_institutional = na(last_institutional_signal_bar) ? 999 : bar_index - last_institutional_signal_bar
+bars_since_strong_signal = na(last_strong_signal_bar) ? 999 : bar_index - last_strong_signal_bar
+
+in_institutional_cooldown = enable_signal_hierarchy and bars_since_institutional < institutional_cooldown_bars
+in_strong_signal_cooldown = enable_signal_hierarchy and bars_since_strong_signal < institutional_cooldown_bars
+
+signal_conflicts_with_institutional(is_bullish_signal) =>
+    if not enable_signal_hierarchy or na(last_institutional_signal_bar)
+        false
+    else
+        in_cooldown = bars_since_institutional < institutional_cooldown_bars
+        conflicts = in_cooldown and (is_bullish_signal == last_institutional_was_bearish)
+        conflicts
+
+signal_conflicts_with_strong(is_bullish_signal) =>
+    if not enable_signal_hierarchy or na(last_strong_signal_bar)
+        false
+    else
+        in_cooldown = bars_since_strong_signal < institutional_cooldown_bars
+        conflicts = in_cooldown and (is_bullish_signal == last_strong_was_bearish)
+        conflicts
+
+if institutional_bull_candle
+    last_institutional_signal_bar := bar_index
+    last_institutional_was_bearish := false
+if institutional_bear_candle
+    last_institutional_signal_bar := bar_index
+    last_institutional_was_bearish := true
+
+smart_money_buy_extreme_raw = tf_in_minutes < 60 and ema13_bull_cross and at_low_of_day and higher_tf_bullish and flexible_bullish_momentum and not asian_session
+smart_money_sell_extreme_raw = tf_in_minutes < 60 and ema13_bear_cross and at_high_of_day and higher_tf_bearish and flexible_bearish_momentum and not asian_session
+
+smart_money_buy_extreme = smart_money_buy_extreme_raw and not signal_conflicts_with_institutional(true) and within_signal_history and is_current_day
+smart_money_sell_extreme = smart_money_sell_extreme_raw and not signal_conflicts_with_institutional(false) and within_signal_history and is_current_day
+
+if smart_money_buy_extreme
+    last_strong_signal_bar := bar_index
+    last_strong_was_bearish := false
+if smart_money_sell_extreme
+    last_strong_signal_bar := bar_index
+    last_strong_was_bearish := true
+
+near_ema200_support = math.abs(close - ema200) <= (atr * 1.0) and close > ema200
+near_ema200_resistance = math.abs(close - ema200) <= (atr * 1.0) and close < ema200
+
+smart_money_buy_ema200_raw = tf_in_minutes >= 60 and ema13_bull_cross and near_ema200_support and higher_tf_bullish and flexible_bullish_momentum and not asian_session
+smart_money_sell_ema200_raw = tf_in_minutes >= 60 and ema13_bear_cross and near_ema200_resistance and higher_tf_bearish and flexible_bearish_momentum and not asian_session
+
+smart_money_buy_ema200 = smart_money_buy_ema200_raw and not signal_conflicts_with_institutional(true) and not signal_conflicts_with_strong(true) and within_signal_history and is_current_day
+smart_money_sell_ema200 = smart_money_sell_ema200_raw and not signal_conflicts_with_institutional(false) and not signal_conflicts_with_strong(false) and within_signal_history and is_current_day
+
+regular_buy_pattern_raw = tf_in_minutes < 60 and ema13_bull_cross and flexible_bullish_momentum and not asian_session
+regular_sell_pattern_raw = tf_in_minutes < 60 and ema13_bear_cross and flexible_bearish_momentum and not asian_session
+
+regular_buy_pattern = regular_buy_pattern_raw and not signal_conflicts_with_institutional(true) and not signal_conflicts_with_strong(true) and not apply_asian_breakout_filter() and within_signal_history and is_current_day
+regular_sell_pattern = regular_sell_pattern_raw and not signal_conflicts_with_institutional(false) and not signal_conflicts_with_strong(false) and not apply_asian_breakout_filter() and within_signal_history and is_current_day
+
+any_buy_signal = smart_money_buy_extreme or smart_money_buy_ema200 or regular_buy_pattern
+any_sell_signal = smart_money_sell_extreme or smart_money_sell_ema200 or regular_sell_pattern
+
+// ============================================================================
+// SIGNAL BASED CANDLE COLORING FUNCTIONS
+// ============================================================================
+
+get_text_size() =>
+    switch info_size
+        "tiny" => size.tiny
+        "small" => size.small
+        "normal" => size.normal
+        => size.tiny
+
+get_signal_based_color() =>
+    is_bullish = close >= open
+    
+    if asian_session
+        if is_bullish
+            color.new(color.rgb(139, 69, 19), signal_transparency)
+        else
+            color.new(color.rgb(205, 133, 63), signal_transparency)
+    
+    else if institutional_bull_candle or institutional_bear_candle
+        color.new(color.rgb(color.r(institutional_bull_color), color.g(institutional_bull_color), color.b(institutional_bull_color)), signal_transparency)
+    
+    else if smart_money_buy_ema200 or smart_money_sell_ema200
+        color.new(color.rgb(205, 133, 63), signal_transparency)
+    
+    else if tf_in_minutes < 60
+        if smart_money_buy_extreme
+            color.new(color.rgb(color.r(extreme_buy_color), color.g(extreme_buy_color), color.b(extreme_buy_color)), signal_transparency)
+        else if smart_money_sell_extreme
+            color.new(color.rgb(color.r(extreme_sell_color), color.g(extreme_sell_color), color.b(extreme_sell_color)), signal_transparency)
+        
+        else if london_long
+            color.new(color.rgb(color.r(london_long_color), color.g(london_long_color), color.b(london_long_color)), signal_transparency)
+        else if london_short
+            color.new(color.rgb(color.r(london_short_color), color.g(london_short_color), color.b(london_short_color)), signal_transparency)
+        else if nyc_reversal_long or nyc_reversal_short
+            color.new(color.rgb(color.r(nyc_reversal_color), color.g(nyc_reversal_color), color.b(nyc_reversal_color)), signal_transparency)
+        
+        else if regular_buy_pattern
+            color.new(color.rgb(color.r(regular_buy_color), color.g(regular_buy_color), color.b(regular_buy_color)), signal_transparency)
+        else if regular_sell_pattern
+            color.new(color.rgb(color.r(regular_sell_color), color.g(regular_sell_color), color.b(regular_sell_color)), signal_transparency)
+        
+        else
+            if is_bullish
+                color.new(color.rgb(color.r(default_bull_color), color.g(default_bull_color), color.b(default_bull_color)), default_transparency)
+            else
+                color.new(color.rgb(color.r(default_bear_color), color.g(default_bear_color), color.b(default_bear_color)), default_transparency)
+    
+    else
+        if is_bullish
+            color.new(color.rgb(color.r(default_bull_color), color.g(default_bull_color), color.b(default_bull_color)), default_transparency)
+        else
+            color.new(color.rgb(color.r(default_bear_color), color.g(default_bear_color), color.b(default_bear_color)), default_transparency)
+
+get_signal_border_color() =>
+    if tf_in_minutes >= 60
+        if institutional_bull_candle or institutional_bear_candle
+            color.yellow
+        else if smart_money_buy_ema200 or smart_money_sell_ema200
+            color.white
+        else
+            na
+    
+    else
+        if smart_money_buy_extreme or smart_money_sell_extreme
+            color.white
+        else if institutional_bull_candle or institutional_bear_candle
+            color.yellow
+        else if london_long or london_short or nyc_reversal_long or nyc_reversal_short
+            color.silver
+        else
+            na
+
+// ============================================================================
+// CANDLE DISPLAY CONTROL WITH SIGNAL COLORS
+// ============================================================================
+
+var g_CANDLE_DISPLAY = "Candle Display Control"
+show_candles = input.bool(true, "Show Candles", tooltip="Toggle candle display on/off", group=g_CANDLE_DISPLAY)
+show_regular_candles = input.bool(false, "Show Regular Candles Too", tooltip="Show regular candles behind signal candles", group=g_CANDLE_DISPLAY)
+
+hide_candle = should_hide_history and not is_current_day
+display_candles = show_candles and not hide_candle
+
+signal_candle_color = enable_signal_candles and is_current_day ? get_signal_based_color() : 
+                      (close >= open ? default_bull_color : default_bear_color)
+
+signal_border_color = enable_signal_candles and show_signal_borders and is_current_day ? 
+                      get_signal_border_color() : na
+
+plotcandle(show_regular_candles and display_candles ? open : na, show_regular_candles and display_candles ? high : na, show_regular_candles and display_candles ? low : na, show_regular_candles and display_candles ? close : na, title="Regular Candles", color=close >= open ? color.new(color.green, 50) : color.new(color.red, 50), wickcolor=close >= open ? color.new(color.green, 50) : color.new(color.red, 50), bordercolor=close >= open ? color.new(color.green, 50) : color.new(color.red, 50))
+
+plotcandle(display_candles ? open : na, display_candles ? high : na, display_candles ? low : na, display_candles ? close : na, title="Signal Based Candles", color=signal_candle_color, wickcolor=signal_candle_color, bordercolor=signal_border_color != na ? signal_border_color : signal_candle_color, display=display.all)
+
+// ============================================================================
+// SIGNAL INFORMATION DISPLAY
+// ============================================================================
+
+if show_signal_info and is_current_day and tf_in_minutes <= 30 and not asian_session and tf_in_minutes < 60
+    signal_text = smart_money_buy_extreme ? "W⭐" : smart_money_sell_extreme ? "M⭐" :
+                  london_long ? "LON↑" : london_short ? "LON↓" :
+                  nyc_reversal_long ? "NYC↑" : nyc_reversal_short ? "NYC↓" :
+                  regular_buy_pattern ? "W" : regular_sell_pattern ? "M" : na
+    
+    if not na(signal_text)
+        is_buy_signal = str.contains(signal_text, "W") or str.contains(signal_text, "↑")
+        label.new(bar_index, is_buy_signal ? low - (atr * 0.5) : high + (atr * 0.5), signal_text, style=label.style_none, textcolor=is_buy_signal ? color.lime : color.red, size=get_text_size())
+
+if show_signal_info and is_current_day and tf_in_minutes >= 60 and not asian_session
+    signal_text_1h = institutional_bull_candle ? "🏛️↑" : institutional_bear_candle ? "🏛️↓" :
+                     smart_money_buy_ema200 ? "W🎯" : smart_money_sell_ema200 ? "M🎯" : na
+    
+    if not na(signal_text_1h)
+        is_buy_signal_1h = str.contains(signal_text_1h, "↑") or str.contains(signal_text_1h, "W")
+        label.new(bar_index, is_buy_signal_1h ? low - (atr * 0.5) : high + (atr * 0.5), signal_text_1h, style=label.style_none, textcolor=is_buy_signal_1h ? color.lime : color.red, size=get_text_size())
+
+// ============================================================================
+// SIGNAL STRENGTH INDICATOR
+// ============================================================================
+
+extreme_signal_show = show_strength_dots and is_current_day and (smart_money_buy_extreme or smart_money_sell_extreme) and not asian_session
+institutional_signal_show = show_strength_dots and is_current_day and (institutional_bull_candle or institutional_bear_candle) and not (smart_money_buy_extreme or smart_money_sell_extreme) and not asian_session
+regular_signal_show = show_strength_dots and is_current_day and (any_buy_signal or any_sell_signal) and not (smart_money_buy_extreme or smart_money_sell_extreme) and not (institutional_bull_candle or institutional_bear_candle) and not asian_session
+
+extreme_dot_color = smart_money_buy_extreme ? color.aqua : color.fuchsia
+institutional_dot_color = institutional_bull_candle ? color.lime : color.red
+regular_dot_color = any_buy_signal ? color.green : color.red
+
+plotchar(extreme_signal_show, "Extreme Signal", "●●●", location.abovebar, color=extreme_dot_color, size=size.small)
+plotchar(institutional_signal_show, "Institutional Signal", "●●", location.abovebar, color=institutional_dot_color, size=size.small)
+plotchar(regular_signal_show, "Regular Signal", "●", location.abovebar, color=regular_dot_color, size=size.tiny)
+
+// ============================================================================
+// SIGNAL ARROWS - NO ASIAN SESSION
+// ============================================================================
+
+show_arrows = tf_in_minutes <= 240 and enable_btmm and is_current_day and not asian_session
+
+if institutional_bull_candle
+    body_top = math.max(open, close)
+    body_bottom = math.min(open, close)
+    line_width = tf_in_minutes <= 60 ? 2 : tf_in_minutes <= 240 ? 3 : tf_in_minutes <= 1440 ? 4 : 5
+    line.new(bar_index, body_bottom, bar_index, body_top, color=color.white, width=line_width, style=line.style_solid)
+
+if institutional_bear_candle
+    body_top = math.max(open, close)
+    body_bottom = math.min(open, close)
+    line_width = tf_in_minutes <= 60 ? 2 : tf_in_minutes <= 240 ? 3 : tf_in_minutes <= 1440 ? 4 : 5
+    line.new(bar_index, body_bottom, bar_index, body_top, color=color.white, width=line_width, style=line.style_solid)
+
+plotchar(institutional_bull_candle, "Institutional Bull Mark", "🏛️", location.belowbar, color=color.lime, size=size.tiny)
+plotchar(institutional_bear_candle, "Institutional Bear Mark", "🏛️", location.abovebar, color=color.red, size=size.tiny)
+
+plotshape(show_arrows and smart_money_buy_extreme and tf_in_minutes < 60, title="Extreme W Buy", style=shape.triangleup, location=location.belowbar, color=color.lime, size=size.large, text="W⭐")
+plotshape(show_arrows and smart_money_sell_extreme and tf_in_minutes < 60, title="Extreme M Sell", style=shape.triangledown, location=location.abovebar, color=color.red, size=size.large, text="M⭐")
+
+plotshape(show_arrows and smart_money_buy_ema200 and tf_in_minutes >= 60, title="EMA200 W Buy", style=shape.triangleup, location=location.belowbar, color=color.aqua, size=size.small, text="W🎯")
+plotshape(show_arrows and smart_money_sell_ema200 and tf_in_minutes >= 60, title="EMA200 M Sell", style=shape.triangledown, location=location.abovebar, color=color.purple, size=size.small, text="M🎯")
+
+plotshape(show_arrows and regular_buy_pattern and tf_in_minutes < 60, title="Regular W Buy", style=shape.triangleup, location=location.belowbar, color=color.yellow, size=size.tiny, text="W")
+plotshape(show_arrows and regular_sell_pattern and tf_in_minutes < 60, title="Regular M Sell", style=shape.triangledown, location=location.abovebar, color=color.orange, size=size.tiny, text="M")
+
+plotchar(show_arrows and ema13_bull_cross and not apply_asian_breakout_filter() and within_signal_history and tf_in_minutes < 60, "EMA13 ↑", "↑", location.belowbar, color=color.lime, size=size.tiny)
+plotchar(show_arrows and ema13_bear_cross and not apply_asian_breakout_filter() and within_signal_history and tf_in_minutes < 60, "EMA13 ↓", "↓", location.abovebar, color=color.red, size=size.tiny)
+
+// ============================================================================
+// SIGNAL LABELS - NO ASIAN SESSION
+// ============================================================================
+
+if enable_btmm and (london_long) and bar_index != last_signal_bar and enable_labels and tf_in_minutes <= 30 and is_current_day and not asian_session
+    signal_text = "£ LONDON LONG\nAsian Break"
+    label.new(bar_index, low - atr, signal_text, style=label.style_label_up, color=color.lime, textcolor=color.black, size=size.large)
+    last_signal_bar := bar_index
+
+if enable_btmm and (london_short) and bar_index != last_signal_bar and enable_labels and tf_in_minutes <= 30 and is_current_day and not asian_session
+    signal_text = "£ LONDON SHORT\nAsian Break"
+    label.new(bar_index, high + atr, signal_text, style=label.style_label_down, color=color.red, textcolor=color.white, size=size.large)
+    last_signal_bar := bar_index
+
+if enable_btmm and (nyc_reversal_long or nyc_reversal_short) and bar_index != last_signal_bar and enable_labels and tf_in_minutes <= 30 and is_current_day and not asian_session
+    signal_text = nyc_reversal_long ? "$ NYC REVERSAL\nLONG" : "$ NYC REVERSAL\nSHORT"
+    signal_color = nyc_reversal_long ? color.blue : color.navy
+    label.new(bar_index, nyc_reversal_long ? low - atr : high + atr, signal_text, style=nyc_reversal_long ? label.style_label_up : label.style_label_down, color=signal_color, textcolor=color.white, size=size.large)
+    last_signal_bar := bar_index
+
+// ============================================================================
+// DASHBOARD - ASIAN RANGE ONLY
+// ============================================================================
+
+show_asian_in_dashboard = show_asian_range_tf and tf_in_minutes < 60 and is_current_day
+var table dashboard = show_asian_in_dashboard ? table.new(position.bottom_left, 2, 2, bgcolor=color.white, border_width=1) : na
+
+if barstate.islast and enable_btmm and show_asian_in_dashboard
+    table.cell(dashboard, 0, 0, "ASIAN RANGE", text_color=color.white, text_size=size.normal, bgcolor=color.black)
+    table.cell(dashboard, 1, 0, "VALUE", text_color=color.white, text_size=size.normal, bgcolor=color.black)
+    
+    range_pips = not na(asian_high) and not na(asian_low) ? str.tostring((asian_high - asian_low) * pip_multiplier, "#.##") : "N/A"
+    table.cell(dashboard, 0, 1, "Range", text_color=color.black, text_size=size.small)
+    table.cell(dashboard, 1, 1, range_pips + " pips", text_color=color.black, text_size=size.small, bgcolor=color.yellow)
+
+// ============================================================================
+// ALERTS - NO ASIAN SESSION
+// ============================================================================
+
+alertcondition(london_long and not asian_session, title="DXC London Long", message="London Long - Asian High Break + EMA Alignment")
+alertcondition(london_short and not asian_session, title="DXC London Short", message="London Short - Asian Low Break + EMA Alignment")
+alertcondition(nyc_reversal_long and not asian_session, title="DXC NYC Reversal Long", message="NYC Reversal Long - 200 EMA Break + Trend Change")
+alertcondition(nyc_reversal_short and not asian_session, title="DXC NYC Reversal Short", message="NYC Reversal Short - 200 EMA Break + Trend Change")
+alertcondition(institutional_bull_candle and not asian_session, title="Institutional Bullish Close", message="🏛️ Strong Institutional Bullish Close Above EMA 13")
+alertcondition(institutional_bear_candle and not asian_session, title="Institutional Bearish Close", message="🏛️ Strong Institutional Bearish Close Below EMA 13")
+alertcondition(smart_money_buy_extreme and not asian_session, title="Extreme W Pattern Buy", message="⭐ Extreme W Pattern - EMA 13 Cross at Daily Low with HTF Bullish Bias")
+alertcondition(smart_money_sell_extreme and not asian_session, title="Extreme M Pattern Sell", message="⭐ Extreme M Pattern - EMA 13 Cross at Daily High with HTF Bearish Bias")
+alertcondition(regular_buy_pattern and not asian_session, title="Regular W Pattern Buy", message="W Pattern - EMA 13 Cross during London/NY Session")
+alertcondition(regular_sell_pattern and not asian_session, title="Regular M Pattern Sell", message="M Pattern - EMA 13 Cross during London/NY Session")
+
+// ============================================================================
+// PLOTTING FOR BACKTESTING - NO ASIAN SESSION
+// ============================================================================
+
+plot(enable_btmm and london_long and is_current_day and not asian_session ? 1 : 0, title="London Long", color=color.green, display=display.data_window)
+plot(enable_btmm and london_short and is_current_day and not asian_session ? 1 : 0, title="London Short", color=color.red, display=display.data_window)
+plot(enable_btmm and nyc_reversal_long and is_current_day and not asian_session ? 1 : 0, title="NYC Reversal Long", color=color.blue, display=display.data_window)
+plot(enable_btmm and nyc_reversal_short and is_current_day and not asian_session ? 1 : 0, title="NYC Reversal Short", color=color.navy, display=display.data_window)
+plot(enable_btmm and any_buy_signal and is_current_day and not asian_session ? 1 : 0, title="Any W Pattern Buy", color=color.aqua, display=display.data_window)
+plot(enable_btmm and any_sell_signal and is_current_day and not asian_session ? 1 : 0, title="Any M Pattern Sell", color=color.purple, display=display.data_window)
+plot(enable_btmm and institutional_bull_candle and is_current_day and not asian_session ? 1 : 0, title="Institutional Bull Signal", color=color.lime, display=display.data_window)
+plot(enable_btmm and institutional_bear_candle and is_current_day and not asian_session ? 1 : 0, title="Institutional Bear Signal", color=color.red, display=display.data_window)
+plot(enable_btmm and is_current_day ? cycle_day : na, title="BTMM Cycle Day", color=color.gray, display=display.data_window)
+

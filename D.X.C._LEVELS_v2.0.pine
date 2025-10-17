@@ -4,7 +4,7 @@
 // Last Updated: October 2025
 
 //@version=5
-indicator("D.X.C._LEVELS v2.0", overlay=true, max_lines_count=2000, max_labels_count=500, max_boxes_count=500)
+indicator("D.X.C._LEVELS v2.0", overlay=true, max_lines_count=500, max_labels_count=500, max_boxes_count=500)
 
 // ════════════════════════════════════════════
 // CONSTANTS
@@ -606,8 +606,8 @@ if time > week_start_time + (PSR_PSS_HOURS * 60 * 60 * 1000) and not first_8hrs_
     zone_thickness = pipsToPrice(psrpssZoneThickness)
     
     // ONE PSR BOX - From highest 1H body to lowest 1H body - DASHED ORANGE BORDER (WIDTH 2)
-    // Black background set behind candles so they remain visible
-    box.new(week_start_time + (PSR_PSS_HOURS * 60 * 60 * 1000), weekly_psr, week_end, weekly_pss, xloc=xloc.bar_time, border_color=color.orange, border_width=2, border_style=line.style_dashed, bgcolor=color.new(color.black, 90), text="PSR ZONE\n(1H Bodies)", text_color=color.orange, text_size=size.normal, text_halign=text.align_center, text_valign=text.align_center)
+    // Solid black background
+    box.new(week_start_time + (PSR_PSS_HOURS * 60 * 60 * 1000), weekly_psr, week_end, weekly_pss, xloc=xloc.bar_time, border_color=color.orange, border_width=2, border_style=line.style_dashed, bgcolor=color.black, text="PSR ZONE\n(1H Bodies)", text_color=color.orange, text_size=size.normal, text_halign=text.align_center, text_valign=text.align_center)
     
     // Draw center lines at actual high and low body levels for precision - DASHED ORANGE
     psr_range = weekly_psr - weekly_pss
@@ -773,7 +773,7 @@ show_all_history = tf_in_minutes >= 60
 show_separators_on_tf = show_all_history or tf_in_minutes <= 240
 
 // Determine which separators to show based on timeframe
-show_daily_on_current_tf = show_day_separators and (show_all_history or tf_in_minutes < 60)
+show_daily_on_current_tf = show_day_separators and tf_in_minutes < 60  // Hide daily on 1H+
 show_weekly_on_current_tf = show_week_separators and show_separators_on_tf
 show_monthly_on_current_tf = show_month_separators and show_separators_on_tf
 show_yearly_on_current_tf = show_year_separators and show_separators_on_tf
@@ -791,31 +791,33 @@ if show_daily_on_current_tf and new_day
         day_text = str.format("{0} {1} {2}", get_day_name(dayofweek), get_month_name(month), str.tostring(dayofmonth))
         label.new(bar_index, high, day_text, style=label.style_label_down, color=day_separator_color, textcolor=color.white, size=get_separator_text_size())
 
+// Calculate top screen position - highest point in last 100 bars
+top_screen_position = ta.highest(high, 100)
+
 // Weekly separators
 if show_weekly_on_current_tf and new_week and not new_month and not new_year
     if tf_in_minutes == 1440
-        chart_range = high - low
-        line_start = high - (chart_range * 0.3)
+        line_start = high - ((high - low) * 0.3)
         line.new(bar_index, line_start, bar_index, high, color=week_separator_color, style=line.style_dashed, width=2, extend=extend.none)
     else
         line.new(bar_index, low, bar_index, high, color=week_separator_color, style=line.style_dashed, width=2, extend=extend.both)
     if show_separator_labels
         week_text = str.format("WEEK {0} {1}", str.tostring(weekofyear), str.tostring(year))
-        label.new(bar_index, high, week_text, style=label.style_label_down, color=week_separator_color, textcolor=color.white, size=get_separator_text_size())
+        label.new(bar_index, top_screen_position, week_text, style=label.style_label_down, color=week_separator_color, textcolor=color.white, size=get_separator_text_size(), textalign=text.align_center)
 
 // Monthly separators
 if show_monthly_on_current_tf and new_month and not new_year
     line.new(bar_index, low, bar_index, high, color=month_separator_color, style=line.style_dashed, width=3, extend=extend.both)
     if show_separator_labels
         month_text = str.format("{0} {1}", get_month_name(month), str.tostring(year))
-        label.new(bar_index, high, month_text, style=label.style_label_down, color=month_separator_color, textcolor=color.white, size=get_separator_text_size())
+        label.new(bar_index, top_screen_position, month_text, style=label.style_label_down, color=month_separator_color, textcolor=color.white, size=get_separator_text_size(), textalign=text.align_center)
 
 // Yearly separators
 if show_yearly_on_current_tf and new_year
     line.new(bar_index, low, bar_index, high, color=year_separator_color, style=line.style_dashed, width=4, extend=extend.both)
     if show_separator_labels
         year_text = str.format("YEAR {0}", str.tostring(year))
-        label.new(bar_index, high, year_text, style=label.style_label_down, color=year_separator_color, textcolor=color.white, size=get_separator_text_size())
+        label.new(bar_index, top_screen_position, year_text, style=label.style_label_down, color=year_separator_color, textcolor=color.white, size=get_separator_text_size(), textalign=text.align_center)
 
 // ════════════════════════════════════════════
 // ALERT SYSTEM (BOTTOM CENTER)
