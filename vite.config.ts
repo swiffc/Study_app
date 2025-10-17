@@ -73,6 +73,8 @@ export default defineConfig({
           'markdown': ['react-markdown', 'remark-gfm', 'react-syntax-highlighter']
         }
       }
-    }
+    },
+    sourcemap: false,
+    chunkSizeWarningLimit: 1000
   }
 })
