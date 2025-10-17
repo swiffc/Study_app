@@ -280,35 +280,70 @@ const DailyFocusPage = () => {
   const Icon = dayContent.icon;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-8">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className={`bg-gradient-to-r ${dayContent.gradient} rounded-3xl p-8 mb-8 shadow-2xl text-white`}>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-4">
-              <div className="bg-white/20 backdrop-blur-sm p-4 rounded-2xl">
-                <Icon size={40} />
-              </div>
-              <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <Calendar size={20} />
-                  <span className="text-sm font-medium opacity-90">{currentDay}</span>
-                </div>
-                <h1 className="text-4xl font-black">{dayContent.theme}</h1>
-              </div>
-            </div>
-            <div className="text-right">
-              <div className="text-sm opacity-90 mb-1">Daily Progress</div>
-              <div className="text-5xl font-black">{completionRate}%</div>
-            </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 p-8 pt-28">
+      <div className="max-w-7xl mx-auto">
+        {/* Hero Header with Pattern */}
+        <div className="relative overflow-hidden mb-8">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0" style={{
+              backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
+              backgroundSize: '32px 32px',
+            }}></div>
           </div>
-          
-          {/* Progress Bar */}
-          <div className="bg-white/20 backdrop-blur-sm rounded-full h-3 overflow-hidden">
-            <div 
-              className="bg-white h-full transition-all duration-500 rounded-full"
-              style={{ width: `${completionRate}%` }}
-            />
+
+          <div className={`relative bg-gradient-to-r ${dayContent.gradient} rounded-[2.5rem] p-10 shadow-2xl text-white overflow-hidden`}>
+            {/* Decorative Elements */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-2xl"></div>
+            
+            <div className="relative">
+              <div className="flex items-start justify-between mb-6">
+                <div className="flex items-center gap-6">
+                  <div className="bg-white/20 backdrop-blur-md p-5 rounded-3xl shadow-xl animate-float">
+                    <Icon size={52} />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-2 opacity-90">
+                      <Calendar size={18} />
+                      <span className="text-sm font-semibold tracking-wide uppercase">{currentDay}</span>
+                    </div>
+                    <h1 className="text-5xl md:text-6xl font-black mb-2">{dayContent.theme}</h1>
+                    <p className="text-lg opacity-90">Your personalized plan for today</p>
+                  </div>
+                </div>
+                <div className="text-right bg-white/10 backdrop-blur-md px-6 py-4 rounded-2xl">
+                  <div className="text-sm font-semibold opacity-90 mb-1">Daily Progress</div>
+                  <div className="text-6xl font-black">{completionRate}%</div>
+                </div>
+              </div>
+              
+              {/* Enhanced Progress Bar */}
+              <div className="bg-white/20 backdrop-blur-sm rounded-full h-4 overflow-hidden shadow-inner">
+                <div 
+                  className="bg-white/90 h-full transition-all duration-700 rounded-full shadow-lg relative overflow-hidden"
+                  style={{ width: `${completionRate}%` }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-gradient bg-200"></div>
+                </div>
+              </div>
+              
+              {/* Stats Row */}
+              <div className="grid grid-cols-3 gap-4 mt-6">
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 text-center">
+                  <div className="text-3xl font-black mb-1">{completedAffirmations.filter(Boolean).length}/3</div>
+                  <div className="text-sm opacity-90 font-medium">Affirmations</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 text-center">
+                  <div className="text-3xl font-black mb-1">{tasks.filter(t => t.completed).length}/{tasks.length}</div>
+                  <div className="text-sm opacity-90 font-medium">Tasks Done</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 text-center">
+                  <div className="text-3xl font-black mb-1">{isEvening ? '🌙' : '☀️'}</div>
+                  <div className="text-sm opacity-90 font-medium">{isEvening ? 'Evening' : 'Morning'}</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -316,33 +351,36 @@ const DailyFocusPage = () => {
           {/* Left Column */}
           <div className="lg:col-span-2 space-y-6">
             {/* Morning Affirmations */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg border-2 border-gray-200">
-              <div className="flex items-center gap-3 mb-4">
-                <div className={`bg-gradient-to-br ${dayContent.gradient} p-2 rounded-lg`}>
-                  <Sparkles className="text-white" size={24} />
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border-2 border-gray-200 hover:border-accent-300 transition-all duration-300">
+              <div className="flex items-center gap-4 mb-6">
+                <div className={`bg-gradient-to-br ${dayContent.gradient} p-3 rounded-2xl shadow-lg`}>
+                  <Sparkles className="text-white" size={28} />
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900">Morning Affirmations</h2>
+                <div>
+                  <h2 className="text-3xl font-black text-gray-900">Morning Affirmations</h2>
+                  <p className="text-sm text-gray-600 font-medium">Click each to activate your mindset</p>
+                </div>
               </div>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {dayContent.affirmations.map((affirmation, index) => (
                   <div
                     key={index}
                     onClick={() => toggleAffirmation(index)}
-                    className={`p-4 rounded-xl cursor-pointer transition-all border-2 ${
+                    className={`p-5 rounded-2xl cursor-pointer transition-all duration-500 border-2 group ${
                       completedAffirmations[index]
-                        ? `bg-gradient-to-r ${dayContent.gradient} text-white border-transparent shadow-lg`
-                        : 'bg-gray-50 text-gray-700 border-gray-200 hover:border-gray-300'
+                        ? `bg-gradient-to-r ${dayContent.gradient} text-white border-transparent shadow-2xl scale-[1.02]`
+                        : 'bg-gradient-to-br from-white to-gray-50 text-gray-700 border-gray-200 hover:border-accent-300 hover:shadow-lg'
                     }`}
                   >
-                    <div className="flex items-start gap-3">
-                      <div className={`mt-1 flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                    <div className="flex items-start gap-4">
+                      <div className={`mt-1 flex-shrink-0 w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
                         completedAffirmations[index]
-                          ? 'border-white bg-white/20'
-                          : 'border-gray-400'
+                          ? 'border-white bg-white/20 scale-110'
+                          : 'border-gray-400 group-hover:border-accent-500 group-hover:scale-105'
                       }`}>
-                        {completedAffirmations[index] && <Check size={16} className="text-white" />}
+                        {completedAffirmations[index] && <Check size={18} className="text-white font-bold" />}
                       </div>
-                      <p className="font-medium leading-relaxed">{affirmation}</p>
+                      <p className="font-semibold leading-relaxed text-lg">{affirmation}</p>
                     </div>
                   </div>
                 ))}
@@ -350,46 +388,57 @@ const DailyFocusPage = () => {
             </div>
 
             {/* Daily Tasks */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg border-2 border-gray-200">
-              <div className="flex items-center gap-3 mb-4">
-                <div className={`bg-gradient-to-br ${dayContent.gradient} p-2 rounded-lg`}>
-                  <Target className="text-white" size={24} />
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+              <div className="flex items-center gap-4 mb-6">
+                <div className={`bg-gradient-to-br ${dayContent.gradient} p-3 rounded-2xl shadow-lg`}>
+                  <Target className="text-white" size={28} />
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900">Daily Tasks</h2>
+                <div>
+                  <h2 className="text-3xl font-black text-gray-900">Daily Tasks</h2>
+                  <p className="text-sm text-gray-600 font-medium">Complete your action items</p>
+                </div>
               </div>
-              <div className="space-y-3">
-                {tasks.map((task) => (
+              <div className="space-y-4">
+                {tasks.map((task, index) => (
                   <div
                     key={task.id}
                     onClick={() => toggleTask(task.id)}
-                    className={`p-4 rounded-xl cursor-pointer transition-all border-2 ${
+                    className={`p-5 rounded-2xl cursor-pointer transition-all duration-500 border-2 group ${
                       task.completed
-                        ? 'bg-green-50 border-green-300'
-                        : 'bg-gray-50 border-gray-200 hover:border-gray-300'
+                        ? 'bg-gradient-to-r from-success-50 to-emerald-50 border-success-300 shadow-lg'
+                        : 'bg-gradient-to-br from-white to-gray-50 border-gray-200 hover:border-primary-300 hover:shadow-lg'
                     }`}
+                    style={{ animationDelay: `${index * 50}ms` }}
                   >
-                    <div className="flex items-start gap-3">
-                      <div className={`mt-1 flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                    <div className="flex items-start gap-4">
+                      <div className={`mt-1 flex-shrink-0 w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
                         task.completed
-                          ? 'border-green-500 bg-green-500'
-                          : 'border-gray-400'
+                          ? 'border-success-500 bg-success-500 scale-110 shadow-md'
+                          : 'border-gray-400 group-hover:border-primary-500 group-hover:scale-105'
                       }`}>
-                        {task.completed && <Check size={16} className="text-white" />}
+                        {task.completed && <Check size={18} className="text-white font-bold" />}
                       </div>
                       <div className="flex-1">
-                        <h3 className={`font-bold mb-1 ${task.completed ? 'text-green-900 line-through' : 'text-gray-900'}`}>
+                        <h3 className={`font-black text-lg mb-2 transition-all ${
+                          task.completed ? 'text-success-900 line-through opacity-75' : 'text-gray-900 group-hover:text-primary-700'
+                        }`}>
                           {task.title}
                         </h3>
-                        <p className={`text-sm ${task.completed ? 'text-green-700' : 'text-gray-600'}`}>
+                        <p className={`text-sm mb-3 leading-relaxed ${task.completed ? 'text-success-700 opacity-75' : 'text-gray-600'}`}>
                           {task.description}
                         </p>
-                        <span className={`inline-block mt-2 text-xs px-2 py-1 rounded-full ${
-                          task.category === 'mindset' ? 'bg-purple-100 text-purple-700' :
-                          task.category === 'action' ? 'bg-blue-100 text-blue-700' :
-                          'bg-amber-100 text-amber-700'
-                        }`}>
-                          {task.category}
-                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className={`inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full ${
+                            task.category === 'mindset' ? 'bg-gradient-to-r from-accent-100 to-purple-100 text-accent-700 border border-accent-200' :
+                            task.category === 'action' ? 'bg-gradient-to-r from-primary-100 to-blue-100 text-primary-700 border border-primary-200' :
+                            'bg-gradient-to-r from-gold-100 to-yellow-100 text-gold-700 border border-gold-200'
+                          }`}>
+                            {task.category === 'mindset' && '🧠'}
+                            {task.category === 'action' && '⚡'}
+                            {task.category === 'reflection' && '💭'}
+                            {task.category}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -399,19 +448,28 @@ const DailyFocusPage = () => {
 
             {/* Evening Reflection */}
             {isEvening && (
-              <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-6 shadow-lg text-white">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="bg-white/20 backdrop-blur-sm p-2 rounded-lg">
-                    <Moon className="text-white" size={24} />
-                  </div>
-                  <h2 className="text-2xl font-bold">Evening Reflection</h2>
-                </div>
-                <div className="space-y-3">
-                  {dayContent.eveningReflection.map((question, index) => (
-                    <div key={index} className="bg-white/10 backdrop-blur-sm p-4 rounded-xl">
-                      <p className="font-medium">{question}</p>
+              <div className="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-3xl p-8 shadow-2xl text-white">
+                {/* Decorative elements */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 left-0 w-48 h-48 bg-black/10 rounded-full blur-2xl"></div>
+                
+                <div className="relative">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="bg-white/20 backdrop-blur-md p-4 rounded-2xl shadow-xl">
+                      <Moon className="text-white" size={32} />
                     </div>
-                  ))}
+                    <div>
+                      <h2 className="text-3xl font-black">Evening Reflection</h2>
+                      <p className="text-sm opacity-90 font-medium">Take a moment to reflect on your day</p>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    {dayContent.eveningReflection.map((question, index) => (
+                      <div key={index} className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 hover:bg-white/15 transition-all duration-300">
+                        <p className="font-semibold text-lg leading-relaxed">{question}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
