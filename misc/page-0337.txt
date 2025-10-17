@@ -1,0 +1,56 @@
+P1: JYS
+c10     JWBT039-Steenbarger      December 29, 2008       13:21     Printer: Yet to come
+
+
+
+
+          Looking for the Edge                                                            317
+
+
+          these skills, you’ll have them for life, and they will greatly aid your ability
+          to generate promising trading hypotheses.
+
+
+                      COACHING CUE
+
+          Trading platforms that support Dynamic Data Exchange (DDE) enable you to
+          link spreadsheets to the platform’s data servers, so that the spreadsheets will
+          populate in real time. This is helpful for tracking indicators as you trade, and it
+          can also be a time-eﬃcient way to archive data of interest. See Rennie Yang’s
+          segment in Chapter 9 for an illustration of the use of DDE.
+
+
+
+
+          LESSON 94: VISUALIZE YOUR DATA
+
+          One of the best ways to explore data for possible relationships is to actu-
+          ally see the data for yourself. You can create simple charts in Excel that
+          will enable you to see how two variables are related over time, identify-
+          ing possible patterns that you might not have noticed from the spreadsheet
+          rows and columns. For instance, when charting an indicator against a mar-
+          ket average, you may notice divergence patterns that precede changes in
+          market direction. Should you notice such patterns frequently, they might
+          form the basis for worthwhile historical explorations.
+               Again, a basic introductory text for Excel users will cover the details
+          of creating different kinds of charts, from column charts to line graphs to
+          pie charts. You’ll also learn about the nuances of changing the colors on a
+          chart, altering the graphics, and labeling the various lines and axes. In this
+          lesson, I’ll walk you through a few basics that will get you started in your
+          data exploration.
+
+
+              Many times, you can identify potential trading hypotheses by see-
+              ing relationships among data elements.
+
+
+               A simple chart to begin with will have dates in column A, price data in
+          column B, and a second set of price data in column C (see Table 10.1). This
+          chart is helpful when you want to visualize how movements in the first trad-
+          ing instrument are related to movements in the second. For basic practice,
+          here are some hypothetical data to type into Excel, with the data labels in
+          the first row. Column A has the dates, column B contains closing prices for
+          a market index, and column C has the closing prices for a mining stock.
+               To create the chart, highlight the data with your mouse, including
+          the data labels, and click on the Excel menu item for Insert. You’ll select
+

@@ -1,0 +1,52 @@
+P1: JYS
+c08     JWBT039-Steenbarger      December 29, 2008      7:38    Printer: Yet to come
+
+
+
+
+          Coaching Your Trading Business                                               247
+
+          sectors. The risk for the day trader is getting caught up in fixed opinions
+          about the market, biasing trades in a single direction. If the day trader is
+          diversified, the correlations among returns from his different setups and
+          the serial correlations of returns among trades (and among returns across
+          times of day) should be relatively modest over time. Each trade or type of
+          trade for the day trader should, in a sense, be a separate product in the
+          business mix.
+
+
+              You don’t have to diversify by trading many markets. You can di-
+              versify by time frame (longer-term, shorter-term), directionality
+              (long, short), and setup pattern (trending, reversal).
+
+
+               Is your trading business adequately diversified? Is its diversification
+          expanding or narrowing? If you’re like most traders, you don’t know
+          the answers to these questions. The data, however, can be at your fin-
+          gertips. All you need is to divide your trades by strategy, track the re-
+          sults of each strategy daily, and enter the information into Excel. From
+          there, it’s simple to calculate correlations over varying time periods. And
+          if you don’t trade every day and hold most positions for days? No prob-
+          lem: simply calculate the returns of each strategy as if you had sold
+          all positions at the end of each trading day. That will tell you if your
+          trades are moving in unison or independently. And that will tell you if
+          you have many profit centers supporting your business or only a very
+          limited few.
+
+
+                      COACHING CUE
+
+          It is not too diﬃcult to turn good directional ideas into good pairs trades. Once
+          you determine that an index, sector, commodity, or stock is going to go up
+          or down, ask yourself what related indexes, sectors, commodities, or stocks
+          are most likely to maximize this move. You would then buy the instrument
+          most likely to maximize the move and sell the related one that is likely to lag.
+          For instance, you might think the S&P 500 Index is headed higher. You note
+          strength in the NYSE TICK ($TICK) relative to the Dow TICK ($TICKI) and so buy
+          the Russell 2000 small caps and sell the Dow Jones Industrials in equal dollar
+          amounts. This gives you an idea that can be proﬁtable even if your original idea
+          about directionality in the S&P Index doesn’t work out. As long as there’s more
+          buying in the broad market than among the large caps in relative terms, you’ll
+          make money. Learn to think and trade in terms of relationships so you increase
+          your arsenal of ideas.
+

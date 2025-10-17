@@ -1,0 +1,53 @@
+P1: JYS
+c10     JWBT039-Steenbarger      December 29, 2008     13:21     Printer: Yet to come
+
+
+
+
+          Looking for the Edge                                                          321
+
+
+               Let’s set that up as an exercise. We’ll download data for the S&P 500
+          Index (cash close) for the past 1,000 trading days. That information will
+          give us roughly four years of daily data. If I obtain the data from Pinnacle
+          Data, I’ll open a blank sheet in Excel; click on the Excel menu item for
+          File; click Open; go to the Data folder in the C drive; double-click on the
+          IDXDATA folder; select All Files as the Files of type; and double-click the
+          S&P 500 file. I’ll highlight the cells for the past 1,000 sessions; click on
+          the Edit menu item in Excel; click on Copy; open a new, blank spread-
+          sheet; then click the Edit menu item again; and click Paste, with the cur-
+          sor highlighting the A2 cell. The data from the Pinnacle sheet will ap-
+          pear in my worksheet, leaving row A for data labels (Date, Open, High,
+          Low, Close).
+               If you download your data from another source, your menu items to ac-
+          cess the data will differ, but the result will be the same: you’ll copy the data
+          from your source and paste them into the blank spreadsheet at cell A2, then
+          create your data labels. As a result, your raw data will occupy columns A–E.
+          (Column A will be Date; column B will be Open; column C will be High; col-
+          umn D will be Low; and column E will be Close.) Now, for the data label for
+          column F (cell F1), you can type (without quotation marks): “SP(1).” This
+          is your independent variable, the current day’s rate of change in the index.
+          Your first entry will go into cell F3 and will be (again without quotations
+          marks): “=((E3-E2)/E2)* 100).” This is the percentage change in the index
+          from the close of the session at A2 to the close of the session at A3.
+               Now let’s create our dependent variable in cell G7, with column G la-
+          beled SP+1 at G1. Your formula for cell G3 will be “=((E4-E3)/E3)* 100).”
+          This represents the next day’s percentage return for the index.
+               To complete your sheet, you would click and highlight the formula
+          cells at F3 and G3; click on the Excel menu item for Edit; and select the
+          option for Copy. You’ll see the F3 and G3 cells specially highlighted. Then,
+          with your cursor highlighting cells F4 and G4, drag your mouse down the
+          full length of the data set and release, highlighting all those cells. Click
+          again on the Excel menu item for Edit, then select Paste. Your spreadsheet
+          will calculate the formulas for each of the cells and the data portion of your
+          spreadsheet will be finished. The raw data will be in columns A–E. The in-
+          dependent variable (our candidate predictor) will be in column F; and our
+          variable of trading interest—the dependent variable—will reside in column
+          G. Save this spreadsheet as Practice Sheet in an Excel folder. We’ll be using
+          it for future lessons.
+               Note that we downloaded 1,000 days worth of data, but the actual num-
+          ber of data points in our sample is 998. We could not compute SP(1) from
+          the first data point because we didn’t have the prior day’s close; hence we
+          had to begin our formula in the third data row. We also could not compute
+          SP+1 from the last data point because we don’t know tomorrow’s closing
+

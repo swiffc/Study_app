@@ -1,0 +1,54 @@
+P1: JYS
+c10     JWBT039-Steenbarger     December 29, 2008      13:21    Printer: Yet to come
+
+
+
+
+          324                                                   THE DAILY TRADING COACH
+
+
+
+          LESSON 96: CONDUCT YOUR
+          HISTORICAL INVESTIGATIONS
+
+          Once you have your data downloaded and your independent and depen-
+          dent variables calculated, you’re ready to take a look at the relationship be-
+          tween your two sets of variables. In the last lesson, you saved your spread-
+          sheet of the S&P 500 Index data with the prior day’s price change in column
+          F and the next day’s change in column G. Open that sheet, and we will get
+          started with our investigation.
+               Your first step will be to copy the data from the sheet to a fresh work-
+          sheet. We will first copy the data to the Windows clipboard, then paste into
+          the new sheet. This eliminates all formulas from the sheet, because the
+          clipboard saves only alphanumeric text data. This process is necessary for
+          the data manipulations that will be required for our investigation.
+               So, highlight all the cells in your sheet with the exception of the last
+          row (the most recent day’s data). We don’t include that row in our analysis
+          because there won’t be any data for the next day’s return. With the cells
+          highlighted, click the Excel menu item for Edit, then select Copy. You’ll
+          then exit out of the spreadsheet and instruct Windows to save the data to
+          the clipboard. Open a fresh, blank sheet; click on cell A1; click the Excel
+          menu item for Edit; and select Paste. Your data will be transferred to the
+          new sheet, with no formulas included.
+               Once you’ve done this, you’ll delete the first row of data below the
+          data labels, because there will be no data for the change from the prior
+          day. When you delete the row by highlighting the entire row and clicking
+          Edit and selecting Delete, the rows below will move up, so that there are
+          no empty rows between the data labels and the data themselves.
+               You’ll now highlight all the data (including the first row of data labels),
+          select the Excel menu item for Data; then select Sort; and select the option
+          SP(1) in the Sort By drop down menu. You can click the button on the drop
+          down menu for Descending: this will place your largest daily gain in the
+          S&P 500 Index in the first row, the next largest in the second row, etc. The
+          last row of data will be the day of the largest daily drop in the S&P 500
+          Index.
+
+
+              The Sort function separates your independent variables into high
+              and low values, so that you can see how the dependent variables
+              are affected.
+
+               Now we’re ready to explore the data. For the purpose of the illus-
+          tration, I’ll assume that your data labels are in row 1 and that you have
+          999 rows of data (998 days of S&P data plus the row of labels). Below
+

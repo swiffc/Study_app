@@ -1,0 +1,53 @@
+P1: JYS
+c10     JWBT039-Steenbarger      December 29, 2008    13:21     Printer: Yet to come
+
+
+
+
+          Looking for the Edge                                                         315
+
+          labeled Data. The IDXDATA folder within Data contains spreadsheets with
+          each instrument or piece of data (S&P 500 Index open-high-low-close; num-
+          ber of NYSE stocks making 52-week highs) in its own spreadsheet. Once
+          you open these sheets, you can highlight the data from the historical pe-
+          riod you’re interested in, click on the Edit menu item in Excel, click on the
+          Copy option, open a fresh, blank spreadsheet, click on Edit, and then click
+          on the Paste option. By copying from the Pinnacle sheets and pasting into
+          your own worksheets, you don’t modify your historical data files when you
+          manipulate the data for your analyses.
+               Personally, I would not subscribe to a data/charting service that did
+          not facilitate an easy downloading of data into spreadsheets for analysis.
+          It’s also helpful to have data services that carry a large amount of intraday
+          and daily data on their servers, so that you can easily retrieve all the data
+          you need from a single source. In general, I’ve found e-Signal and Pinnacle
+          to be reliable clean sources of data. There are others out there, however,
+          and I encourage you to shop around.
+
+
+              When you download data for analysis, save your sheets in fold-
+              ers that will help you organize your findings and give the sheets
+              names that you’ll recognize. Over time, you’ll perform many analy-
+              ses; saving and organizing your work will prevent you from having
+              to reinvent wheels later.
+
+               Once you have the data in your sheet, you’ll need to use formulas in Ex-
+          cel to get the data into the form you need to examine patterns of interest.
+          Formulas in Excel will begin with an = sign. If, for example, you wanted to
+          calculate an average value for the first 10 periods of price data (where the
+          earliest data are in row 2 and later data below), you might enter into the cell
+          labeled D11: “=average(C2:C11),” without typing the quotation marks. That
+          will give you the simple average (mean) of the price data in cells C1 through
+          C10. If you want to create a moving average, you could simply click on the
+          D10 cell, click the Excel menu item for copy, left-click your mouse and drag
+          from cell D11 down, and release. Your column D cells will update the aver-
+          age for each new cell in column C, creating a 10-period moving average.
+               As a rule, each column in Excel (labeled with the letters) will rep-
+          resent a variable of interest. Usually, my column A is date, column B is
+          time (if I’m exploring intraday data), column C is open price, column D is
+          high price, column E is low price, and column F is closing price. Column G
+          might be devoted to volume data for each of those periods (if that’s part
+          of what I’m investigating); columns H and above will be devoted to other
+          variables of interest, such as the data series for another index or stock or
+          the readings of a market indicator for that period. Each row of data is a
+          time period, such as a day. Generally, my data are organized so that the
+

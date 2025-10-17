@@ -1,0 +1,53 @@
+P1: JYS
+c10     JWBT039-Steenbarger      December 29, 2008     13:21     Printer: Yet to come
+
+
+
+
+          Looking for the Edge                                                          335
+
+          unique elements are hard to find. Very high or low volume; strong or weak
+          put/call ratios; large opening gaps—all are good areas for investigations.
+
+
+              We find the greatest directional edges following extreme market
+              events.
+
+               Once you have identified a pattern that stands out, this becomes a hy-
+          pothesis that you entertain to start a trading day or week. If, say, I find that
+          40 of the last 50 occasions in which the market has been very weak with
+          a high put/call ratio have shown higher prices 20 days later, this will have
+          me looking for a near-term bottoming process. If, after that analysis, I no-
+          tice that we’re making lower price lows but with fewer stocks and sectors
+          participating in the weakness, this may add a measure of weight to my hy-
+          pothesis. Eventually, I might get to the point where I think we’ve put in a
+          price bottom and I’ll buy the market, giving myself a favorable risk/reward
+          should the historical pattern play out.
+               But equally important, consider the scenario in which we see good his-
+          torical odds of bouncing over a 20-day period, leading us to search for
+          a near-term bottoming process. My fresh data, however, suggest that the
+          market is weakening further: more stocks and sectors are making lows,
+          not fewer. The historical pattern does not appear to be playing itself out.
+          This, too, is very useful data. When markets buck their historical tenden-
+          cies, something special may be at work. Some very good trades can pro-
+          ceed from the recognition that markets are not behaving normally.
+               This is the value of considering patterns as hypotheses and keeping
+          your mind open to those hypotheses being supported or not. A historical
+          pattern in markets is a kind of script for the market to follow; your job is
+          to determine whether or not it’s following that script.
+
+
+              Our analyses only inform us of historical tendencies. If a market
+              is not behaving in a manner that is consistent with its history, this
+              alerts us to unique, situational forces at work.
+
+
+              All of this suggests that historical investigations are useful logical aids,
+          but my experience is that their greatest value may be psychological. Day
+          after day, week after week, and year after year of investigating patterns
+          and running market results through Excel have given me a unique feel for
+          patterns. It also has given me a keen sense for when patterns are changing:
+          when historical precedents may no longer hold.
+              One routine that has been very helpful has been to isolate the last five
+          or so instances of a potential pattern. If the market has behaved quite
+

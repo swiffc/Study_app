@@ -1,0 +1,54 @@
+P1: JYS
+c10     JWBT039-Steenbarger     December 29, 2008      13:21    Printer: Yet to come
+
+
+
+
+          332                                                   THE DAILY TRADING COACH
+
+
+
+          sectors, related asset classes—anything can be a context that affects recent
+          market behavior. In exploring these patterns, you become more sensitive
+          to them in real-time, aiding your selection and execution of trades.
+
+
+                     COACHING CUE
+
+          If you’re interested in longer-term trading or investing, you can create spread-
+          sheets with weekly or monthly data and investigate independent variables such
+          as monthly returns on the next month’s returns; VIX levels on the next month’s
+          volatility; sentiment data on the next month’s returns; price changes in oil on
+          the next month’s returns, etc. You can also code data for months of the year
+          (or beginning/end of the month) to investigate calendar eﬀects on returns.
+
+
+
+
+          LESSON 99: FILTER DATA
+
+          Let’s say you want to analyze intraday information for the S&P 500 Index
+          futures. Now your spreadsheet will look different as you download data
+          from sources such as your real-time charting application. Your first col-
+          umn will be date, your second column will be time of day, and your next
+          columns will be open, high, low, and closing prices. If you so select, the
+          next column can be trading volume for that time period (one-minute, five-
+          minute, hourly, and so on).
+              Suppose you want to see how the S&P 500 market has behaved at a
+          certain time of day. What we will need to do is filter out that time of day
+          from the mass of downloaded data and only examine that subset. Instead of
+          sorting data, which has been a mainstay of our investigations to this point,
+          we will use Excel’s filter function.
+              To illustrate how we might do this, we’ll start with a simple question.
+          Suppose we want to know how trading volume for the current first half-
+          hour of trading compares with the average trading volume for that cor-
+          responding half-hour over the prior 20 days of trading. This will give us
+          a rough sense of market activity, which correlates positively with price
+          volatility. The volume also gives a relative sense for the participation of
+          large, institutional traders. If, say, we observe a break out of a range during
+          the first 30 minutes of trading, it is helpful to know whether or not these
+          large market-moving participants are on board.
+
+
+              Volume analyses can help you identify who is in the market.
+

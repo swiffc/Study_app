@@ -1,0 +1,54 @@
+P1: JYS
+c08     JWBT039-Steenbarger     December 29, 2008     7:38    Printer: Yet to come
+
+
+
+
+          244                                                  THE DAILY TRADING COACH
+
+
+
+          LESSON 76: TRACK THE
+          CORRELATIONS OF YOUR RETURNS
+
+          A department store is an example of a diversified business. The store sells
+          a variety of goods, so it attracts a wide range of customers. If consumers
+          aren’t buying seasonal items, they may come in to shop for clothes or
+          housewares. The departments that offer products for children, teens, men,
+          and women ensure that there will be a mix among customers, evening out
+          peaks and valleys in traffic patterns for any of these individual groups.
+               In your trading business, diversification provides you with multiple
+          profit centers. You can make money from intraday stock index trades and
+          longer-term moves in the bond market, for example. If you divide your capi-
+          tal among different ideas and strategies, you smooth out your equity curve,
+          much as the presence of many departments keeps traffic flowing to the
+          department store. When any one or two strategies fail to produce good re-
+          turns, others contribute to the bottom line.
+
+
+              Diversification in your trading enables you to stay afloat when
+              any one of your strategies stops working for a while or becomes
+              obsolete.
+
+              But how do you know your trading business is truly diversified? Just
+          because you are trading different setups or markets doesn’t mean that
+          you necessarily possess a diversified portfolio. The only way you can en-
+          sure true diversification is by tracking the correlations among the returns
+          of your different strategies.
+              Suppose you are a day trader who trades two basic patterns: moves
+          on earnings news and breakouts from trading ranges. The idea is that your
+          returns would be diversified because you would be long some names (earn-
+          ings surprises and breakouts to the upside) and short others (earnings
+          surprises and breakouts to the downside). You would also be diversified
+          across market sectors and perhaps even by the time frame of your hold-
+          ings. If you follow the logic of the previous lesson, you can track perfor-
+          mance metrics for your earnings-related trades and your breakout trades.
+          You can also track performance across your long trades and your shorts.
+              When you track the correlation of your returns, you take the analysis a
+          step further. You calculate the daily P/L for each of your strategies over a
+          period of time. You then evaluate the correlation between the two number
+          series. If the strategies are truly independent, they should not be highly cor-
+          related. A slow market, for example, may yield little in the way of breakout
+          trades, but you could still make money on selected stocks with earnings
+          surprises. Similarly, you may get little earnings news on a particular day,
+

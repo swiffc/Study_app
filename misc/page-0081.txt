@@ -1,0 +1,55 @@
+P1: JYS
+c02     JWBT039-Steenbarger      December 28, 2008      9:59     Printer: Yet to come
+
+
+
+
+          Stress and Distress                                                           61
+
+
+          B, or C. A trades are clearly within your sweet spot; they’re your bread-and-
+          butter, best trades. B trades are your good trades: not necessarily gimmes
+          or home runs, but consistent winners. C trades are more marginal and
+          speculative: they’re the ones that feel right, but are clearly outside your
+          wheelhouse.
+              Over time, you can track the profitability of the A, B, and C trades and
+          verify that you really know your niche. You can also track the relative sizing
+          of your positions, to ensure that you’re pursuing the greatest reward when
+          you take trades in your sweet spots and assuming the least risk when you’re
+          going after that low, outside pitch.
+              The more clearly you identify your niche, the less likely you are to get
+          away from it. That clarity can only benefit your profitability and emotional
+          experience over time.
+
+                      COACHING CUE
+
+          If you categorize your trades/time frames/setups/markets as A, B, or C as out-
+          lined above, you have the start for good risk management when you go into
+          slumps. When markets do not behave as you expect and you lose your edge,
+          cut your trading back to A trades only. Many times, slumps start with overconﬁ-
+          dence and getting outside our niches. If it’s the A trades that aren’t performing,
+          that’s when you know you have to cut your risk (size) and reassess markets and
+          trends.
+
+
+
+          LESSON 20: VOLATILITY OF MARKETS
+          AND VOLATILITY OF MOOD
+
+          I recently posted something important to the TraderFeed blog. I took
+          two months in the S&P emini futures (ES) market—January and May,
+          2008—and compared the median volatility of half-hour periods within the
+          months. During that period, overall market volatility, as gauged by the VIX,
+          had declined significantly. The question is whether this day-to-day volatility
+          also translated to lower volatility for very short time frame traders.
+               The results were eye-opening: In January, when the VIX was high, the
+          median 30-minute high-low price range was 0.60 percent. In May, with a
+          lower VIX, the range dwindled to 0.28 percent. In other words, markets
+          were moving half as far for the active day trader in May than January.
+               Let’s think about how that affects traders emotionally. The trader
+          whose perceptions are anchored in January and who anticipates much
+          greater movement in May will place profit targets relatively far away. In
+          the lower volatility environment, the market will not reach those targets
+          in the time frame that is traded. Instead, trades that initially move in the
+          trader’s favor will reverse and fall well short of expectations. Repeat that
+

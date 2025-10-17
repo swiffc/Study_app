@@ -1,0 +1,54 @@
+P1: JYS
+c10     JWBT039-Steenbarger      December 29, 2008    13:21     Printer: Yet to come
+
+
+
+
+          Looking for the Edge                                                         313
+
+
+               For the collection of clean intraday data, I’ve found TickData (www.
+          tickdata.com) to be a particularly valuable vendor. The data management
+          software that accompanies the historical data enables you to place the data
+          in any time frame and store them as files within Excel. This is a great way to
+          build a historical database of intraday information quickly, including price
+          data for stocks and futures and a surprising array of indicator data.
+               If you go with a historical data vendor, you’ll have plenty of data for
+          exploration and the updating process will be easy. Manual updating of
+          data from charting platforms is more cumbersome and time-consuming,
+          but obviously cheaper if you’re already subscribing to the data service. It
+          is important thing that you obtain the data you most want from reliable
+          sources in user-friendly ways. If the process becomes too cumbersome,
+          you’ll quickly abandon it.
+               As your own trading coach, you want to make the learning process
+          stimulating and enjoyable; that is how you’ll sustain positive motivation.
+          Focus on what you already look at in your trading and limit your initial
+          data collection to those elements. Price, volume, and a few basic variables
+          for each stock, sector, index, or futures contract that you typically look at
+          will be plenty at first. Adding data is never a problem. The key is to organize
+          the information in a way that will make it easy for you to pull out what you
+          want, when you want it. As you become proficient at observing historical
+          patterns, you’ll be pleasantly surprised at how this process prepares you
+          for recognizing the patterns as they emerge in real time.
+
+
+                     COACHING CUE
+
+          Consider setting up separate data archives for daily and weekly data, so that
+          you can investigate patterns covering periods from a single day to several
+          weeks. You’d be surprised how many hypotheses can be generated from simple
+          open-high-low-close price data alone. How do returns diﬀer after an up day
+          versus a down day? What happens after a down day in which the day’s range
+          is the highest of the past 20 days? What happens after three consecutive up
+          or down days? How do the returns diﬀer following a down day during a down
+          week versus a down day during an up week? You can learn quite a bit simply
+          by investigating price data.
+
+
+
+
+          LESSON 93: EXCEL BASICS
+
+          In this lesson, I’ll go over just a few essentials of Excel that I employ
+          in examining historical market data. If you do not already have a basic
+

@@ -1,0 +1,53 @@
+P1: JYS
+c10     JWBT039-Steenbarger      December 29, 2008    13:21    Printer: Yet to come
+
+
+
+
+          Looking for the Edge                                                        311
+
+
+          typically happens the week following a very strong down week?” This ques-
+          tion is better than asking, “What typically happens the week following a
+          very strong down week during the month of March when gold has been
+          up and bonds have been down?” The latter question will yield a small sam-
+          ple of matching occasions—perhaps only three over many years—so that
+          it would be difficult to generalize from these. While I will occasionally look
+          at patterns with a small N simply as a way to determine if the current mar-
+          ket is behaving in historically unusual ways, it is the patterns that have at
+          least 20 occurrences during a look-back period that will merit the greatest
+          attention. The more conditions we add to a search, the more we limit the
+          sample and make generalization difficult.
+
+
+              The simplest patterns will tend to be the most robust.
+
+
+                Of course, the number of occurrences in a look-back period will partly
+          depend on the frequency of data that you investigate. With 415 minutes in a
+          trading day for stock index futures, you would have 8,300 observations of
+          one-minute patterns in a 20-day period. If you were investigating daily data,
+          the same number of observations would have to cover a period exceed-
+          ing 30 years. Databases with high frequency data can become unwieldy in
+          a hurry and require dedicated database applications. The simple histori-
+          cal investigations that I conduct utilize database functions in a flat Excel
+          file. When I investigate a limited number of variables over a manageable
+          time frame, I find this to be adequate to my needs. Clearly, a system de-
+          veloper who is going to test many variables over many time frames would
+          need a relational database or a dedicated system-testing platform, such as
+          TradeStation. The kind of hypothesis-generating activities covered in this
+          chapter are most appropriate for discretionary traders who would like to
+          be a bit more systematic and selective in their selection of market patterns
+          to trade—not formal system developers.
+                Before you frame hypotheses worthy of historical exploration, you
+          need to create your data set. This data set would include a range of vari-
+          ables over a defined time period. The variables that you select would
+          reflect the markets and indicators that you typically consult when mak-
+          ing discretionary trading decisions. For instance, if you trade off lead-lag
+          relationships among stock market sectors, you’ll need to include sector
+          indexes/ETFs in your database. If you trade gap patterns in individual
+          stocks, you’ll need daily open-high-low-close prices for each issue that you
+          trade at the very least. Some of the patterns I track in my own trading in-
+          volve the number of stocks making new highs or lows; this is included in
+          my database with separate columns on a sheet dedicated to each.
+

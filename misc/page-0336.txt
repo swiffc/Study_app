@@ -1,0 +1,54 @@
+P1: JYS
+c10     JWBT039-Steenbarger    December 29, 2008     13:21   Printer: Yet to come
+
+
+
+
+          316                                                THE DAILY TRADING COACH
+
+
+
+          earliest data are in row 2 and the later data fall underneath. I save row 1
+          for data labels, so that each column is labeled clearly: DATE, OPEN, HIGH,
+          LOW, CLOSE, etc. You’ll see why this labeling is helpful when we get to the
+          process of sorting the data.
+               Here are some simple statistical functions that I use frequently to ex-
+          amine data in a qualitative way. Each example assumes that we’re investi-
+          gating the data in column C, from cells 1 through 10:
+
+            r =median(C2:C11) – The median value for the data in the formula.
+            r =max(C2:C11) – The largest value for the data in the formula.
+            r =min(C2:C11) – The smallest value for the data in the formula.
+            r =stdev(C2:C11) – The standard deviation for the data in the formula.
+            r =correl(C2:C11,D2:D11) – The correlation between the data in colu-
+              mns C and D, cells 1–10.
+
+               Much of the time, our analyses won’t be of the raw data, but will be of
+          the changes in the data from period to period. The formula =(C3-C2) gives
+          the difference from cell C2 to cell C3. If we want to express this differ-
+          ence as a percentage (so that we’re analyzing percent price changes from
+          period to period), the formula would read = ((C3-C2)/C2)* 100. This takes
+          the difference of cells C3 and C2 as a proportion of the initial value (C2),
+          multiplied by 100 to give a percentage.
+               When we want to update later cells with the percentage difference in-
+          formation, we don’t need to rewrite the formulas. Instead, as noted above,
+          we click on the cell with the formula, click on the Excel menu item Edit,
+          click on copy, then left click the cell below the one with the formula and
+          drag down as far as we want the data. The spreadsheet will calculate price
+          changes for each of the time periods that you selected by dragging. This
+          means that if you save your formulas into worksheets, updating your data is
+          as simple as downloading the fresh data from your vendor, pasting into the
+          appropriate cells in your sheets, and copying the data from formulas for the
+          cells representing the new data period. Once you’ve organized your sheets
+          in this manner, it thus only takes a few minutes a day to completely update.
+
+              Once you create a spreadsheet with the appropriate formulas, up-
+              dating your analyses is mostly a matter of pasting and copying. As
+              a result, you can update many analyses in just a few minutes.
+
+               Once again, the basic formulas, arrangement of rows and columns, and
+          copying of data will take some practice before you move on to actual analy-
+          ses. I strongly encourage you to become proficient with downloading your
+          data from your vendor/application and manipulating the data in Excel with
+          copying, pasting, and formula writing before moving on. Once you have
+

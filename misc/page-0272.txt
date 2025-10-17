@@ -1,0 +1,54 @@
+P1: JYS
+c08     JWBT039-Steenbarger     December 29, 2008      7:38    Printer: Yet to come
+
+
+
+
+          252                                                   THE DAILY TRADING COACH
+
+
+
+          stop-loss point captures the amount of adverse movement we’re willing to
+          incur prior to exiting the trade and declaring our hypothesis wrong.
+                The trader who lacks clearly defined targets and stop-losses is like the
+          scientist who lacks a clear hypothesis. You can trade to see what happens,
+          and scientists can play around in the laboratory, but neither is science and
+          neither is likely to prove profitable over the long run. A firm hypothesis
+          and objective criteria for accepting or rejecting the hypothesis advances
+          knowledge. Similarly, a clear trading idea and explicit criteria for validating
+          or rejecting the idea can guide our market understanding. Frequently, if
+          you get stopped out of a seemingly good trade idea you can reframe your
+          understanding of what is going on in the market. After all, scientists learn
+          from hypotheses that are not confirmed as well as those that are.
+                With the target and stop-loss firmly in mind, we now have the basis for
+          executing our idea. Good execution mandates that we enter the trade at a
+          price in which the amount of money we would lose if we were wrong (if
+          we’re stopped out) is less than the amount of money that we would make
+          if we were right (if we reach our target). When traders talk about getting a
+          good price, this is what they mean: they are entering an idea with relatively
+          little risk and a good deal more potential reward. A good way to think about
+          this is to think of each trade as a hand of poker: where we place our stop-
+          loss level reflects how much we’re willing to bet on a particular idea.
+
+
+              Many traders make the mistake of placing stops at a particular dol-
+              lar loss level. Rather, you want to place stops at levels that clearly
+              tell you that your trade idea is wrong.
+
+
+               Let’s say my research tells me that we have an excellent chance of
+          breaking above the prior day’s high price of $51 per share. We are currently
+          trading a bit below $49 after two bouts of morning selling took the stock
+          down to $48, which is above the prior day’s low of $47.50. A news item
+          favorable to the sector hits the tape and I immediately buy the stock at $49,
+          with $51 as my immediate target. My hypothesis is that this news will be
+          a catalyst for propelling the stock higher, given that earlier selling could
+          not take out yesterday’s low. I’m willing to lose a point on the trade (stop
+          myself out at $48) to make two points on the idea (target of $51).
+               Suppose, however, that the stock was trading at $50, rather than $49
+          when the news came out. Now my risk/reward is not weighted in my favor.
+          If I’m willing to accept a move back to $48 before concluding I’m wrong, I
+          now have two points of potential loss for a single point of targeted profit.
+          While the idea is the same, the execution is quite different. It is difficult to
+          make money over the long haul if you’re consistently risking two dollars
+

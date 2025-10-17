@@ -1,0 +1,52 @@
+P1: JYS
+c08     JWBT039-Steenbarger    December 29, 2008     7:38    Printer: Yet to come
+
+
+
+
+          232                                                 THE DAILY TRADING COACH
+
+
+            r How much can you expect to make per trade? Per month? Per year?
+              What is the likely variability of your income? Will this be manageable?
+
+              These questions require hard data based on experience, not guesses or
+          hopes.
+              Before you attempt to trade for a living, you should have a sufficient
+          base of experience to tell you four things:
+            r What is the average size of my winning trade?
+            r What is the average ratio of my winning trades to losing trades?
+            r What is my average percentage of winning versus losing trades?
+            r What is my average variability (volatility) of returns per day, week, and
+              month?
+
+              The answers to these questions will determine the likely path of your
+          returns: the income generated from your trading business. These questions
+          lead you to ask other questions:
+            r What kind of trader am I: do I tend to make money by being right more
+              often than wrong, by having larger winning trades than losers, or a
+              combination of the two?
+            r How much variation in my winning percentage and in the ratio of the
+              size of winners versus losers is normal for me?
+            r How large would my trading need to be to generate acceptable returns
+              and how much capital would I need to support that trading without
+              undergoing drastic swings?
+
+               It is surprising—and dismaying—how few traders really look under
+          the hood of their trading to understand how they make money. Because
+          traders don’t have a grasp on how they perform on average and how much
+          variation from average can be expected, they are poorly equipped to dis-
+          tinguish normal drawdowns from troublesome slumps. They are also in a
+          poor position to identify those occasions when the patterns of their returns
+          shift due to changing markets.
+
+              If your trading experience does not extend to a variety of market
+              cycles and conditions, your trading business will be ill prepared to
+              weather shifts in volatility and trend.
+
+              Your assignment for this lesson is to go to Henry Carstens’ Vertical
+          Solutions site (www.verticalsolutions.com/tools.html) and check out his
+          two forecaster tools, using your own trading data as inputs. His first
+          tool will show you how the path of your returns will vary as a function
+          of changes in volatility. These volatility shifts could be attributable to
+

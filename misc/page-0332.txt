@@ -1,0 +1,54 @@
+P1: JYS
+c10     JWBT039-Steenbarger     December 29, 2008     13:21     Printer: Yet to come
+
+
+
+
+          312                                                  THE DAILY TRADING COACH
+
+
+
+              As you might suspect, a database can get large quickly. With a column
+          in a spreadsheet for each of the following: date, open price, high price,
+          low price, closing price, volume, rate of change, and several variables
+          (indicators) that you track, you can have a large sheet for each stock or
+          futures contract that you trade—particularly if you are archiving intraday
+          data. I strongly recommend that beginners at this kind of historical
+          investigation get their feet wet with daily data. This process will keep
+          the data sets manageable and will be helpful in framing longer timeframe
+          hypotheses that can supplement intraday observation and judgment. Many
+          good swing patterns can be found with daily data and clean, affordable
+          data are readily available.
+
+
+              Some of the most promising historical patterns occur over a period
+              of several days to several weeks.
+
+               There are several possible sources for your historical database. Many
+          real-time platforms archive considerable historical data on their servers.
+          You can download these data from programs such as e-Signal and Real Tick
+          (two vendors I’ve personally used) and update your databases manually at
+          the end of the trading day. The advantage of this solution is that it keeps
+          you from the expense of purchasing historical data from vendors. It also
+          enables you to capture just the data you want in the way you want to store
+          them. This is how I collect most of my intraday data for stock index futures
+          and such variables as NYSE TICK. My spreadsheet is laid out in columns in
+          ways that I find intuitive. The entire process of updating a sheet, including
+          built in charts, takes a few minutes at most.
+               A second way you can go, which I also use, is to purchase his-
+          torical data from a vendor. I obtain daily data from Pinnacle Data
+          (www.pinnacledata.com), which includes an online program for updating
+          that is idiot-proof. Many of their data fields go back far in market history,
+          and many of them cover markets and indicators that I would not be able
+          to easily archive on my own. The data are automatically saved in Excel
+          sheets, with a separate sheet for each data element. That means that you
+          have to enter the different sheets and pull out all the data relevant to a par-
+          ticular hypothesis and time frame. The various fields can be copied onto a
+          single worksheet that you can use for your historical investigations (more
+          on this later). Among the data that I find useful from Pinnacle Data are
+          advance-decline information; new highs/lows; volume (including up/down
+          volume); interest rates; commodity and currency prices; and weekly data.
+          These data are general market data, not data for individual equities. When
+          I collect individual equity data, I generally find the historical data from the
+          real-time quotation platforms to be adequate to my needs.
+

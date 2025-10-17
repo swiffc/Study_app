@@ -1,0 +1,54 @@
+P1: JYS
+c09     JWBT039-Steenbarger      December 30, 2008     13:55    Printer: Yet to come
+
+
+
+
+          Lessons from Trading Professionals                                           301
+
+
+          Daily/Weekly Analysis
+          “When advancers recently outnumbered decliners by more than a 3:1 mar-
+          gin on the NYSE and the market continued to push higher over the next few
+          sessions,” Rennie recounts, “I brought up the Master Spreadsheet where I
+          conduct all of my testing and research. It contains the daily data back to
+          1980 and weekly data back to 1950 on all of the major averages and all of
+          the market internals (breadth, volume, new highs/lows, etc.) to make test-
+          ing quick and easy. In this case, I searched for instances when the S&P
+          was higher three days after a 3:1 positive breadth session and examined
+          the market’s performance over the next two weeks. Such lopsided breadth
+          days can mark buying climaxes, in which buying power is exhausted and
+          the market trades lower short-term. But when the market remains on firm
+          ground in the days following such a lopsided positive breadth session, I
+          would expect the S&P to continue moving higher over the next two weeks.”
+               Rennie Yang explains how to conduct this analysis: “To keep things
+          simple, let’s assume I have a spreadsheet containing daily S&P 500 and
+          NYSE advance/decline data. Column A has the date, while columns B and
+          C contain the daily S&P 500 closing price and NYSE advance/decline ra-
+          tio, respectively. Starting at the fifth row in column D, enter the following
+          formula:
+
+                              = if(and(c2 > 3, b5 > b2),(b15-b5)/b5,””)
+
+              “This states: if the advance/decline ratio from three days ago was over
+          3.0 and the S&P closed above its three-day ago close, show the percentage
+          gain for the S&P over the next ten trading days. Fill this column down to
+          the point where the data ends and quickly scan the results. You can imme-
+          diately see that the hypothesis seems correct. Over the last 30 examples,
+          the S&P has been higher 10 trading days later in 25 out of 30 cases, or
+          83 percent of the time.”
+
+
+              To get a sense for whether an edge is present, it is important to
+              compare a historical pattern over X days with the market’s general
+              tendency over X days.
+
+
+              “That may look like a bullish edge,” Rennie points out, “but first you
+          need to check the S&Ps at-any-time odds of posting a higher close 10 trad-
+          ing days later. Here’s a quick and easy method. Go back to the fifth row
+          in Column D of the sample spreadsheet above and change the formula to
+          read “=if(b15>b5,1,’’’’).” This means that if the S&Ps close two weeks later
+          is greater than today’s closing S&P, print a one, otherwise print noth-
+          ing. Then fill this column down to the point where the data ends. In most
+

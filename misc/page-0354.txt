@@ -1,0 +1,55 @@
+P1: JYS
+c10     JWBT039-Steenbarger     December 29, 2008      13:21    Printer: Yet to come
+
+
+
+
+          334                                                   THE DAILY TRADING COACH
+
+
+
+          such intraday patterns, I strongly recommend obtaining a clean database
+          from a vendor such as Tick Data. You can use their data management soft-
+          ware to create data points at any periodicity and download these easily to
+          Excel. Serious, longer-term investigations of historical intraday data need
+          tools far stronger than Excel. Limits to the size of spreadsheets and the
+          ease of maneuvering them make it impossible to use Excel for long-term
+          investigations of high frequency data.
+               Still, when you want to see how markets behave in the short run—say,
+          in the first hour of trading after a large gap open—investigations with in-
+          traday data and filtering can be quite useful. You’ll find interesting patterns
+          of continuation and reversal to set up day-trading ideas or to help with the
+          execution of longer timeframe trades.
+
+
+                     COACHING CUE
+
+          Filtering can be useful for examining patterns of returns as a function of time
+          of day. For instance, say the market is down over the past two hours: how do
+          returns compare if those two hours are the ﬁrst versus the last two hours of the
+          day? How are returns over the next few hours impacted if the day prior to those
+          two hours was down? Such analyses can be very helpful for intraday traders,
+          particularly when you combine price change independent variables with such
+          intraday predictors as NYSE TICK.
+
+
+
+
+          LESSON 100: MAKE USE OF
+          YOUR FINDINGS
+
+          This chapter has provided only a sampling of the kinds of ways that you
+          can use simple spreadsheets and formulas to investigate possible patterns
+          in historical data. Remember: these are qualitative looks at the data; they
+          are designed to generate hypotheses, not prove them. Manipulating data
+          and looking at them from various angles is a skill just like executing trades.
+          With practice and experience, you can get to the point where you investi-
+          gate quite a few patterns all in the hour or two after market close or before
+          they open.
+              The key is to identify what makes the current market unique or dis-
+          tinctive. Are we well below or above a moving average? Have there been
+          many more new lows than highs or the reverse? Has one sector been un-
+          usually strong or weak? Have the previous days been strong or weak? It
+          is often at the extremes—when indicators or patterns are at their most
+          unusual—that we find the greatest potential edges. But sometimes those
+

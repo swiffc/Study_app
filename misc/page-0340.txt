@@ -1,0 +1,54 @@
+P1: JYS
+c10     JWBT039-Steenbarger     December 29, 2008      13:21     Printer: Yet to come
+
+
+
+
+          320                                                    THE DAILY TRADING COACH
+
+
+
+          each other in graphical form, it is easier to accomplish that brainstorming.
+          You won’t arrive at hard and fast conclusions, but you’ll be on your way
+          toward generating promising trading ideas.
+
+
+                     COACHING CUE
+
+          Plot charts of the S&P 500 Index (SPY) against the major sector ETFs from the
+          S&P 500 universe as a great way to observe leading and lagging sectors, as well
+          as divergences at market highs and lows. The sectors I follow most closely are:
+          XLB (Materials); XLI (Industrials); XLY (Consumer Discretionary); XLP (Consumer
+          Staples); XLE (Energy); XLF (Financial); XLV (Health Care); and XLK (Technology).
+          If you want to bypass such charting, you can view excellent sector-related indi-
+          cators and charts at the Decision Point site (www.decisionpoint.com). Another
+          excellent site for stock and sector charts is Barchart (www.barchart.com).
+
+
+
+
+          LESSON 95: CREATE YOUR
+          INDEPENDENT AND DEPENDENT
+          VARIABLES
+
+          When I organize my spreadsheets, I generally place my raw data furthest
+          to the left (columns A, B, C, etc.); transformations of the raw data into
+          independent variables in the middle; and dependent variables furthest to
+          the right. Let’s take a look at what this means.
+              Your independent variables are what we might call candidate
+          predictors. They are variables that we think have an effect on the markets
+          we’re trading. For example, let’s say that we’re investigating the impact of
+          price change over the previous day of trading (independent variable) on the
+          next day’s return for the S&P 500 Index (dependent variable). The raw data
+          would consist of price data for the S&P 500 Index over the look-back period
+          that we select. The independent variable would be a moving calculation of
+          the prior day’s return. The dependent variable would be a calculation of the
+          return over the next day. The independent variable is what we think might
+          give us a trading edge; the dependent variable is what we would be trading
+          to exploit that edge.
+
+              If I keep my raw data to the left in the spreadsheet, followed by
+              transformations of the raw data to form the independent variable,
+              and then followed by the dependent variable, I keep analyses clear
+              from spreadsheet to spreadsheet.
+

@@ -1,0 +1,53 @@
+P1: JYS
+c08     JWBT039-Steenbarger    December 29, 2008     7:38    Printer: Yet to come
+
+
+
+
+          Coaching Your Trading Business                                            249
+
+
+
+              You don’t need to have a large edge to run a successful trading
+              business; you do need to have a consistent edge.
+
+
+                Had we tracked results every single day, we would have found that
+          Trader A had some winning days and Trader B had some losers. Over a
+          series of 100 days, however, the edge manifests itself boldly. There are no
+          scenarios in which Trader A is profitable and none where Trader B loses
+          money. Just as the edge per bet in a casino leads to reliable earnings for
+          the house over time, the edge per trade can create a reliable profit stream
+          when sustained over the long run. Once you have your edge, your great-
+          est challenge as your own trading coach is to ensure your consistency in
+          exploiting that edge, every day, every trade.
+                But let’s take the analysis a step further and explore risk and re-
+          ward. Our Traders A and B are not great risk takers: they are only trading
+          one ES contract for their $20,000 account. This provides them with aver-
+          age daily volatility of returns approximating 50 basis points, which is not
+          so unusual in the money management world. We can see, however, that
+          the 3 percent return for Trader B over 100 days would amount to about
+          7.5 percent per year (250 trading days). While that’s not a terrible return,
+          it is before commissions and other expenses are deducted. The consistent
+          small edge does not produce a large return when risk-taking is modest.
+                So how could our Trader B juice his returns? A simple way would
+          be to trade 3 contracts instead of 1. Assuming that this does not change
+          how Trader B trades, the average daily variability of returns would now be
+          1.5 percent, with an average win size of $300. The return of over 20 percent
+          per year would now look superior. If you take more risk when you have
+          a consistent edge, this certainly makes sense, just as betting more makes
+          sense at a casino makes sense if the odds are in your favor. You simply
+          need to have deep enough pockets to weather series of losses that are ex-
+          pectable even when you do have the edge. When I ran the scenarios for
+          Trader B, peak to trough drawdowns of $700 to $800 were evident. Multiply
+          that by the factor of 3 and now Trader B incurs drawdowns of 12 percent.
+                But what if Trader B took pedal to the metal and traded 10 contracts
+          with a small edge? The potential annual return of 75 percent looks fantas-
+          tic. The potential drawdowns of more than 40 percent now seem onerous.
+          That small, consistent edge suddenly generates large losses when risk is
+          ramped to an extreme.
+
+
+              The variability of your returns will tend to be correlated with the
+              variability of your emotions.
+

@@ -1,0 +1,54 @@
+P1: JYS
+c08     JWBT039-Steenbarger    December 29, 2008     7:38    Printer: Yet to come
+
+
+
+
+          242                                                 THE DAILY TRADING COACH
+
+
+
+          for example, consists of three kinds of trades: intraday trades with planned
+          holding times of less than an hour; intraday swing trades with planned hold-
+          ing times of greater than an hour; and overnight trades. The short intraday
+          trades are based on short-term patterns of price, volume, and sentiment.
+          The swing trades are trend following and are based on historical research
+          that gauges the odds of taking out price levels derived from the prior day’s
+          pivot points. The overnight trades are also trend following and are based on
+          longer-term historical research that shows a directional edge to markets.
+          These trades comprise different kinds of trades, because they are based on
+          different rationales and involve different positioning in the markets. For
+          instance, I can take a short-term intraday trade to the long side, but short
+          the market for an overnight trade that same day.
+
+
+              You can identify the inventory of your trading business by seg-
+              regating trades based on what you’re trading and how you’re
+              trading it.
+
+
+              For other traders, the division of the trading business will be by asset
+          class (rates trading versus currency trades versus equity trades) or by trad-
+          ing strategy/setup (trades based on news items; trades based on opening
+          gaps; trades based on relative sector strength). Relatively early in my trad-
+          ing career, I broke my trades down by time of day and found very different
+          metrics associated with morning, midday, and afternoon trades. That find-
+          ing was instrumental in focusing my trading on the morning hours. In other
+          words, the divisions of your trades should reflect anticipated differences
+          in your income streams. If the returns from the trading strategies or ap-
+          proaches are likely to be independent of one another, they will deserve
+          their own bin for analysis by metrics.
+              One of the breakdowns I’ve found most helpful in my trading is based
+          on tagging the market conditions at the time of entry. To accomplish this,
+          you would tag each trade based on whether it was placed in an upward
+          trending market, a downward trending market, or a nontrending market.
+          You will want to be consistent in how you identify market conditions; my
+          own breakdowns (because I trade short-term) were simply based on how
+          the current market session was trading relative to the previous one. It is
+          common that traders will perform better in some market environments
+          than others. For instance, based on a different breakdown, I learned that
+          I was most profitable in moderate volatility markets, as tagged by the VIX
+          index at the time of entry. When markets were relatively nonvolatile or
+          highly volatile, my returns were significantly reduced. This was useful to
+          me in knowing when and where to take risk.
+

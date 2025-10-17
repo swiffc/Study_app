@@ -1,0 +1,53 @@
+P1: JYS
+c10     JWBT039-Steenbarger      December 29, 2008     13:21     Printer: Yet to come
+
+
+
+
+          Looking for the Edge                                                          329
+
+          column I. I would then copy the spreadsheet to a fresh sheet and sort the
+          data based on column H, so that we’d separate the 1s from the 0s. We’d
+          then examine the column I sum for the cells in column H that were 1s and
+          compare with the column I sum for the cells in column H that were 0s.
+               Dummy coding is especially helpful if we want to examine the impact
+          of events on prospective returns. For instance, we could code all Mondays
+          with a 1; all Tuesdays with a 2, etc., and then sort the next day’s return
+          based on the codings to tell us whether returns were more or less favorable
+          following particular days of the week. Coding is also useful when we want
+          to set up complex conditions among two or more independent variables
+          and examine their relationship to future returns. This kind of coding gets a
+          bit more complex and will form the basis for the next lesson.
+
+
+                     COACHING CUE
+
+          If you include volume in your spreadsheet, you can code days with rising volume
+          with a 1 and days with falling volume with a 0. This would then allow you to
+          compare next day returns as a function of whether today’s rise or decline were
+          on rising or falling volume. All you’d need to do is sort the data once based on
+          the current day’s price change and then a second time separately for the rising
+          and falling occasions as a function of the rising and declining volume.
+
+
+
+
+          LESSON 98: EXAMINE CONTEXT
+
+          Philosopher Stephen Pepper coined the term contextualism to describe a
+          worldview in which truth is a function of the context in which knowledge
+          is embedded. A short-term price pattern might have one set of expectations
+          in a larger bull market; quite another under bear conditions. A short-term
+          reversal in the first hour of trading has different implications than one that
+          occurs midday. To use an example from The Psychology of Trading, you
+          understand Bear right! one way on the highway, quite another way in the
+          Alaskan wilderness.
+               We can code market data for contexts and then investigate patterns
+          specific to those contexts. What we’re really asking is, “Under the set of
+          conditions that we find at present, what is the distribution of future expec-
+          tations?” We’re not pretending that these will be universal expectations.
+          Rather, they are contextual—applicable to our current situation.
+
+              Many of the most fruitful trading hypotheses pertain to certain
+              kinds of markets—not to all markets, all the time.
+

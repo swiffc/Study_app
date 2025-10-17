@@ -1,0 +1,53 @@
+P1: JYS
+c10     JWBT039-Steenbarger      December 29, 2008    13:21     Printer: Yet to come
+
+
+
+
+          Looking for the Edge                                                         325
+
+
+          your bottom row in column G (say cell G1002), type in “=average(g2:g500)”
+          (without the quotation marks) and hit Enter. In the cell below that (G1003),
+          type in “=average(g501:g999)” and hit Enter. This gives you a general sense
+          for whether next day returns have been better or worse following the half
+          of the days in the sample that were strongest versus the half of days that
+          were weakest. Note that you could analyze the next day returns roughly by
+          quartiles simply by entering “=average(g2:g250)”; “=average(g251:g500)”;
+          “=average(g501:g750)”; and “=average(g751:g999)”.
+               What your data will show is that next day returns tend to be most posi-
+          tive following weak days in the S&P 500 Index and most restrained follow-
+          ing strong days in the Index. How much of a difference makes a difference
+          for your trading? As I emphasized earlier in the chapter, I am not using this
+          information to establish a statistically significant mechanical trading sys-
+          tem. Rather, I’m looking qualitatively for differences that hit me between
+          the eyes. These will be the most promising relationships for developing
+          trading hypotheses. If the difference between average next day returns
+          following an up day and a down day is the difference between a gain of
+          0.01 percent and 0.03 percent, I’m not going to get excited. If the average re-
+          turns following the strong days are negative and those following the weak
+          days are positive, that’s more interesting.
+
+
+              As you conduct many sortings, you’ll gain a good feel for differ-
+              ences that may form the basis for worthwhile hypotheses.
+
+               So how might I use the information? Perhaps I’ll drill down further,
+          examine those quartiles, and find that returns are particularly muted fol-
+          lowing strong up days. If that’s the case, I will entertain the hypothesis of
+          range-bound trading the morning following a strong daily rise in the S&P
+          500 Index. If I see that particularly weak days in the S&P 500 Index tend to
+          close higher the next day, I may entertain the notion of an intraday rever-
+          sal the day following a large drop. The data provide me with a heads up,
+          a hypothesis—not a firm, fixed conclusion.
+               The data might also help sharpen some of my trading practices. If I’m
+          holding positions for intermediate-term swing positions, I might be more
+          likely to add to a long position after a daily market dip than after a strong
+          daily rise. I might be more likely to take partial profits on a short position
+          following toward the end of a weak market day than toward the end of an
+          up day.
+               And suppose we find no apparent differences whatsoever? This, too,
+          is a finding. It would tell us that—at this time frame, for this time
+          period—there is no evidence of trend or countertrend effects. This would
+          help us temper our expectations following strong and weak market days.
+

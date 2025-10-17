@@ -1,0 +1,51 @@
+P1: JYS
+c08     JWBT039-Steenbarger     December 29, 2008     7:38     Printer: Yet to come
+
+
+
+
+          Coaching Your Trading Business                                              241
+
+          sorry to inform you that such items as equity curve, average numbers of
+          winning/losing trades, and average size of winning/losing trades are just
+          a start to serious scorekeeping. Professional traders at many firms obtain
+          much more information than that about their performance. Access to ded-
+          icated risk-management resources is one of the great advantages of work-
+          ing in such firms. Although it is unlikely that you could duplicate the output
+          of a dedicated risk manager, it is possible to drill down further into your
+          trading to uncover patterns that will aid your self-coaching.
+               In this lesson, we’ll focus on one specific advanced application of met-
+          rics that can greatly enhance your efforts at performance improvement:
+          tracking results across your markets and/or types of trades. This tracking
+          will tell you, not only how well you’re doing, but also which trading is most
+          contributing to and limiting your results.
+
+              Of the different types of trades that you place, which most con-
+              tribute to your profits? These are the drivers of your trading busi-
+              ness success.
+
+               We’ve already seen how important it is for your trading to be diversi-
+          fied. Among the forms of diversification commonly found are:
+            r Trading different instruments, such as individual stocks versus index
+              ETFs.
+            r Trading different markets, such as crude oil futures and stock indexes.
+            r Trading different setups, such as event trades and breakout trades.
+            r Trading different times of day and/or different time frames.
+
+                To truly understand your trading business, you want to tag each of your
+          trades by the type of trade it represents. You will thus segregate trades
+          based on the criteria above. All your overnight trades, for instance, will
+          go in one bin; all your day trades in another. All our stock index trades will
+          fall into one category; all our fixed income trades in another. If you’re a day
+          trader, you may want to segregate trades by time of day, by sector traded,
+          or even by stock name.
+                Each of these categories is a product in your trading business. Each
+          category is a potential profit center. When you think of your trading as
+          a diversified business, you want to know how each of your products is
+          contributing to your bottom line. Simply looking at your bottom line will
+          mask important differences in results among your trades.
+                In practice this means that the metrics discussed in the last section—
+          equity curve; proportion of winning/losing trades; average size of win-
+          ning/losing trades; win/loss per trade; and variability of returns—should be
+          broken down for each portion of your trading business. My own trading,
+

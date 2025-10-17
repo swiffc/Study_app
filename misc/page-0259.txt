@@ -1,0 +1,52 @@
+P1: JYS
+c08     JWBT039-Steenbarger     December 29, 2008     7:38    Printer: Yet to come
+
+
+
+
+          Coaching Your Trading Business                                             239
+
+          winners and losers will tell you a great deal about your execution of trade
+          ideas—whether you’re entering at points that provide you with favorable
+          returns relative to the heat that you’re taking. The data will also tell you
+          how well you’re sticking to your risk management discipline, particularly
+          stop-losses. If your average win size and loss size are expanding or con-
+          tracting at the same time, you may simply be dealing with greater or lesser
+          market volatility (or you may be sizing your positions larger or smaller). It
+          is the relative shifts in size of average wins and losses that are most impor-
+          tant for managing your business. If your winners are increasing in average
+          size and your losers are decreasing, you’re obviously trading quite well. It
+          will be important to identify what you’re doing right so that you can be con-
+          sistent with it. Conversely, when losers are increasing in average size and
+          winners are not, you want to figure out where the problem lies. Are you
+          reading markets wrong, executing and managing trades poorly, or both?
+
+          Average Win/Loss Per Trade
+          Suppose you make a particular amount of money in January and the same
+          amount in February. You might be tempted to conclude that you traded
+          equally well in the two months. That would be a mistake, however. If you
+          had placed 50 trades in the first month and 100 in the second month, then
+          you can see that more trading did not produce more profit. Your average
+          profit per trade actually declined. This suggests that at least some of your
+          trading is not providing good returns, and that bears investigation. The sit-
+          uation is similar to that of a business that opens five new stores in a year,
+          but reports the same sales volume year over year. The average sales per
+          store have actually declined, an important factor masked by the increase
+          in overall activity. Average win/loss per trade will vary with your position
+          sizing and with overall market volatility. Be alert for occasions in which
+          market volatility may increase, but your average win per trade goes down:
+          you may not be trading as well in shifting market conditions. Many times,
+          traders make as much or more money if they simply focus on their best
+          ideas and reduce their total number of trades. This selectivity shows up as
+          a soaring average win per trade. It’s a great measure of the efficiency of
+          your trading efforts.
+
+              When you trade more often, make sure that the incremental trades
+              are adding economic value.
+
+
+          Variability of Daily Returns
+          If you take your wins and losses for each day and convert those to abso-
+          lute values, you’ll then have a distribution of your returns. You’ll see how
+          much your equity curve moves per day on average. You’ll also observe the
+

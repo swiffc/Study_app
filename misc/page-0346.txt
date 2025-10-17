@@ -1,0 +1,55 @@
+P1: JYS
+c10     JWBT039-Steenbarger     December 29, 2008      13:21     Printer: Yet to come
+
+
+
+
+          326                                                    THE DAILY TRADING COACH
+
+
+
+          We would not assume that trends are our friends; nor would we be tempted
+          to fade moves automatically. We would also know to look for potential
+          edges elsewhere.
+
+
+              Keep a record of the relationships that you examine and what you
+              find; this will guide future inquiries and prevent you from duplicat-
+              ing efforts later on.
+
+
+               If your analysis does not identify a promising relationship within the
+          data, you’re limited only by your own creativity in exploring alternate hy-
+          potheses. For instance, you might look at how prior returns affect next
+          returns for weekly or monthly data, rather than daily data. You might ex-
+          plore next day returns for a different instrument or market. Perhaps you’ll
+          see greater evidence of trendiness in commodities or small stocks than in
+          the S&P 500 Index.
+               Where your creativity can really kick in is in your selection of
+          independent variables. The same basic spreadsheet format outlined above
+          could be used to examine the relationship between the current day’s
+          put-call ratio and the next day’s S&P 500 returns; the current day’s volume
+          and next day returns; the current day’s financial sector performance and
+          next day S&P 500 returns; the current day’s bond yield performance
+          and next day returns. Once you have the spreadsheet analysis process
+          mastered, it’s simply a matter of switching one set of variables for another.
+          This way, you can investigate a host of candidate hypotheses in a relatively
+          short period of time.
+               The key to making this work is the Sort command in Excel. This sorts
+          your independent variable from high to low or low to high so that you can
+          see what happens in your dependent variable as a result. Along with visu-
+          alizing data in charts, sorting is a great way to get a feel for how variables
+          may be related, highlighting important market themes. But save your orig-
+          inal spreadsheet with the formulas—the one you had titled Practice Sheet
+          in the previous lesson. We’re not finished with Excel tricks!
+
+
+                     COACHING CUE
+
+          Here is one fruitful line of investigation: Take a look at next day returns as a
+          function of weak up days versus strong up days. You can deﬁne weak versus
+          strong with indicators such as the daily advance/decline ratio or the ratio of up
+          volume to down volume. Limit your sort to the rising days in the sample and sort
+          those based on market strength. What you’ll ﬁnd for some markets is that very
+          strong markets tend to continue their strength in the near term; weaker rising
+

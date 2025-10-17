@@ -1,0 +1,56 @@
+P1: JYS
+c08     JWBT039-Steenbarger      December 29, 2008      7:38    Printer: Yet to come
+
+
+
+
+          240                                                    THE DAILY TRADING COACH
+
+
+
+          variation around this average: the range of daily swings that is typical for
+          your trading. The variation in your daily returns will ultimately shape the
+          size of drawdowns you experience in your portfolio. Given that you’re go-
+          ing to experience runs of losing days over your career, you’ll have larger
+          drawdowns when those runs are 2 percent each than if they’re 1/2 percent.
+          Indeed, if you investigate the losing periods that are historically typical
+          of your trading, you can use these to calibrate the daily variability you
+          want to tolerate in your trading. This is central to risk management. If you
+          want to keep total drawdowns in your portfolio to less than 10 percent, for
+          example, you cannot risk average daily swings of 2 percent. Of course, if
+          you’re keeping drawdowns to less than 10 percent, you also cannot expect
+          to be making 50 percent or more per year: risk and reward will be pro-
+          portional. By calibrating the average swing in your portfolio per day, you
+          target both overall risk and reward. If you’re trading very well (i.e., very
+          profitably) with a relatively low variation in your portfolio size from day to
+          day, you can probably afford to gradually pick up your risk (increase trade
+          size to generate larger returns). If you’re trading poorly and losing money
+          beyond your norms, you may want to reduce your daily variation and cut
+          your risk.
+              What all of this means is that, when you’re your own trading coach, you
+          are also your own scorekeeper. The metrics above are, in my estimation,
+          an essential part of the journals of any serious trader. The more you know
+          about how you’re doing, the more prepared you’ll be to expand on your
+          strengths and address your vulnerabilities.
+
+
+                      COACHING CUE
+
+          See David Adler’s lesson in Chapter 9 for additional perspectives on trader met-
+          rics. A particular focus that is helpful is to examine what happens to your trades
+          after your entry and what happens to them following your exit. Knowing the av-
+          erage heat that you take on winning trades helps you gauge your execution skill;
+          knowing the average move in your favor following your exit enables you to track
+          the value of your exit criteria. Sometimes the most important data don’t show
+          up on a P/L summary: how much money you left on the table by not patiently
+          waiting for a good entry price or by exiting a move precipitously.
+
+
+
+
+          LESSON 75: ADVANCED SCOREKEEPING
+          FOR YOUR TRADING BUSINESS
+
+          After the last lesson, you may be feeling overwhelmed by the data you
+          need to keep to truly track and understand your trading business. I’m
+

@@ -1,0 +1,53 @@
+P1: JYS
+c09     JWBT039-Steenbarger     December 30, 2008     13:55     Printer: Yet to come
+
+
+
+
+          Lessons from Trading Professionals                                           287
+
+
+          research.” He explains, “I know that sounds like one answer repeated three
+          times, but it’s not. It’s the top three answers . . . I’ve been through several
+          stages in my career and traded using different methodologies. The one con-
+          stant I’ve found with any method of trading I’ve employed is that it takes
+          a substantial amount of research outside of market hours to successfully
+          implement them.”
+               Rob Hanna started his career day trading, focusing on short-term se-
+          tups, such as those described in Jeff Cooper’s Hit and Run books. What
+          Rob found most useful was not the setup patterns, but the screening for
+          volatile, trending stocks to implement the strategies. He began creating
+          his own scans based on trading patterns, focusing on trades with the best
+          risk/reward. “I wrote down each potential trade in a notebook along with
+          the trigger price for the next trading day,” Rob described. “When the trade
+          was done, I would log the results in my accounting software. I kept a field
+          in the accounting database called reason. It was there I entered the name
+          of the setup I used to initiate the trade.” This is a theme we see time and
+          again with successful traders: they track their results meticulously to aid
+          their learning curves.
+
+
+              Keeping records of trades that work cements success patterns in
+              your mind.
+
+               Rob Hanna points out that keeping his trades in a database accom-
+          plished two goals: it forced him to have a reason for every trade, and it
+          enabled him to track his results as a function of the trade setups employed.
+          “It made it extremely easy for me to determine which setups worked best
+          and which ones struggled,” he explains. “By doing this, I knew which setups
+          I should continue to focus on and which ones I should scrap altogether.”
+          When Rob didn’t have a solid reason for a trade, he simply entered the
+          word Hunch as the reason for the trade. “It didn’t take long for me to fig-
+          ure out how much the Hunch trades were costing,” he recounts. He quickly
+          scrapped trading from hunch alone.
+               The second phase of Rob’s research occurred when he switched to
+          longer-term trading that utilized patterns inspired by William O’Neil’s
+          CANSLIM approach. Rob began to utilize technical screens with the
+          TC2000 software from Worden Bros., with his final lists filtered through
+          fundamental criteria. “With TC2000,” he describes, “I am able to easily
+          place notes on the chart. This is incredibly useful. If a stock pops up with
+          an interesting pattern, I may have already researched that stock in recent
+          weeks. With the note feature, I can see if I already checked the funda-
+          mentals and rejected it for some reason. No need to waste time looking
+          up the same symbol over and over.” As with the day-trading patterns, the
+

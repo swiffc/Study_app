@@ -1,0 +1,50 @@
+P1: JYS
+c10     JWBT039-Steenbarger    December 29, 2008     13:21    Printer: Yet to come
+
+
+
+
+                                    CHAPTER 10
+
+
+
+                               Looking for
+                                the Edge
+                          Finding Historical Patterns
+                                  in Markets
+
+
+
+                    Science is the great antidote to the poison of enthu-
+                    siasm and superstition.
+                                                           —Adam Smith
+
+
+
+                raders commonly refer to having an edge in markets. What this means
+
+         T      is that they have a positive expectancy regarding the returns from
+                their trades. Card counting can provide an edge to a poker player,
+          but how can traders count the cards of their markets and put probabil-
+          ities on their side? One way of accomplishing this is historical investi-
+          gation. While history may not repeat exactly in markets, we can iden-
+          tify patterns that have been associated with a directional edge in the
+          past and hypothesize that these will yield similar tendencies in the im-
+          mediate future. By knowing market history, we identify patterns to guide
+          trade ideas.
+               So how can we investigate market history to uncover such patterns?
+          This has been a recurring topic of reader interest on the TraderFeed blog.
+          If you’re going to mentor yourself as a trader, your efforts will be greatly
+          aided by your ability to test the patterns you trade. After all, if you know
+          the edge associated with what you’re trading, you’re most likely to sustain
+          the confidence needed to see those trades through.
+               A thorough presentation of testing market ideas would take a book
+          in itself, but this chapter should get you started. Armed with a historical
+          database and Excel, you can greatly improve your ability to find worthy
+          market hypotheses to guide your trading. Let’s get started . . .
+
+
+
+
+                                                                                     307
+

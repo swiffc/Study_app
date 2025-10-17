@@ -1,0 +1,54 @@
+P1: JYS
+c10     JWBT039-Steenbarger      December 29, 2008    13:21    Printer: Yet to come
+
+
+
+
+          Looking for the Edge                                                        331
+
+
+          As before, we’ll examine the average next day’s return by calculating the
+          average for the cells in column H that are coded in column G as “1” and
+          comparing that to the average for the cells in column H that are coded in
+          column G as “0.”
+               Thus, let’s say that there are 538 cells for up days; 383 of these
+          are coded “1” in column G and 155 are coded “0.” You would compare
+          “=average(H2:H384)” and “=average(H385:H539).” You could also code
+          the cells in column H as either “1” or “0” in column I based on whether
+          they are up or down “=if(H2>0,1,0)” and then compare “=sum(I2:I384)”
+          and “=sum(I385:I539)” to see if there are notable differences in the num-
+          ber of up days following up days in markets that are above and below their
+          moving averages.
+               Just for your curiosity, using cash S&P 500 data as the raw data, I found
+          that the average next day change following an up day when we’re above the
+          20-day moving average to be −0.04 percent; the average next day change
+          following an up day when we’re below the 20-day moving average was
+          −0.18 percent. This is a good example of a finding that doesn’t knock my
+          socks off, but is suggestive. I would want to conduct other investigations of
+          what happens after rising days in falling markets before generating trading
+          hypotheses that would have me shorting strength in a broader downtrend.
+
+
+              Many times you’ll see differences in the sorted data that are strong
+              enough to warrant further investigation, but not strong enough to
+              justify a trading hypothesis by itself.
+
+               This combination of coding and sorting can create a variety of contex-
+          tual views of markets. For example, if we type in, “=if(E21=max(E2:E21),
+          1,0)” we can examine the context in which the current day is the highest
+          price in the past 20 and see how that influences returns. If we include a
+          second independent variable, such as the number of stocks making new
+          52-week highs and lows, we can examine how markets behave when new
+          highs exceed new lows versus when new lows exceed new highs. For in-
+          stance, if new highs go into column F and new lows into column G, we
+          can code for “=if(F21>G21,1,0” in column H, place our dependent mea-
+          sure (perhaps the next day’s price change) in column I and sort based on
+          the new high/low coding.
+               As mentioned earlier, it is wise to not create too many contextual con-
+          ditions, because you will wind up with a very small sample of occasions
+          that fit your query, and generalization will be difficult. If you obtain fewer
+          than 20 occasions that meet your criteria, you may need to relax those cri-
+          teria or include fewer of them.
+               As your own trading coach, you can utilize these contextual queries to
+          see how markets behave under a variety of conditions. The movement of
+

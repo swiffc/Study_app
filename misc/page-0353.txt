@@ -1,0 +1,53 @@
+P1: JYS
+c10     JWBT039-Steenbarger      December 29, 2008      13:21    Printer: Yet to come
+
+
+
+
+          Looking for the Edge                                                          333
+
+
+               For this investigation, we’ll examine half-hourly data for the S&P 500
+          emini contract. I obtain my intraday data from my quote platforms; in the
+          current example, I’ll use e-Signal. To do this, we create a 30-minute chart
+          of the ES futures contract; click on the chart and scroll to the right to move
+          the chart backward in time. When we’ve covered the last 20 days or so,
+          we click on the menu item Tools; select Data Export; then uncheck the
+          boxes for the data that we won’t need. In this case, all we’ll need is Date,
+          Time, and Volume. We click the button for Copy to Clipboard and open a
+          fresh sheet in Excel. Once we click on the Excel menu item for Edit and
+          select Paste, with the cursor at cell A2, we’ll populate the sheet with the
+          intraday data. We can then enter names for the columns in row 1: Date;
+          Time; and Volume. (If you’re downloading from e-Signal, those names will
+          accompany the data and you can download the data with the cursor at A1).
+               Our next step is to highlight the entire data set that we want to cover.
+          We click on the Excel menu item for Data; select Filter; and select AutoFil-
+          ter. A set of small arrows will appear beside the column names. Click the
+          arrow next to Time and, from the drop down menu, select the time that rep-
+          resents the start of the trading day. In my case, living in the Chicago area in
+          Central Time, that would be 8:30 A . M . You’ll then see all the volume figures
+          for the half-hour 8:30 A . M . to 9:00 A . M . Click on Edit; select Copy; open a
+          blank sheet; click on Edit; and select Paste. This will put the 8:30 A . M . data
+          on a separate sheet. If you have 20 values (the past 20 days), you can enter
+          the formula “=average(c2:c21)” and you’ll see the average trading volume
+          for the first half-hour of trading. Of course, you can filter for any time of
+          day and see that half-hour’s average volume as well.
+
+
+              When you know the average trading volume for a particular
+              time period, you can assess institutional participation in real
+              time—particularly with respect to whether this volume picks up
+              or slows down as a function of market direction.
+
+               The filter function is helpful when you want to pull out data selectively
+          from a data set. Let’s say, for instance, that you had a column in which you
+          coded Mondays as 1; Tuesday’s as 2; etc. You could then filter out the 1s
+          in the historical data set and see how the market behaved specifically on
+          Mondays. Similarly, you could code the first or last days of the month and
+          filter the data to observe the returns associated with those.
+               In general, I find filtering most helpful for intraday analyses, when I
+          want to see how markets behave at a particular time of day under particu-
+          lar conditions. Frankly, however, this is not where I find the greatest edges
+          typically, and it’s not where I’d recommend that a beginner start with
+          historical investigations. Should you become serious about investigating
+

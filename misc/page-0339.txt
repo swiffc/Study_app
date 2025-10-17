@@ -1,0 +1,52 @@
+P1: JYS
+c10     JWBT039-Steenbarger      December 29, 2008     13:21     Printer: Yet to come
+
+
+
+
+          Looking for the Edge                                                          319
+
+          now that you have two Y-axes: one for the Market Index price data and
+          one for the Mining Stock data. You’ll be able to see their relative ups and
+          downs much more clearly. Click on OK and you will see your new chart.
+          If you’d like the Y-axes to have new labels, you can place your cursor on
+          the center of the chart (away from the lines for the data) and right click.
+          A menu will pop up, and you’ll select Chart Options. That will give you a
+          screen enabling you to type in new labels for the Value (Y) axis (at left)
+          and the Second value (Y) axis (at right).
+               If you right click on either of the two lines in the chart and, from the
+          pop-up menu select Format Data Series, you’ll see a tab for Patterns. You
+          can click the arrow beside the option for Weight and make the line thicker.
+          You can click the arrow beside the option for Color and change the color
+          of the line.
+               If you right-click on the X- or Y-axes, you’ll get a pop-up menu; click on
+          Format Axis. If you select the tab for Font, you can choose the typeface,
+          font style, and size of the print for the axis labels. If you select the tab for
+          Scale, you can change the range of values for the axis. With a little practice,
+          you can customize the look of your charts.
+               So what does your chart tell you? You can see that the Mining Stock is
+          not moving in unison with the Market Index. When the index shows large
+          rises or declines, the stock is tending to move in the opposite direction. By
+          itself, over such a short period, that won’t tell you anything you’d want to
+          hang your hat on, but it does raise interesting questions:
+            r Why is the mining stock moving opposite to the market index? Might
+              the mining stock be moving in unison with the gold market instead?
+            r If the mining stock is moving with gold, is gold also moving opposite to
+              the market index? If so, why might that be? Might there be a common
+              influence on both of them: the strength of the U.S. dollar?
+            r Does this relationship occur over intraday time frames? Might we be
+              able to identify some buy or sell signals in the mining stock when we
+              see selling or buying in the broad market?
+
+
+              Reviewing charts that you create helps you see intermarket and
+              intramarket relationships.
+
+
+               Many times, investigating relationships through charts leads you to
+          worthwhile questions, which may then lead you to interesting and prof-
+          itable trading ideas. The key is asking “Why?” What might be responsible
+          for the relationship I am observing? Remember, in your own self-coaching,
+          you want to be generating hypotheses, and there is no better way than plain
+          old brainstorming. When you can actually see how the data are related to
+

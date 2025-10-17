@@ -1,0 +1,55 @@
+P1: JYS
+c10     JWBT039-Steenbarger     December 29, 2008      13:21    Printer: Yet to come
+
+
+
+
+          330                                                   THE DAILY TRADING COACH
+
+
+
+               Let’s retrieve the Practice Sheet historical daily data for the S&P 500 In-
+          dex that we used in our previous lessons. To refresh memory: Column A in
+          our spreadsheet consists of the Date; columns B through E are open-high-
+          low-close data. Column F is the independent variable, the current day’s
+          price change; entered into cell F22, it would be: “=((F22-F21)/F21)* 100.”
+          Column G will serve as our contextual variable. In G22, we enter the
+          following:
+
+                                = if(E22>average(E3:E21),1,0)
+
+               This will return to cell G23 a “1” if the current price is above the prior
+          day’s simple 20-day moving average for the S&P 500 Index; a “0” if it is not
+          above the average. The data label for cell G1 might be MA. Our dependent
+          measure will be the next day’s price change. In cell H22, this would be
+          “=((E23-E22)/E22)* 100” and H1 would have the label SP+1.
+               To complete the sheet, we would highlight cell G22 and H22; click the
+          Excel menu item for Edit; click Copy; highlight the cells below G23 for
+          the full length of the data set; and hit Enter. We highlight and copy all the
+          data in the sheet as before; save the sheet as Practice Sheet2; and instruct
+          Windows to save the data to the clipboard for another application. We open
+          a fresh spreadsheet; click on cell A1; click the Excel menu item for Edit;
+          select Paste; and our sheet now fills with text data. Note that, in this case,
+          we’ll have to eliminate rows 2 to 21, since they don’t have a value for the 20-
+          day moving average. We’ll also eliminate the last row of data, because there
+          are no data for the next day. You eliminate a row simply by highlighting
+          the letter(s) for the row(s) at left; clicking the Excel menu item for Edit;
+          selecting Delete. The row will disappear and the remaining data below will
+          move into place.
+
+              Note that using a moving average as a variable of interest reduces
+              the size of your data set, since the initial values will not have a mov-
+              ing average calculated. You need to take this into account when
+              determining your desired sample size.
+
+               We now double sort the data to perform the contextual investigation.
+          Let’s say that we’re interested in the expectations following a rising day
+          in a market that is trading above versus below its 20-day moving average.
+          We sort the data based on column F “SP(1)” as we did in our previous
+          lesson, performing the sort on a Descending basis, so that the largest and
+          positive price changes appear at the top of the sheet. Now we select only
+          the data for the cells that show positive price change and copy those to
+          another sheet. Our second sort will be based on column G (MA), again
+          on a Descending Basis. This will separate the up days in markets trading
+          above their 20-day moving average (those coded “1”) from all other days.
+

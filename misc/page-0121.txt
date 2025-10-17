@@ -1,0 +1,53 @@
+P1: JYS
+c04     JWBT039-Steenbarger     December 29, 2008      13:2    Printer: Yet to come
+
+
+
+
+          Steps toward Self-Improvement                                               101
+
+
+          I believe it’s because many traders are motivated by trading and making
+          money, not by a desire to understand themselves and markets. This is an
+          important distinction. To paraphrase coach Bob Knight, they are motivated
+          to win, but not motivated to do the work it takes to become a winner. In
+          the best traders, self-mastery is a core motivation. It’s why they continue
+          trading long after they could have comfortably retired.
+               The most common format for beginning a regimen of self-monitoring is
+          keeping a journal. The basic components of a self-monitoring journal might
+          look as follows:
+               Divide your journal page into three columns. The first column de-
+          scribes the trade that was placed, including the trade size and the time
+          of day. If you scale into a single position, you would treat that as a single
+          entry in the journal. Similarly, if you enter several positions to capitalize on
+          a single trade idea (e.g., you want to be long precious metals, so you buy
+          three different mining stocks), those would also be incorporated within a
+          single journal entry. The first column might thus summarize what you did
+          for each trade idea, how much you risked on the idea, when you placed
+          the trades, the prices that you paid, and how you placed the trades (e.g.,
+          all at once or by scaling in; executed at the market or with limit orders). If
+          you are a high-frequency trader, consider the possibility of automating your
+          trade monitoring with tools such as StockTickr (www.stocktickr.com) or
+          Trader DNA (www.traderdna.com).
+               The second column would summarize the outcomes of the trades, in-
+          cluding the prices and times of your exits, your P/L for that trade (or trade
+          idea), and how you exited the trades (e.g., all at once or scaling out, at the
+          market or by working orders).
+               The third column would include all of your behavioral observations
+          for that particular trade or trade idea: what you were thinking, how you
+          were feeling, your preparation for that trade, your degree of confidence in
+          the trade, etc. In other words, the third column takes a look at you and
+          your state of mind, thought patterns, and physical state during the trades.
+          The third column could also include observations about how well you en-
+          tered, managed, and exited the trades. Whatever stands out for you—good
+          or bad—about the trade would be included in that third column.
+
+
+              Keep your trading journal doable; many efforts at self-monitoring
+              fail because they become onerous.
+
+
+              For a trader such as myself who only place, at most, a few trades
+          per day, such a journal is relatively easy to keep. Prop traders who make
+          dozens of trades per day or more, however, are likely to find such a journal
+

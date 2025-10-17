@@ -1,0 +1,51 @@
+P1: JYS
+c02     JWBT039-Steenbarger     December 28, 2008      9:59    Printer: Yet to come
+
+
+
+
+          Stress and Distress                                                         63
+
+          stopped out too quickly, fail to hit targets, or produce outsized gains or
+          losses.
+               Many traders crow about taking a huge profit on a particular trade. All
+          too often, that profit is the result of sizing a volatile position too aggres-
+          sively. While it’s nice that the trade resulted in a profit, the reality is that
+          the trade probably represents poorly managed risk. Trading 1,000 shares
+          of a small cap tech firm can be quite different from trading 1,000 shares of
+          a Dow stock, even though their prices might be identical. The higher beta
+          associated with the tech trade will ensure that its profits and losses dwarf
+          those of the large cap trade. That makes for volatile trading results and
+          potential emotional volatility.
+
+
+              Risk and reward are proportional: pursuing large gains inevitably
+              brings large drawdowns. The key to success is trading within your
+              risk tolerance so that swings don’t change how you view markets
+              and make decisions.
+
+               Do you know the volatility of the market you’re trading right now?
+          Have you adjusted your trading to take smaller profits and losses in low
+          volatility ones and larger profits and losses when volatility expands? If
+          you’re trading different markets or instruments, do you adjust your expec-
+          tations for the volatility of these? You wouldn’t drive the same on a busy
+          freeway as on one that is wide open; similarly, you don’t want to be
+          trading fast markets identically to slow ones.
+               One strategy that has worked well for me in this regard is to examine
+          the past 20 days of trading and calculate the median high-low price range
+          over different holding periods: 30 minutes, 60 minutes, etc. I also take note
+          of the variability around that median: the range of slowest and busiest mar-
+          kets. With this information, I can accomplish several things:
+            r As the day unfolds, I can gauge whether today’s ranges are varying
+              from the 20-day average. That gives me a sense for the emerging volatil-
+              ity of the day that I’m trading. This helps me adjust expectations as I’m
+              trading. For instance, the S&P e-mini market recently made a 12-point
+              move during the morning. My research told me that this was at the
+              very upper end of recent expectations, a conclusion that kept me from
+              chasing the move and helped me take profits on a short position.
+            r When I see that volatility over the past 20 days has been quite modest,
+              I can focus on good execution, place stops closer to entry points, and
+              keep profit targets tight. That has me taking profits more aggressively
+              and opportunistically in low volatility environments, reducing my frus-
+              tration when moves reverse.
+

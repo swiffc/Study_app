@@ -1,0 +1,1138 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0
+// D.X.C._LEVELS - Enhanced Trading System with ICT Flout
+// Version 2.0 - IMPROVED & FIXED
+// Last Updated: October 2025
+
+//@version=5
+indicator("D.X.C._LEVELS v2.0", overlay=true, max_lines_count=2000, max_labels_count=500, max_boxes_count=500)
+
+// ════════════════════════════════════════════
+// CONSTANTS
+// ════════════════════════════════════════════
+
+// Trading Constants
+const int FLOUT_THRESHOLD_PIPS = 40
+const int PSR_PSS_HOURS = 8
+const float ASIAN_MIN_PIPS = 20.0
+const float ASIAN_MAX_PIPS = 40.0
+const float FLOUT_OPTIMAL_MIN = 40.0
+const float FLOUT_OPTIMAL_MAX = 100.0
+const float OTE_62_LEVEL = 0.62
+const float OTE_705_LEVEL = 0.705
+const float OTE_79_LEVEL = 0.79
+
+// Visual Constants (line widths only - size.tiny, size.small used directly)
+const int LINE_WIDTH_THIN = 1
+const int LINE_WIDTH_MEDIUM = 2
+const int LINE_WIDTH_THICK = 3
+
+// ════════════════════════════════════════════
+// INPUTS AND SETTINGS
+// ════════════════════════════════════════════
+
+// General Settings
+inputMaxInterval = input.int(31, title="Hide Above Minutes", tooltip="Hide on higher timeframes", group="General")
+showHistory = input.bool(true, "Show Historical Data", group="General")
+
+// Range Settings
+showCBDR = input.bool(false, "CBDR (14:00-20:00)", inline="cbdr", group="Range Sessions", tooltip="CBDR used internally for Flout calculation")
+cbdrColor = input.color(color.new(color.blue, 70), "", inline="cbdr", group="Range Sessions")
+showAsian = input.bool(true, "Asian (20:00-00:00)", inline="asian", group="Range Sessions")
+asianColor = input.color(color.new(color.yellow, 70), "", inline="asian", group="Range Sessions")
+
+// EMA Settings for Bias
+ema50Period = input.int(50, "Fast EMA Period", group="Bias Settings")
+ema200Period = input.int(200, "Slow EMA Period", group="Bias Settings")
+emaTimeframe = input.timeframe("60", "EMA Timeframe", group="Bias Settings")
+
+// Multi-Timeframe Settings
+htfTimeframe = input.timeframe("240", "Higher Timeframe for Trend", group="Bias Settings", tooltip="4H recommended for HTF bias")
+showHTFBias = input.bool(true, "Show HTF Bias in Dashboard", group="Bias Settings")
+
+// Pattern Detection
+enablePatternDetection = input.bool(true, "Enable London Pattern Detection", group="Pattern Settings")
+patternBarsMin = input.int(8, "Min Bars for Pattern", group="Pattern Settings")
+patternBarsMax = input.int(12, "Max Bars for Pattern", group="Pattern Settings")
+patternThreshold = input.float(0.1, "Pattern Threshold", minval=0.05, maxval=0.3, step=0.01, group="Pattern Settings", tooltip="% of range to consider 'at' a level")
+
+// Volume Settings
+useVolumeFilter = input.bool(true, "Use Volume Filter", group="Volume", tooltip="Require above-average volume for setups")
+volumePeriod = input.int(20, "Volume Average Period", minval=5, maxval=100, group="Volume")
+volumeMultiplier = input.float(1.5, "Volume Threshold Multiplier", minval=1.0, maxval=3.0, step=0.1, group="Volume")
+
+// PSR/PSS Settings
+showPSRPSS = input.bool(true, "Show PSR/PSS Zone (1H Bodies)", group="PSR/PSS", tooltip="ONE box capturing high/low 1H body candles - visible on ALL timeframes")
+psrpssZoneThickness = input.float(3.0, "Zone Thickness (pips)", minval=1.0, maxval=10.0, step=0.5, group="PSR/PSS")
+psrpssBorderColor = input.color(color.orange, "Border Color", inline="psr1", group="PSR/PSS")
+psrpssFillColor = input.color(color.new(color.black, 60), "Fill Color", inline="psr1", group="PSR/PSS")
+
+// SD Settings
+showSDZones = input.bool(true, "Show SD Zones", group="Standard Deviation")
+sdCount = input.int(4, "SD Count", minval=1, maxval=4, group="Standard Deviation")
+sdColor = input.color(color.new(color.white, 80), "SD Zone Color", group="Standard Deviation")
+
+// Lookback Levels
+showLookbacks = input.bool(false, "Show Lookback Levels", group="Lookback")
+show20day = input.bool(true, "20 Day", inline="20d", group="Lookback")
+color20d = input.color(color.new(color.aqua, 50), "", inline="20d", group="Lookback")
+
+// Dashboard Settings
+showDashboard = input.bool(true, "Show Dashboard", group="Dashboard")
+dashboardSize = input.string("normal", "Dashboard Size", options=["small", "normal", "large"], group="Dashboard")
+
+// Risk Management
+showRiskCalc = input.bool(true, "Show Risk Calculator", group="Risk Management")
+accountSize = input.float(10000, "Account Size", minval=100, step=100, group="Risk Management")
+riskPercent = input.float(1.0, "Risk Per Trade %", minval=0.1, maxval=5.0, step=0.1, group="Risk Management")
+rewardRatio = input.float(2.0, "Reward:Risk Ratio", minval=1.0, maxval=5.0, step=0.5, group="Risk Management")
+
+// Day Filter
+tradeMonday = input.bool(true, "Mon", inline="days", group="Day Filter")
+tradeTuesday = input.bool(true, "Tue", inline="days", group="Day Filter")
+tradeWednesday = input.bool(true, "Wed", inline="days", group="Day Filter")
+tradeThursday = input.bool(true, "Thu", inline="days2", group="Day Filter")
+tradeFriday = input.bool(true, "Fri", inline="days2", group="Day Filter")
+
+// Time Separators
+show_day_separators = input.bool(true, "Show Daily Separators", group="Time Separators")
+show_week_separators = input.bool(true, "Show Weekly Separators", group="Time Separators")
+show_month_separators = input.bool(true, "Show Monthly Separators", group="Time Separators")
+show_year_separators = input.bool(true, "Show Yearly Separators", group="Time Separators")
+day_separator_color = input.color(color.new(color.lime, 30), "Daily Separator Color", group="Time Separators")
+week_separator_color = input.color(color.new(color.aqua, 20), "Weekly Separator Color", group="Time Separators")
+month_separator_color = input.color(color.new(color.red, 20), "Monthly Separator Color", group="Time Separators")
+year_separator_color = input.color(color.new(color.purple, 10), "Yearly Separator Color", group="Time Separators")
+show_separator_labels = input.bool(true, "Show Separator Labels", group="Time Separators")
+separator_label_size = input.string("small", "Separator Label Size", options=["tiny", "small", "normal"], group="Time Separators")
+
+// ════════════════════════════════════════════
+// COLOR DEFINITIONS
+// ════════════════════════════════════════════
+
+COLOR_PSR_PSS_LINE = color.blue
+COLOR_PSR_PSS_LABEL = color.new(color.blue, 90)
+COLOR_PDH_PDL_LINE = color.new(color.lime, 50)
+COLOR_PDH_PDL_LABEL = color.new(color.lime, 90)
+COLOR_PWH_PWL_LINE = color.new(color.orange, 50)
+COLOR_PWH_PWL_LABEL = color.new(color.orange, 90)
+COLOR_PMH_PML_LINE = color.new(color.red, 50)
+COLOR_PMH_PML_LABEL = color.new(color.red, 90)
+COLOR_SD_ZONE_BORDER = color.new(sdColor, 50)
+COLOR_SD_ZONE_BG = color.new(sdColor, 95)
+COLOR_FLOUT_EQ = color.purple
+COLOR_FLOUT_EQ_LABEL = color.new(color.purple, 90)
+COLOR_PANEL_BG = color.new(color.black, 85)
+
+// ════════════════════════════════════════════
+// VARIABLES
+// ════════════════════════════════════════════
+
+// Check if we're on valid timeframe
+DOM = (timeframe.multiplier <= inputMaxInterval) and (timeframe.isintraday)
+
+// Time sessions (using New York timezone)
+cbdrSession = time(timeframe.period, "1400-2000:1234567", "America/New_York")
+asianSession = time(timeframe.period, "2000-0000:1234567", "America/New_York")
+
+// Range tracking variables
+var float cbdr_high = na
+var float cbdr_low = na
+var float asian_high = na
+var float asian_low = na  
+var int cbdr_start = na
+var int asian_start = na
+
+// ICT Flout variables
+var float flout_high = na
+var float flout_low = na
+var float flout_range = na
+var float flout_equilibrium = na
+var float flout_pips = na
+var string active_range_type = "WAITING"
+var bool flout_calculated = false
+
+// PSR/PSS tracking (ONE BOX from high body to low body)
+var float weekly_psr = na  // Highest 1H body
+var float weekly_pss = na  // Lowest 1H body
+var int week_start_time = na
+var bool first_8hrs_complete = false
+
+// Previous Day High/Low tracking
+var float pdh = na
+var float pdl = na
+var int pd_start_time = na
+
+// Previous Week High/Low tracking
+var float pwh = na
+var float pwl = na
+
+// Previous Month High/Low tracking
+var float pmh = na
+var float pml = na
+
+// Judas and Pattern tracking
+var bool judas_occurred = false
+var float judas_high = na
+var float judas_low = na
+var string judas_direction = na
+var float ote_62 = na
+var float ote_705 = na
+var float ote_79 = na
+
+// Pattern detection
+var string london_pattern_type = na
+var int pattern_bar_count = 0
+var bool pattern_detected = false
+
+// SD tracking
+var int sds_filled_today = 0
+var bool sd1_up_filled = false
+var bool sd2_up_filled = false
+var bool sd1_down_filled = false
+var bool sd2_down_filled = false
+
+// Volume tracking
+var float avg_volume = na
+
+// ════════════════════════════════════════════
+// INPUT VALIDATION
+// ════════════════════════════════════════════
+
+if ema50Period >= ema200Period
+    runtime.error("Fast EMA period must be less than Slow EMA period")
+
+if patternBarsMin >= patternBarsMax
+    runtime.error("Minimum pattern bars must be less than maximum pattern bars")
+
+// ════════════════════════════════════════════
+// FUNCTIONS
+// ════════════════════════════════════════════
+
+// Convert pips to price
+pipsToPrice(pips) =>
+    syminfo.type == "forex" ? (str.contains(syminfo.ticker, "JPY") ? pips * 0.01 : pips * 0.0001) : pips * syminfo.mintick
+
+// Calculate range in pips
+rangeToPips(priceRange) =>
+    syminfo.type == "forex" ? (str.contains(syminfo.ticker, "JPY") ? priceRange / 0.01 : priceRange / 0.0001) : priceRange / syminfo.mintick
+
+// Get lookback levels using proper security call
+getLookbackHigh(days) =>
+    request.security(syminfo.tickerid, "D", ta.highest(high, days), lookahead=barmerge.lookahead_off)
+
+getLookbackLow(days) =>
+    request.security(syminfo.tickerid, "D", ta.lowest(low, days), lookahead=barmerge.lookahead_off)
+
+// Get day name from day of week
+get_day_name(day_of_week) =>
+    switch day_of_week
+        1 => "SUN"
+        2 => "MON"
+        3 => "TUE"
+        4 => "WED"
+        5 => "THU"
+        6 => "FRI"
+        7 => "SAT"
+        => "UNK"
+
+// Get month name from month number
+get_month_name(month_num) =>
+    switch month_num
+        1 => "JAN"
+        2 => "FEB"
+        3 => "MAR"
+        4 => "APR"
+        5 => "MAY"
+        6 => "JUN"
+        7 => "JUL"
+        8 => "AUG"
+        9 => "SEP"
+        10 => "OCT"
+        11 => "NOV"
+        12 => "DEC"
+        => "UNK"
+
+// Get separator text size
+get_separator_text_size() =>
+    switch separator_label_size
+        "tiny" => size.tiny
+        "small" => size.small
+        "normal" => size.normal
+        => size.small
+
+// ════════════════════════════════════════════
+// EMA BIAS CALCULATION (FIXED - NO REPAINTING)
+// ════════════════════════════════════════════
+
+// Get EMAs from specified timeframe (single call to prevent repainting)
+[ema50, ema200] = request.security(syminfo.tickerid, emaTimeframe, 
+                     [ta.ema(close, ema50Period), ta.ema(close, ema200Period)],
+                     lookahead=barmerge.lookahead_off)
+
+// Determine bias
+bullish_bias = close > ema50 and close > ema200
+bearish_bias = close < ema50 and close < ema200
+neutral_bias = not bullish_bias and not bearish_bias
+
+bias_text = bullish_bias ? "BULLISH" : bearish_bias ? "BEARISH" : "NEUTRAL"
+bias_color = bullish_bias ? color.green : bearish_bias ? color.red : color.gray
+
+// HTF Bias
+[htf_ema50, htf_ema200, htf_close] = request.security(syminfo.tickerid, htfTimeframe, 
+                                         [ta.ema(close, ema50Period), ta.ema(close, ema200Period), close],
+                                         lookahead=barmerge.lookahead_off)
+
+htf_bullish = htf_close > htf_ema50 and htf_close > htf_ema200
+htf_bearish = htf_close < htf_ema50 and htf_close < htf_ema200
+htf_neutral = not htf_bullish and not htf_bearish
+
+htf_bias_text = htf_bullish ? "BULL" : htf_bearish ? "BEAR" : "NEUTRAL"
+htf_bias_color = htf_bullish ? color.green : htf_bearish ? color.red : color.gray
+
+// Check HTF alignment
+htf_aligned = (bullish_bias and htf_bullish) or (bearish_bias and htf_bearish)
+
+// ════════════════════════════════════════════
+// VOLUME ANALYSIS
+// ════════════════════════════════════════════
+
+avg_volume := ta.sma(volume, volumePeriod)
+high_volume = volume > avg_volume * volumeMultiplier
+
+// ════════════════════════════════════════════
+// DAY FILTER
+// ════════════════════════════════════════════
+
+validTradingDay = (dayofweek == dayofweek.monday and tradeMonday) or
+                  (dayofweek == dayofweek.tuesday and tradeTuesday) or
+                  (dayofweek == dayofweek.wednesday and tradeWednesday) or
+                  (dayofweek == dayofweek.thursday and tradeThursday) or
+                  (dayofweek == dayofweek.friday and tradeFriday)
+
+// ════════════════════════════════════════════
+// PSR CALCULATION (USING 1H BODY LEVELS - ONE BOX)
+// ════════════════════════════════════════════
+
+// Get 1H candle body levels (more reliable than wicks)
+[body_high_1h, body_low_1h] = request.security(syminfo.tickerid, "60", 
+                                 [math.max(open, close), math.min(open, close)],
+                                 lookahead=barmerge.lookahead_off)
+
+// Detect week start (Sunday 17:00 EST)
+isWeekStart = dayofweek == dayofweek.sunday and hour(time, "America/New_York") == 17 and minute(time, "America/New_York") == 0
+
+if isWeekStart
+    weekly_psr := body_high_1h  // Highest body
+    weekly_pss := body_low_1h   // Lowest body
+    week_start_time := time
+    first_8hrs_complete := false
+
+// Track first 8 hours (Sunday 17:00 to Monday 01:00) - capture HIGH and LOW body levels
+if not first_8hrs_complete and week_start_time > 0 and time <= week_start_time + (PSR_PSS_HOURS * 60 * 60 * 1000)
+    weekly_psr := math.max(nz(weekly_psr, body_high_1h), body_high_1h)  // Track highest body
+    weekly_pss := math.min(nz(weekly_pss, body_low_1h), body_low_1h)    // Track lowest body
+
+// ════════════════════════════════════════════
+// PREVIOUS DAY HIGH/LOW CALCULATION
+// ════════════════════════════════════════════
+
+// Get previous day's high and low using security function
+[prevDayHigh, prevDayLow] = request.security(syminfo.tickerid, "D", [high[1], low[1]], lookahead=barmerge.lookahead_on)
+
+// Update PDH/PDL at the start of new day (00:00 NY time)
+isDayStart = hour(time, "America/New_York") == 0 and minute(time, "America/New_York") == 0
+
+if isDayStart and not na(prevDayHigh) and not na(prevDayLow)
+    pdh := prevDayHigh
+    pdl := prevDayLow
+    pd_start_time := time
+
+// ════════════════════════════════════════════
+// PREVIOUS WEEK HIGH/LOW CALCULATION
+// ════════════════════════════════════════════
+
+// Get previous week's high and low using security function
+[prevWeekHigh, prevWeekLow] = request.security(syminfo.tickerid, "W", [high[1], low[1]], lookahead=barmerge.lookahead_on)
+
+// Update PWH/PWL at the start of new week (Sunday 17:00 NY time)
+if isWeekStart and not na(prevWeekHigh) and not na(prevWeekLow)
+    pwh := prevWeekHigh
+    pwl := prevWeekLow
+
+// ════════════════════════════════════════════
+// PREVIOUS MONTH HIGH/LOW CALCULATION
+// ════════════════════════════════════════════
+
+// Get previous month's high and low using security function
+[prevMonthHigh, prevMonthLow] = request.security(syminfo.tickerid, "M", [high[1], low[1]], lookahead=barmerge.lookahead_on)
+
+// Update PMH/PML at the start of new month (1st day, 00:00 NY time)
+isMonthStart = dayofmonth == 1 and hour(time, "America/New_York") == 0 and minute(time, "America/New_York") == 0
+
+if isMonthStart and not na(prevMonthHigh) and not na(prevMonthLow)
+    pmh := prevMonthHigh
+    pml := prevMonthLow
+
+// ════════════════════════════════════════════
+// RANGE TRACKING
+// ════════════════════════════════════════════
+
+// CBDR Session
+isInCBDR = not na(cbdrSession)
+cbdrJustStarted = isInCBDR and not isInCBDR[1]
+cbdrJustEnded = not isInCBDR and isInCBDR[1]
+
+if cbdrJustStarted
+    cbdr_high := high
+    cbdr_low := low
+    cbdr_start := time
+
+if isInCBDR
+    cbdr_high := math.max(high, nz(cbdr_high, high))
+    cbdr_low := math.min(low, nz(cbdr_low, low))
+
+// Asian Session
+isInAsian = not na(asianSession)
+asianJustStarted = isInAsian and not isInAsian[1]
+asianJustEnded = not isInAsian and isInAsian[1]
+
+if asianJustStarted
+    asian_high := high
+    asian_low := low
+    asian_start := time
+
+if isInAsian
+    asian_high := math.max(high, nz(asian_high, high))
+    asian_low := math.min(low, nz(asian_low, low))
+
+// ════════════════════════════════════════════
+// CALCULATIONS
+// ════════════════════════════════════════════
+
+// Calculate ranges
+cbdr_range = na(cbdr_high) or na(cbdr_low) ? 0.0 : cbdr_high - cbdr_low
+asian_range = na(asian_high) or na(asian_low) ? 0.0 : asian_high - asian_low
+asian_mid = na(asian_high) or na(asian_low) ? 0.0 : (asian_high + asian_low) / 2
+
+// Convert to pips
+cbdr_pips = rangeToPips(cbdr_range)
+asian_pips = rangeToPips(asian_range)
+
+// Declare selected range variables with proper types
+var float selectedRange = 0.0
+var float selectedHigh = 0.0
+var float selectedLow = 0.0
+
+// Update selected range based on available data
+if asian_range > 0
+    selectedRange := asian_range
+    selectedHigh := nz(asian_high, 0.0)
+    selectedLow := nz(asian_low, 0.0)
+else if cbdr_range > 0
+    selectedRange := cbdr_range
+    selectedHigh := nz(cbdr_high, 0.0)
+    selectedLow := nz(cbdr_low, 0.0)
+else
+    selectedRange := 0.0
+    selectedHigh := 0.0
+    selectedLow := 0.0
+
+// ════════════════════════════════════════════
+// ICT FLOUT CALCULATION (FIXED)
+// ════════════════════════════════════════════
+
+// Reset flout calculation flag at new day
+if isDayStart
+    flout_calculated := false
+    flout_pips := na
+
+// Calculate Flout at midnight (when Asian session ends)
+if asianJustEnded and not flout_calculated
+    // Calculate combined Flout range from CBDR (2pm-8pm) and Asian (8pm-midnight)
+    flout_high := math.max(nz(cbdr_high, high), nz(asian_high, high))
+    flout_low := math.min(nz(cbdr_low, low), nz(asian_low, low))
+    flout_range := flout_high - flout_low
+    
+    // Convert to pips for threshold check - CALCULATE ONCE
+    flout_pips := rangeToPips(flout_range)
+    
+    // Calculate 50% equilibrium point
+    flout_equilibrium := (flout_high + flout_low) / 2
+    
+    // Smart selection logic with threshold
+    if flout_pips > FLOUT_THRESHOLD_PIPS
+        // Use the Flout range for SD projections
+        selectedRange := flout_range
+        selectedHigh := flout_high
+        selectedLow := flout_low
+        
+        active_range_type := "FLOUT (" + str.tostring(flout_pips, "#.#") + "p)"
+    else
+        // Fall back to individual session ranges
+        if asian_range > 0
+            active_range_type := "ASIAN"
+            selectedRange := asian_range
+            selectedHigh := nz(asian_high, 0.0)
+            selectedLow := nz(asian_low, 0.0)
+        else if cbdr_range > 0
+            active_range_type := "CBDR"
+            selectedRange := cbdr_range
+            selectedHigh := nz(cbdr_high, 0.0)
+            selectedLow := nz(cbdr_low, 0.0)
+        else
+            active_range_type := "NONE"
+    
+    flout_calculated := true
+
+// Update selected range if Flout has been calculated and meets threshold
+if flout_calculated and flout_pips > FLOUT_THRESHOLD_PIPS and flout_range > 0
+    selectedRange := flout_range
+    selectedHigh := flout_high
+    selectedLow := flout_low
+
+// ════════════════════════════════════════════
+// JUDAS SWING DETECTION (IMPROVED)
+// ════════════════════════════════════════════
+
+// Time windows
+current_hour = hour(time, "America/New_York")
+current_minute = minute(time, "America/New_York")
+inNormalProtraction = current_hour >= 0 and current_hour < 2
+inDelayedProtraction = current_hour >= 2 and current_hour < 4
+
+// Reset at midnight
+if current_hour == 0 and current_minute == 0
+    judas_occurred := false
+    pattern_detected := false
+    london_pattern_type := na
+
+// Improved Judas detection with wick analysis
+if inNormalProtraction and not judas_occurred and validTradingDay and (not useVolumeFilter or high_volume)
+    // Calculate wick and body sizes for better rejection detection
+    upper_wick = high - math.max(close, open)
+    lower_wick = math.min(close, open) - low
+    body_size = math.abs(close - open)
+    
+    if bullish_bias and low < asian_low
+        // Bearish Judas for bullish setup - look for lower rejection
+        if close > open and lower_wick > body_size * 1.5  // Strong rejection wick
+            judas_occurred := true
+            judas_direction := "bearish_judas"
+            judas_low := low
+            
+            // Calculate OTE levels using constants
+            swing_range = high - judas_low
+            ote_62 := judas_low + (swing_range * OTE_62_LEVEL)
+            ote_705 := judas_low + (swing_range * OTE_705_LEVEL)
+            ote_79 := judas_low + (swing_range * OTE_79_LEVEL)
+    
+    else if bearish_bias and high > asian_high
+        // Bullish Judas for bearish setup - look for upper rejection
+        if close < open and upper_wick > body_size * 1.5  // Strong rejection wick
+            judas_occurred := true
+            judas_direction := "bullish_judas"
+            judas_high := high
+            
+            // Calculate OTE levels using constants
+            swing_range = judas_high - low
+            ote_62 := judas_high - (swing_range * OTE_62_LEVEL)
+            ote_705 := judas_high - (swing_range * OTE_705_LEVEL)
+            ote_79 := judas_high - (swing_range * OTE_79_LEVEL)
+
+// ════════════════════════════════════════════
+// PATTERN DETECTION (IMPROVED)
+// ════════════════════════════════════════════
+
+// Pattern detection in Delayed Protraction
+if inDelayedProtraction and not judas_occurred and not pattern_detected and enablePatternDetection and validTradingDay
+    // Type 2: At extremes (using configurable threshold)
+    if bullish_bias and math.abs(low - asian_low) < (asian_range * patternThreshold)
+        pattern_detected := true
+        london_pattern_type := "T2-W"
+    else if bearish_bias and math.abs(high - asian_high) < (asian_range * patternThreshold)
+        pattern_detected := true
+        london_pattern_type := "T2-M"
+    
+    // Type 3: At 50% (using configurable threshold)
+    else if math.abs(close - asian_mid) < (asian_range * patternThreshold)
+        if bullish_bias
+            pattern_detected := true
+            london_pattern_type := "T3-W"
+        else if bearish_bias
+            pattern_detected := true
+            london_pattern_type := "T3-M"
+
+// ════════════════════════════════════════════
+// SD TRACKING (FIXED)
+// ════════════════════════════════════════════
+
+// SD tracking - check for fills
+if selectedRange > 0
+    if high >= selectedHigh + selectedRange and not sd1_up_filled
+        sd1_up_filled := true
+        sds_filled_today += 1
+    
+    if high >= selectedHigh + (selectedRange * 2) and not sd2_up_filled
+        sd2_up_filled := true
+        sds_filled_today += 1
+    
+    if low <= selectedLow - selectedRange and not sd1_down_filled
+        sd1_down_filled := true
+        sds_filled_today += 1
+    
+    if low <= selectedLow - (selectedRange * 2) and not sd2_down_filled
+        sd2_down_filled := true
+        sds_filled_today += 1
+
+// CRITICAL FIX: Reset at midnight NY time, not on day of week change
+if current_hour == 0 and current_minute == 0
+    sds_filled_today := 0
+    sd1_up_filled := false
+    sd2_up_filled := false
+    sd1_down_filled := false
+    sd2_down_filled := false
+
+// ════════════════════════════════════════════
+// DRAWING
+// ════════════════════════════════════════════
+
+// Draw PSR ZONE - ONE BOX from highest to lowest 1H body (VISIBLE ON ALL TIMEFRAMES)
+if time > week_start_time + (PSR_PSS_HOURS * 60 * 60 * 1000) and not first_8hrs_complete and showPSRPSS
+    first_8hrs_complete := true
+    
+    week_end = week_start_time + (5 * 24 * 60 * 60 * 1000) + (7 * 60 * 60 * 1000)
+    
+    // Calculate zone thickness for border emphasis (customizable pips)
+    zone_thickness = pipsToPrice(psrpssZoneThickness)
+    
+    // ONE PSR BOX - From highest 1H body to lowest 1H body - DASHED ORANGE BORDER (WIDTH 2)
+    // Black background set behind candles so they remain visible
+    box.new(week_start_time + (PSR_PSS_HOURS * 60 * 60 * 1000), weekly_psr, week_end, weekly_pss, xloc=xloc.bar_time, border_color=color.orange, border_width=2, border_style=line.style_dashed, bgcolor=color.new(color.black, 90), text="PSR ZONE\n(1H Bodies)", text_color=color.orange, text_size=size.normal, text_halign=text.align_center, text_valign=text.align_center)
+    
+    // Draw center lines at actual high and low body levels for precision - DASHED ORANGE
+    psr_range = weekly_psr - weekly_pss
+    psr_mid = weekly_pss + (psr_range / 2)
+    
+    // High body line (dashed orange)
+    line.new(week_start_time + (PSR_PSS_HOURS * 60 * 60 * 1000), weekly_psr, week_end, weekly_psr, xloc=xloc.bar_time, color=color.new(color.orange, 20), style=line.style_dashed, width=2)
+    
+    // Low body line (dashed orange)
+    line.new(week_start_time + (PSR_PSS_HOURS * 60 * 60 * 1000), weekly_pss, week_end, weekly_pss, xloc=xloc.bar_time, color=color.new(color.orange, 20), style=line.style_dashed, width=2)
+    
+    // Mid line (50% of PSR range - dashed orange, lighter)
+    line.new(week_start_time + (PSR_PSS_HOURS * 60 * 60 * 1000), psr_mid, week_end, psr_mid, xloc=xloc.bar_time, color=color.new(color.orange, 50), style=line.style_dashed, width=1)
+
+// Draw when Asian session ends
+if asianJustEnded and DOM
+    
+    // Calculate times
+    midnight = time
+    fivePM = midnight + (17 * 60 * 60 * 1000)
+    
+    // Draw Previous Day High/Low lines (only on timeframes below 1 hour)
+    if not na(pdh) and not na(pdl) and timeframe.multiplier < 60
+        // PDH line - light green dashed
+        line.new(midnight, pdh, fivePM, pdh, xloc=xloc.bar_time, color=COLOR_PDH_PDL_LINE, style=line.style_dashed, width=LINE_WIDTH_MEDIUM)
+        
+        label.new(midnight, pdh, "PDH", xloc=xloc.bar_time, style=label.style_label_left, color=COLOR_PDH_PDL_LABEL, textcolor=color.lime, size=size.tiny)
+        
+        // PDL line - light green dashed
+        line.new(midnight, pdl, fivePM, pdl, xloc=xloc.bar_time, color=COLOR_PDH_PDL_LINE, style=line.style_dashed, width=LINE_WIDTH_MEDIUM)
+        
+        label.new(midnight, pdl, "PDL", xloc=xloc.bar_time, style=label.style_label_left, color=COLOR_PDH_PDL_LABEL, textcolor=color.lime, size=size.tiny)
+    
+    // Draw Previous Week High/Low lines
+    if not na(pwh) and not na(pwl)
+        // PWH line - orange dashed
+        line.new(midnight, pwh, fivePM, pwh, xloc=xloc.bar_time, color=COLOR_PWH_PWL_LINE, style=line.style_dashed, width=LINE_WIDTH_THIN)
+        
+        label.new(midnight, pwh, "PWH", xloc=xloc.bar_time, style=label.style_label_left, color=COLOR_PWH_PWL_LABEL, textcolor=color.orange, size=size.tiny)
+        
+        // PWL line - orange dashed
+        line.new(midnight, pwl, fivePM, pwl, xloc=xloc.bar_time, color=COLOR_PWH_PWL_LINE, style=line.style_dashed, width=LINE_WIDTH_THIN)
+        
+        label.new(midnight, pwl, "PWL", xloc=xloc.bar_time, style=label.style_label_left, color=COLOR_PWH_PWL_LABEL, textcolor=color.orange, size=size.tiny)
+    
+    // Draw Previous Month High/Low lines
+    if not na(pmh) and not na(pml)
+        // PMH line - red dashed
+        line.new(midnight, pmh, fivePM, pmh, xloc=xloc.bar_time, color=COLOR_PMH_PML_LINE, style=line.style_dashed, width=LINE_WIDTH_THIN)
+        
+        label.new(midnight, pmh, "PMH", xloc=xloc.bar_time, style=label.style_label_left, color=COLOR_PMH_PML_LABEL, textcolor=color.red, size=size.tiny)
+        
+        // PML line - red dashed
+        line.new(midnight, pml, fivePM, pml, xloc=xloc.bar_time, color=COLOR_PMH_PML_LINE, style=line.style_dashed, width=LINE_WIDTH_THIN)
+        
+        label.new(midnight, pml, "PML", xloc=xloc.bar_time, style=label.style_label_left, color=COLOR_PMH_PML_LABEL, textcolor=color.red, size=size.tiny)
+    
+    // Draw Asian range box (only on timeframes below 1 hour)
+    if showAsian and asian_range > 0 and timeframe.multiplier < 60
+        asian_pips_str = str.tostring(asian_pips, "#.#")
+        asian_text = "ASIAN\n" + asian_pips_str + " pips"
+        
+        box.new(asian_start, asian_high, time[1], asian_low, border_color=asianColor, border_width=1, bgcolor=color.new(asianColor, 90), text=asian_text, text_color=asianColor, text_size=size.tiny, xloc=xloc.bar_time)
+    
+    // Draw Asian pivot lines (width 2) - only on timeframes below 1 hour
+    if asian_range > 0 and timeframe.multiplier < 60
+        // Asian High pivot
+        line.new(asian_start, asian_high, fivePM, asian_high, xloc=xloc.bar_time, color=asianColor, style=line.style_dashed, width=LINE_WIDTH_MEDIUM)
+        
+        label.new(asian_start, asian_high, "ASIAN HIGH", xloc=xloc.bar_time, style=label.style_label_left, color=color.new(asianColor, 100), textcolor=asianColor, size=size.tiny)
+        
+        // Asian Low pivot
+        line.new(asian_start, asian_low, fivePM, asian_low, xloc=xloc.bar_time, color=asianColor, style=line.style_dashed, width=LINE_WIDTH_MEDIUM)
+        
+        label.new(asian_start, asian_low, "ASIAN LOW", xloc=xloc.bar_time, style=label.style_label_left, color=color.new(asianColor, 100), textcolor=asianColor, size=size.tiny)
+        
+        // Asian 50% line (yellow dashed, width 1)
+        line.new(asian_start, asian_mid, fivePM, asian_mid, xloc=xloc.bar_time, color=color.yellow, style=line.style_dashed, width=LINE_WIDTH_THIN)
+    
+    // Draw SD Zone boxes with Flout equilibrium projections
+    if showSDZones and selectedRange > 0 and timeframe.multiplier < 60
+        // Check if Flout is active
+        flout_is_active = flout_calculated and flout_pips > FLOUT_THRESHOLD_PIPS and not na(flout_equilibrium)
+        
+        if flout_is_active
+            // FLOUT MODE - Each zone is 50% of total range with gaps between
+            half_range = selectedRange * 0.5
+            
+            // Above equilibrium
+            sd1_above = flout_equilibrium + half_range
+            sd2_above = flout_equilibrium + selectedRange
+            sd3_above = flout_equilibrium + (selectedRange * 1.5)
+            sd4_above = flout_equilibrium + (selectedRange * 2.0)
+            sd5_above = flout_equilibrium + (selectedRange * 2.5)
+            sd6_above = flout_equilibrium + (selectedRange * 3.0)
+            
+            // Below equilibrium
+            sd1_below = flout_equilibrium - half_range
+            sd2_below = flout_equilibrium - selectedRange
+            sd3_below = flout_equilibrium - (selectedRange * 1.5)
+            sd4_below = flout_equilibrium - (selectedRange * 2.0)
+            sd5_below = flout_equilibrium - (selectedRange * 2.5)
+            sd6_below = flout_equilibrium - (selectedRange * 3.0)
+            
+            // Draw equilibrium line (50% of Flout)
+            line.new(midnight, flout_equilibrium, fivePM, flout_equilibrium, xloc=xloc.bar_time, color=COLOR_FLOUT_EQ, style=line.style_solid, width=LINE_WIDTH_MEDIUM)
+            label.new(midnight, flout_equilibrium, "FLOUT EQ", xloc=xloc.bar_time, style=label.style_label_left, color=COLOR_FLOUT_EQ_LABEL, textcolor=COLOR_FLOUT_EQ, size=size.tiny)
+            
+            // SD 1-2 Zone ABOVE
+            box.new(midnight, sd2_above, fivePM, sd1_above, border_color=color.new(COLOR_FLOUT_EQ, 50), border_width=1, border_style=line.style_dashed, bgcolor=color.new(COLOR_FLOUT_EQ, 95), text="SD 1-2", text_color=COLOR_FLOUT_EQ, text_size=size.tiny, xloc=xloc.bar_time)
+            
+            // SD 1-2 Zone BELOW
+            box.new(midnight, sd1_below, fivePM, sd2_below, border_color=color.new(COLOR_FLOUT_EQ, 50), border_width=1, border_style=line.style_dashed, bgcolor=color.new(COLOR_FLOUT_EQ, 95), text="SD 1-2", text_color=COLOR_FLOUT_EQ, text_size=size.tiny, xloc=xloc.bar_time)
+            
+            // SD 3-4 Zones if count >= 3
+            if sdCount >= 3
+                box.new(midnight, sd4_above, fivePM, sd3_above, border_color=color.new(COLOR_FLOUT_EQ, 50), border_width=1, border_style=line.style_dashed, bgcolor=color.new(COLOR_FLOUT_EQ, 95), text="SD 3-4", text_color=COLOR_FLOUT_EQ, text_size=size.tiny, xloc=xloc.bar_time)
+                
+                box.new(midnight, sd3_below, fivePM, sd4_below, border_color=color.new(COLOR_FLOUT_EQ, 50), border_width=1, border_style=line.style_dashed, bgcolor=color.new(COLOR_FLOUT_EQ, 95), text="SD 3-4", text_color=COLOR_FLOUT_EQ, text_size=size.tiny, xloc=xloc.bar_time)
+            
+            // SD 5-6 Zones if count >= 4
+            if sdCount >= 4
+                box.new(midnight, sd6_above, fivePM, sd5_above, border_color=color.new(COLOR_FLOUT_EQ, 50), border_width=1, border_style=line.style_dashed, bgcolor=color.new(COLOR_FLOUT_EQ, 95), text="SD 5-6", text_color=COLOR_FLOUT_EQ, text_size=size.tiny, xloc=xloc.bar_time)
+                
+                box.new(midnight, sd5_below, fivePM, sd6_below, border_color=color.new(COLOR_FLOUT_EQ, 50), border_width=1, border_style=line.style_dashed, bgcolor=color.new(COLOR_FLOUT_EQ, 95), text="SD 5-6", text_color=COLOR_FLOUT_EQ, text_size=size.tiny, xloc=xloc.bar_time)
+        else
+            // REGULAR MODE - Original SD zones for non-Flout ranges
+            // SD 1-2 Zone (Upper)
+            sd12_upper_high = selectedHigh + (selectedRange * 2)
+            sd12_upper_low = selectedHigh + selectedRange
+            
+            box.new(midnight, sd12_upper_high, fivePM, sd12_upper_low, border_color=COLOR_SD_ZONE_BORDER, border_width=1, border_style=line.style_dashed, bgcolor=COLOR_SD_ZONE_BG, text="SD 1-2", text_color=sdColor, text_size=size.tiny, xloc=xloc.bar_time)
+            
+            // SD 1-2 Zone (Lower)
+            sd12_lower_high = selectedLow - selectedRange
+            sd12_lower_low = selectedLow - (selectedRange * 2)
+            
+            box.new(midnight, sd12_lower_high, fivePM, sd12_lower_low, border_color=COLOR_SD_ZONE_BORDER, border_width=1, border_style=line.style_dashed, bgcolor=COLOR_SD_ZONE_BG, text="SD 1-2", text_color=sdColor, text_size=size.tiny, xloc=xloc.bar_time)
+            
+            // SD 3-4 Zones if count >= 3
+            if sdCount >= 3
+                sd34_upper_high = selectedHigh + (selectedRange * 4)
+                sd34_upper_low = selectedHigh + (selectedRange * 3)
+                
+                box.new(midnight, sd34_upper_high, fivePM, sd34_upper_low, border_color=COLOR_SD_ZONE_BORDER, border_width=1, border_style=line.style_dashed, bgcolor=COLOR_SD_ZONE_BG, text="SD 3-4", text_color=sdColor, text_size=size.tiny, xloc=xloc.bar_time)
+                
+                sd34_lower_high = selectedLow - (selectedRange * 3)
+                sd34_lower_low = selectedLow - (selectedRange * 4)
+                
+                box.new(midnight, sd34_lower_high, fivePM, sd34_lower_low, border_color=COLOR_SD_ZONE_BORDER, border_width=1, border_style=line.style_dashed, bgcolor=COLOR_SD_ZONE_BG, text="SD 3-4", text_color=sdColor, text_size=size.tiny, xloc=xloc.bar_time)
+
+// ════════════════════════════════════════════
+// TIME SEPARATORS (DAY/WEEK/MONTH/YEAR)
+// ════════════════════════════════════════════
+
+// Timeframe detection
+tf_in_minutes = timeframe.in_seconds() / 60
+
+// Show all history on 1H and above (no timeframe restrictions)
+show_all_history = tf_in_minutes >= 60
+
+// Timeframe-based separator visibility - ALL HISTORY ON 1H+
+show_separators_on_tf = show_all_history or tf_in_minutes <= 240
+
+// Determine which separators to show based on timeframe
+show_daily_on_current_tf = show_day_separators and (show_all_history or tf_in_minutes < 60)
+show_weekly_on_current_tf = show_week_separators and show_separators_on_tf
+show_monthly_on_current_tf = show_month_separators and show_separators_on_tf
+show_yearly_on_current_tf = show_year_separators and show_separators_on_tf
+
+// Detect time period changes - ALL HISTORY ON 1H+
+new_day = timeframe.change("1D")
+new_week = timeframe.change("1W")
+new_month = timeframe.change("1M")
+new_year = timeframe.change("12M")
+
+// Daily separators
+if show_daily_on_current_tf and new_day
+    line.new(bar_index, low, bar_index, high, color=day_separator_color, style=line.style_dashed, width=1, extend=extend.both)
+    if show_separator_labels and not new_week and not new_month and not new_year
+        day_text = str.format("{0} {1} {2}", get_day_name(dayofweek), get_month_name(month), str.tostring(dayofmonth))
+        label.new(bar_index, high, day_text, style=label.style_label_down, color=day_separator_color, textcolor=color.white, size=get_separator_text_size())
+
+// Weekly separators
+if show_weekly_on_current_tf and new_week and not new_month and not new_year
+    if tf_in_minutes == 1440
+        chart_range = high - low
+        line_start = high - (chart_range * 0.3)
+        line.new(bar_index, line_start, bar_index, high, color=week_separator_color, style=line.style_dashed, width=2, extend=extend.none)
+    else
+        line.new(bar_index, low, bar_index, high, color=week_separator_color, style=line.style_dashed, width=2, extend=extend.both)
+    if show_separator_labels
+        week_text = str.format("WEEK {0} {1}", str.tostring(weekofyear), str.tostring(year))
+        label.new(bar_index, high, week_text, style=label.style_label_down, color=week_separator_color, textcolor=color.white, size=get_separator_text_size())
+
+// Monthly separators
+if show_monthly_on_current_tf and new_month and not new_year
+    line.new(bar_index, low, bar_index, high, color=month_separator_color, style=line.style_dashed, width=3, extend=extend.both)
+    if show_separator_labels
+        month_text = str.format("{0} {1}", get_month_name(month), str.tostring(year))
+        label.new(bar_index, high, month_text, style=label.style_label_down, color=month_separator_color, textcolor=color.white, size=get_separator_text_size())
+
+// Yearly separators
+if show_yearly_on_current_tf and new_year
+    line.new(bar_index, low, bar_index, high, color=year_separator_color, style=line.style_dashed, width=4, extend=extend.both)
+    if show_separator_labels
+        year_text = str.format("YEAR {0}", str.tostring(year))
+        label.new(bar_index, high, year_text, style=label.style_label_down, color=year_separator_color, textcolor=color.white, size=get_separator_text_size())
+
+// ════════════════════════════════════════════
+// ALERT SYSTEM (BOTTOM CENTER)
+// ════════════════════════════════════════════
+
+// Create LED ticker-style alert system at bottom center
+if barstate.islast
+    var table alertTable = table.new(position.bottom_center, 1, 2)
+    
+    // Determine alerts for both rows
+    alert_text_1 = ""
+    alert_color_1 = color.gray
+    show_alert_1 = false
+    
+    alert_text_2 = ""
+    alert_color_2 = color.gray
+    show_alert_2 = false
+    
+    // Create scrolling/ticker effect based on time
+    scroll_pos = math.floor(second(timenow) / 2) % 3
+    ticker_dots = scroll_pos == 0 ? "●●●○○○" : scroll_pos == 1 ? "○●●●○○" : "○○●●●○"
+    ticker_arrow = scroll_pos == 0 ? ">>>" : scroll_pos == 1 ? " >>>" : "  >>>"
+    
+    // Priority system - Row 1 (Top priority alerts with LED style)
+    if current_hour == 2 and current_minute >= 33 and current_minute <= 59
+        alert_text_1 := ticker_arrow + " [!CRITICAL!] PRIMARY IPDA ACTIVE [!CRITICAL!] " + ticker_arrow
+        alert_color_1 := color.red
+        show_alert_1 := true
+    else if current_hour == 0 and current_minute == 30
+        if judas_occurred
+            alert_text_1 := "【✓】JUDAS CONFIRMED【✓】ENTER @ OTE【✓】"
+        else
+            alert_text_1 := "【⚠】NO JUDAS【⚠】SWITCH TO PATTERN MODE【⚠】"
+        alert_color_1 := judas_occurred ? color.lime : color.orange
+        show_alert_1 := true
+    else if judas_occurred and current_hour >= 1 and current_hour < 4
+        ote_price_str = str.tostring(ote_705, "#.#####")
+        alert_text_1 := "[$$] ENTRY: " + ote_price_str + " [$$] " + ticker_dots
+        alert_color_1 := color.lime
+        show_alert_1 := true
+    else if inDelayedProtraction and pattern_detected
+        alert_text_1 := "◆◆◆ PATTERN " + london_pattern_type + " DETECTED ◆◆◆"
+        alert_color_1 := color.purple
+        show_alert_1 := true
+    
+    // Row 2 (Secondary alerts - LED ticker style)
+    if current_hour >= 2 and current_hour < 5 and not (current_hour == 2 and current_minute >= 33)
+        alert_text_2 := "[ LONDON KILL ZONE ] " + ticker_dots + " HIGH PROBABILITY"
+        alert_color_2 := color.orange
+        show_alert_2 := true
+    else if current_hour >= 7 and current_hour < 10
+        alert_text_2 := "[ NY KILL ZONE ] " + ticker_dots + " HIGH PROBABILITY"
+        alert_color_2 := color.blue
+        show_alert_2 := true
+    else if current_hour >= 19 or current_hour < 1
+        alert_text_2 := "ASIAN SESSION " + ticker_arrow + " RANGE BUILDING"
+        alert_color_2 := color.yellow
+        show_alert_2 := true
+    else if current_hour == 23 and current_minute >= 50
+        alert_text_2 := "<<<MIDNIGHT>>> APPROACHING <<<MIDNIGHT>>>"
+        alert_color_2 := color.yellow
+        show_alert_2 := true
+    
+    // Additional row 2 alerts
+    if sds_filled_today >= 2 and not show_alert_2
+        alert_text_2 := "[REVERSAL] " + str.tostring(sds_filled_today) + " SDs FILLED [REVERSAL]"
+        alert_color_2 := color.purple
+        show_alert_2 := true
+    else if inNormalProtraction and not judas_occurred and not show_alert_1
+        expected_direction = bullish_bias ? "BEARISH" : bearish_bias ? "BULLISH" : "ANY"
+        alert_text_2 := "SCANNING FOR " + expected_direction + " JUDAS " + ticker_dots
+        alert_color_2 := color.aqua
+        show_alert_2 := true
+    
+    // LED display effects
+    flash_cycle = math.floor(second(timenow) * 3) % 2
+    glow_intensity = flash_cycle == 0 ? 0 : 20
+    
+    // Create LED panel background (dark with glow)
+    panel_bg = COLOR_PANEL_BG
+    
+    // Row 1 Display - LED ticker style
+    if show_alert_1
+        // Simulate LED glow effect
+        text_glow = flash_cycle == 0 ? alert_color_1 : color.new(alert_color_1, 30)
+        
+        table.cell(alertTable, 0, 0, alert_text_1, 
+                   bgcolor=panel_bg, 
+                   text_color=text_glow, 
+                   text_size=size.normal,
+                   text_halign=text.align_center,
+                   height=2)
+    else
+        // Show idle state
+        table.cell(alertTable, 0, 0, "● ● ● MONITORING ACTIVE ● ● ●", 
+                   bgcolor=panel_bg, 
+                   text_color=color.new(color.gray, 50), 
+                   text_size=size.normal,
+                   text_halign=text.align_center,
+                   height=2)
+    
+    // Row 2 Display - LED ticker style
+    if show_alert_2
+        // Different flash pattern for row 2
+        text_glow_2 = flash_cycle == 1 ? alert_color_2 : color.new(alert_color_2, 30)
+        
+        table.cell(alertTable, 0, 1, alert_text_2, 
+                   bgcolor=panel_bg, 
+                   text_color=text_glow_2, 
+                   text_size=size.normal,
+                   text_halign=text.align_center,
+                   height=2)
+    else
+        // Show idle state
+        table.cell(alertTable, 0, 1, ticker_dots + " READY " + ticker_dots, 
+                   bgcolor=panel_bg, 
+                   text_color=color.new(color.gray, 50), 
+                   text_size=size.normal,
+                   text_halign=text.align_center,
+                   height=2)
+
+// ════════════════════════════════════════════
+// QUALITY SCORE CALCULATION (Global - for dashboard and alerts)
+// ════════════════════════════════════════════
+
+// Calculate quality score (available for dashboard and alerts)
+range_valid = false
+if flout_calculated and flout_pips > FLOUT_THRESHOLD_PIPS
+    range_valid := flout_pips > FLOUT_OPTIMAL_MIN and flout_pips < FLOUT_OPTIMAL_MAX
+else
+    range_valid := asian_pips > ASIAN_MIN_PIPS and asian_pips < ASIAN_MAX_PIPS
+
+quality_score = 0
+quality_score := range_valid ? quality_score + 20 : quality_score
+quality_score := not neutral_bias ? quality_score + 20 : quality_score
+quality_score := judas_occurred or pattern_detected ? quality_score + 20 : quality_score
+quality_score := sds_filled_today > 0 ? quality_score + 20 : quality_score
+quality_score := high_volume ? quality_score + 10 : quality_score
+quality_score := htf_aligned ? quality_score + 10 : quality_score
+
+// Bonus for Flout activation
+if flout_calculated and flout_pips > FLOUT_THRESHOLD_PIPS
+    quality_score := math.min(quality_score + 10, 100)
+
+// ════════════════════════════════════════════
+// DASHBOARD (ENHANCED)
+// ════════════════════════════════════════════
+
+if showDashboard and barstate.islast
+    var table dashboard = table.new(position.top_right, 2, 9)
+    
+    // Determine text size
+    txt_size = dashboardSize == "small" ? size.tiny : dashboardSize == "large" ? size.large : size.normal
+    
+    // Header
+    table.merge_cells(dashboard, 0, 0, 1, 0)
+    table.cell(dashboard, 0, 0, "ICT IPDA DASHBOARD v2.0", bgcolor=color.new(color.blue, 80), text_color=color.white, text_size=txt_size)
+    
+    // Time & Bias
+    hour_str = str.format("{0,number,00}", current_hour)
+    minute_str = str.format("{0,number,00}", current_minute)
+    timeStr = hour_str + ":" + minute_str
+    
+    table.cell(dashboard, 0, 1, "TIME: " + timeStr + " NY", bgcolor=color.new(color.gray, 80), text_color=color.white, text_size=txt_size)
+    table.cell(dashboard, 1, 1, "BIAS: " + bias_text, bgcolor=color.new(color.gray, 80), text_color=bias_color, text_size=txt_size)
+    
+    // HTF Bias Row
+    if showHTFBias
+        table.merge_cells(dashboard, 0, 2, 1, 2)
+        htf_display = "HTF (" + htfTimeframe + "): " + htf_bias_text
+        if htf_aligned
+            htf_display := htf_display + " ✓ ALIGNED"
+        table.cell(dashboard, 0, 2, htf_display, bgcolor=color.new(color.gray, 90), text_color=htf_bias_color, text_size=txt_size)
+    
+    // Range Analysis with Flout Display
+    table.merge_cells(dashboard, 0, 3, 1, 3)
+    asian_pips_txt = str.tostring(asian_pips, "#.#")
+    cbdr_pips_txt = str.tostring(cbdr_pips, "#.#")
+    
+    // Show active range type
+    range_text = ""
+    if flout_calculated
+        flout_pips_txt = str.tostring(flout_pips, "#.#")
+        if flout_pips > FLOUT_THRESHOLD_PIPS
+            range_text := "FLOUT ACTIVE (" + flout_pips_txt + "p) | A:" + asian_pips_txt + "p C:" + cbdr_pips_txt + "p"
+        else
+            range_text := "FLOUT <40p (" + flout_pips_txt + "p) | A:" + asian_pips_txt + "p C:" + cbdr_pips_txt + "p"
+    else
+        range_text := "Asian: " + asian_pips_txt + "p | CBDR: " + cbdr_pips_txt + "p | Waiting for midnight"
+    
+    table.cell(dashboard, 0, 3, range_text, bgcolor=color.new(color.gray, 90), text_color=color.white, text_size=txt_size)
+    
+    // Session Status
+    session_text = ""
+    if current_hour == 2 and current_minute >= 33
+        session_text := "PRIMARY IPDA"
+    else if current_hour >= 2 and current_hour < 5
+        session_text := "London Kill Zone"
+    else if current_hour == 6
+        session_text := "London Lunch"
+    else if current_hour >= 7 and current_hour < 10
+        session_text := "NY Kill Zone"
+    else if current_hour >= 19 or current_hour < 1
+        session_text := "Asian Session"
+    else
+        session_text := "Transitioning..."
+    
+    table.merge_cells(dashboard, 0, 4, 1, 4)
+    table.cell(dashboard, 0, 4, "SESSION: " + session_text, bgcolor=color.new(color.gray, 85), text_color=color.white, text_size=txt_size)
+    
+    // Trade Setup
+    setup_text = ""
+    if judas_occurred
+        setup_text := "Judas Confirmed ✓"
+    else if pattern_detected
+        setup_text := "Pattern: " + london_pattern_type
+    else if inNormalProtraction
+        setup_text := "Judas Hunt Mode"
+    else if inDelayedProtraction
+        setup_text := "Pattern Mode"
+    else
+        setup_text := "Monitoring..."
+    
+    table.merge_cells(dashboard, 0, 5, 1, 5)
+    table.cell(dashboard, 0, 5, "MODE: " + setup_text, bgcolor=color.new(color.gray, 80), text_color=color.yellow, text_size=txt_size)
+    
+    // SD Status
+    sds_filled_str = str.tostring(sds_filled_today)
+    sd_text = "SDs Filled: " + sds_filled_str + "/4"
+    if sd1_up_filled
+        sd_text := sd_text + " | +1✓"
+    if sd2_up_filled
+        sd_text := sd_text + " | +2✓"
+    if sd1_down_filled
+        sd_text := sd_text + " | -1✓"
+    if sd2_down_filled
+        sd_text := sd_text + " | -2✓"
+    
+    table.merge_cells(dashboard, 0, 6, 1, 6)
+    table.cell(dashboard, 0, 6, sd_text, bgcolor=color.new(color.gray, 85), text_color=color.white, text_size=txt_size)
+    
+    // Volume Status
+    vol_text = useVolumeFilter ? (high_volume ? "Volume: HIGH ✓" : "Volume: LOW") : "Volume: OFF"
+    vol_color = high_volume ? color.green : color.orange
+    
+    table.merge_cells(dashboard, 0, 7, 1, 7)
+    table.cell(dashboard, 0, 7, vol_text, bgcolor=color.new(color.gray, 85), text_color=vol_color, text_size=txt_size)
+    
+    // Quality Score Display (calculated before dashboard section)
+    quality_score_str = str.tostring(quality_score)
+    quality_text = "QUALITY: " + quality_score_str + "/100"
+    quality_color = quality_score >= 75 ? color.green : quality_score >= 50 ? color.yellow : color.red
+    
+    table.merge_cells(dashboard, 0, 8, 1, 8)
+    table.cell(dashboard, 0, 8, quality_text, bgcolor=color.new(quality_color, 80), text_color=color.white, text_size=txt_size)
+
+
+// ════════════════════════════════════════════
+// RISK CALCULATOR
+// ════════════════════════════════════════════
+
+if showRiskCalc and (judas_occurred or pattern_detected) and barstate.islast and asian_range > 0
+    var table riskTable = table.new(position.top_left, 2, 5)
+    
+    // Calculate risk parameters
+    stop_loss_pips = rangeToPips(asian_range)
+    risk_amount = accountSize * (riskPercent / 100)
+    pip_value = syminfo.type == "forex" ? (str.contains(syminfo.ticker, "JPY") ? 10.0 : 1.0) : 1.0
+    position_size = risk_amount / (stop_loss_pips * pip_value)
+    target_pips = stop_loss_pips * rewardRatio
+    potential_profit = risk_amount * rewardRatio
+    
+    // Display
+    table.cell(riskTable, 0, 0, "RISK CALCULATOR", bgcolor=color.new(color.orange, 70), text_color=color.white, text_size=size.small)
+    table.cell(riskTable, 1, 0, "", bgcolor=color.new(color.orange, 70))
+    
+    table.cell(riskTable, 0, 1, "Stop Loss", bgcolor=color.new(color.gray, 90), text_color=color.white, text_size=size.small)
+    table.cell(riskTable, 1, 1, str.tostring(stop_loss_pips, "#.#") + " pips", bgcolor=color.new(color.gray, 90), text_color=color.red, text_size=size.small)
+    
+    table.cell(riskTable, 0, 2, "Position Size", bgcolor=color.new(color.gray, 90), text_color=color.white, text_size=size.small)
+    table.cell(riskTable, 1, 2, str.tostring(position_size, "#.##") + " lots", bgcolor=color.new(color.gray, 90), text_color=color.yellow, text_size=size.small)
+    
+    table.cell(riskTable, 0, 3, "Target", bgcolor=color.new(color.gray, 90), text_color=color.white, text_size=size.small)
+    table.cell(riskTable, 1, 3, str.tostring(target_pips, "#.#") + " pips", bgcolor=color.new(color.gray, 90), text_color=color.green, text_size=size.small)
+    
+    table.cell(riskTable, 0, 4, "Risk/Reward", bgcolor=color.new(color.gray, 90), text_color=color.white, text_size=size.small)
+    table.cell(riskTable, 1, 4, "$" + str.tostring(risk_amount, "#.##") + " / $" + str.tostring(potential_profit, "#.##"), bgcolor=color.new(color.gray, 90), text_color=color.white, text_size=size.small)
+
+// ════════════════════════════════════════════
+// PROGRAMMATIC ALERT CONDITIONS
+// ════════════════════════════════════════════
+
+alertcondition(judas_occurred[1] and not judas_occurred[2], 
+               title="Judas Pattern Detected", 
+               message="Judas {{judas_direction}} pattern confirmed! Enter at OTE levels.")
+
+alertcondition(pattern_detected[1] and not pattern_detected[2], 
+               title="London Pattern Detected", 
+               message="London pattern {{london_pattern_type}} detected!")
+
+alertcondition(sds_filled_today >= 2 and sds_filled_today[1] < 2, 
+               title="SD Reversal Zone", 
+               message="{{sds_filled_today}} Standard Deviations filled - potential reversal zone")
+
+alertcondition(current_hour == 2 and current_minute == 33, 
+               title="Primary IPDA Active", 
+               message="Primary IPDA window now active (2:33 AM - 3:00 AM NY)")
+
+alertcondition(asianJustEnded, 
+               title="Asian Session Ended", 
+               message="Asian session ended. Flout calculated: {{active_range_type}}")
+
+alertcondition(quality_score >= 75 and quality_score[1] < 75, 
+               title="High Quality Setup", 
+               message="Quality score reached {{quality_score}}/100 - High probability setup")
+
+alertcondition(flout_calculated and flout_pips > FLOUT_THRESHOLD_PIPS and not flout_calculated[1],
+               title="Flout Activated",
+               message="Flout range activated with {{flout_pips}} pips - Trading day begins!")
+

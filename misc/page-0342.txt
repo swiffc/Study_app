@@ -1,0 +1,54 @@
+P1: JYS
+c10     JWBT039-Steenbarger     December 29, 2008     13:21     Printer: Yet to come
+
+
+
+
+          322                                                  THE DAILY TRADING COACH
+
+
+
+          price. Thus our analyses can only use 998 of the data points of the 1,000
+          that we downloaded. If you want an even 1,000 data points, you’d have to
+          download the last 1,002 values.
+              With a bit of practice, all of this will become second nature. It will
+          take only a minute or two to open your data files, copy and paste the raw
+          data, write your formulas, and copy the cells to complete your sheet. In this
+          example, we are exploring how the prior day’s return is related to the next
+          day’s return. We’re setting the spreadsheet up to ask the question, “Does
+          it make sense to buy after an up day/sell after a down day; does it make
+          sense to sell after an up day/buy after a down day; or does it make no ap-
+          parent difference?” I call the independent variable the candidate predictor,
+          because we don’t really know if it is related to our variable of interest. It’s
+          also only a candidate because we’re not conducting the statistical signif-
+          icance tests that would tell us more conclusively that this is a significant
+          predictor. Rather, we’re using the analysis much as we used the charting in
+          the prior lesson: as a way to generate hypotheses.
+
+
+              Remember, in the current examples, we’re using historical rela-
+              tionship to describe patterns in markets, not to statistically analyze
+              them. We’re generating, not testing, hypotheses.
+
+               If I had been interested in examining the relationship between the prior
+          week’s price change with the next week’s return, the spreadsheet would
+          look very similar, except the raw data would consist of weekly index data,
+          rather than daily. In general, it’s neatest for analysis if you are investigat-
+          ing the impact of the prior period’s data on the next period. This ensures
+          that all observations are independent; there are no overlapping data.
+               To see what I mean, consider investigating the relationship of the
+          prior week’s (five-day) price change on the price change over the next five
+          trading days utilizing daily market data. Your independent variable in col-
+          umn F would now look like “=((E7-E2)/E2)* 100)”—price change over the
+          past five days. The dependent variable in column G would be written as
+          “=((E12-E7)/E7)* 100”: the next five-day’s price change. Note, however, that
+          as you copy those cells down the spreadsheet per the above procedure, that
+          each observation at cells F8, F9, F10, and so on and G8, G9, G10, and so
+          on, is not completely independent. The prior five-day return overlaps the
+          values for F8, F9, and F10, and the prospective five-day return overlaps for
+          cells G8, G9, and G10. This will always be the case when you’re using a
+          smaller time period for your raw data than the period that you’re investi-
+          gating for your independent and dependent variables.
+               Inferential statistical tests depend on each observation in the data set
+          being independent, so it is not appropriate to include overlapping data
+

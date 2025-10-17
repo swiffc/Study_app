@@ -1,0 +1,54 @@
+P1: JYS
+c08     JWBT039-Steenbarger     December 29, 2008     7:38     Printer: Yet to come
+
+
+
+
+          Coaching Your Trading Business                                              233
+
+
+          market changes or to your taking more risk in each of your trades. You’ll
+          see clearly how much drawdown is associated with a given level of volatil-
+          ity, which will help you gauge your own tolerance.
+               The second forecaster tool asks you to input the average size of your
+          winning trade, your average ratio of winning to losing trades, and the ratio
+          of the size of your average winners to losers. Run the forecaster many times
+          with your data and you’ll see a variety of plausible sets of returns. This will
+          give you a good sense for the expectable runs (to the upside and downside)
+          in your trading, as well as the expectable returns over a 100-trade sequence.
+               Finally, tweak the parameters from the second forecaster to simulate
+          the paths of possible returns if your average winning trade shrinks (maybe
+          due to slow markets) or if your ratio of winning to losing trades declines
+          (perhaps because of misreading markets). Tweak the ratio of the size of
+          your average winners and losers to see what happens to your returns if
+          you lose discipline and hold losers too long or cut losers short, creating
+          poor risk/reward per trade.
+               All of these what-if scenarios will give you a good sense for what you
+          can expect from your trading. It is much easier to deal with business ad-
+          versity if you’ve planned for it in advance. When you’re coaching yourself,
+          the more you know about your trading business, the better you’ll be able
+          to make it grow.
+
+
+                     COACHING CUE
+
+          An important element of success in building a trading career is being able to
+          identify periods of underperformance as quickly as possible, before they create
+          large drawdowns. The more you know about your trading—the average sizes
+          and durations of drawdowns and the variability around those averages—the
+          better prepared you’ll be to identify departures from those norms. Keep statis-
+          tics on your trading so you can also highlight periods in which you’re trading
+          particularly well and learn from these episodes. The single most important step
+          you can take to further your trading performance is to keep detailed metrics
+          on your trading. These steps will highlight what you’re doing right and wrong,
+          informing your self-coaching eﬀorts.
+
+
+
+
+          LESSON 73: DIVERSIFY YOUR
+          TRADING BUSINESS
+
+          Suppose you have a passion for coffee and decide to start your own coffee-
+          house as a business. You develop reliable sources for high quality beans,
+

@@ -1,0 +1,55 @@
+P1: JYS
+c10     JWBT039-Steenbarger     December 29, 2008     13:21     Printer: Yet to come
+
+
+
+
+          310                                                  THE DAILY TRADING COACH
+
+
+
+
+              When independent patterns point to similar directional edges, we
+              have especially promising hypotheses for trading.
+
+
+               Of course, if we generate enough hypotheses, some are going to look
+          promising simply as a matter of chance. We could look at all combina-
+          tions of Dow stocks, day of week, and week of year and the odds are
+          good that we’d find some pattern for some stock that looks enticing, such
+          as (to invent one possibility) IBM tends to rise on the first Wednesday of
+          months during the summer season. Good hypotheses need to make sense;
+          you should have some idea of why they might be valid. It makes sense, for
+          instance, to buy after a period of weakness because you would benefit from
+          short covering and an influx of money from the sidelines. It doesn’t make
+          sense to buy a stock on alternate Thursdays during months that begin with
+          M—no matter what the historical data tell you.
+               When you’re first learning to generate good hypotheses, your best bet
+          is to keep it simple and get your feel for the kinds of patterns that are
+          most promising. Many of your initial candidates will emerge from inves-
+          tigations of charts. Perhaps you’ll notice that it has been worth selling a
+          stock when it rises on unusually high volume, or that markets have tended
+          to bounce following a down open that follows a down day. Such ideas are
+          worth checking out historically. What patterns have you noticed in your
+          trading and observation? Write down these patterns and keep them simple:
+          these patterns will get you started in our qualitative research.
+
+
+                     COACHING CUE
+
+          Several newsletters do an excellent job of testing historical patterns and can
+          provide you with inspiration for ideas of your own. Check out the contributions
+          of Jason Goepfert, Rob Hanna, and Rennie Yang in Chapter 9, along with their
+          links. All three are experienced traders and investigators of market patterns.
+
+
+
+
+          LESSON 92: FRAME GOOD HYPOTHESES
+          WITH THE RIGHT DATA
+
+          In the previous lesson, I encouraged you to keep hypotheses simple. This
+          is not just for your learning; in general, we will generate the most robust
+          hypotheses if we don’t try to get too fancy and add many conditions to our
+          ideas. Ask a question that is simple and straightforward, such as, “What
+

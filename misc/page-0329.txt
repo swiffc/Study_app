@@ -1,0 +1,53 @@
+P1: JYS
+c10     JWBT039-Steenbarger      December 29, 2008     13:21     Printer: Yet to come
+
+
+
+
+          Looking for the Edge                                                          309
+
+          market. If I include many bull and bear markets in my database, I will go
+          back so far in time that I will be studying periods that are radically different
+          from the current one in terms of who and what are moving markets. Auto-
+          mated, algorithmic strategies have completely reshaped market patterns,
+          particularly over short time periods. If you study precomputer-era markets
+          you would miss this influence altogether. Select a look-back period for his-
+          torical analysis that is long enough to cover different markets but not so
+          lengthy as to leave us with irrelevant data is as much art as science.
+               My approach to trading treats historical market patterns as qual-
+          itative research data. In a nutshell, qualitative research is hypothesis-
+          generating research, not hypothesis-testing research. I view the patterns
+          of markets as sources of trading hypotheses, not as fixed conclusions. The
+          basic hypothesis is that the next trading period will not differ significantly
+          from the recent past ones. If a pattern has existed over the past X periods,
+          we can hypothesize that it will persist over the next period. Like any hy-
+          pothesis, this is a testable proposition. It is an idea backed by support, not
+          just faith or superstition, but it is not accepted as a fixed truth to be traded
+          blindly.
+
+
+              Historical testing yields hypotheses for trading, not conclusions.
+
+
+               For this reason, I do not emphasize the use of inferential statistics in
+          the investigation of historical patterns. I am looking for qualitative differ-
+          ences much as a psychologist might look for various behavior patterns in a
+          person seeking therapy. In short, I’m looking to generate a hypothesis, not
+          test one. The testing, in the trading context, is reflected in my trading re-
+          sults: if my returns significantly exceed those expected by chance, we can
+          conclude that I am trading knowledge, not randomness.
+               When we adopt a qualitative perspective, the issue of look-back period
+          becomes less thorny. As long as we consider the results of historical in-
+          vestigations to be nothing more than hypotheses, we can draw our ideas
+          from the past few weeks, months, years, or decades of trading. The basic
+          hypothesis remains the same: that the next time period will not differ sig-
+          nificantly from the most recent ones. With that in mind, we can frame mul-
+          tiple hypotheses derived from different patterns over different time frames.
+          One hypothesis, for example, might predicate buying the market based on
+          strong action at the close of the prior day, with the anticipation of tak-
+          ing out the previous day’s R1 pivot level. A second hypothesis might also
+          entail buying the market based on a pattern of weakness during the previ-
+          ous week’s trading. When multiple independent patterns point in the same
+          direction, we still don’t have a certain conclusion, but we do have a firm
+          hypothesis.
+

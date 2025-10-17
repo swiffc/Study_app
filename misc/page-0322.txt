@@ -1,0 +1,54 @@
+P1: JYS
+c09     JWBT039-Steenbarger    December 30, 2008      13:55    Printer: Yet to come
+
+
+
+
+          302                                                  THE DAILY TRADING COACH
+
+
+
+          spreadsheet applications, such as Excel, you’ll see in the lower right corner
+          the summation of all those 1s. Dividing that result by the number of days
+          in the sample reveals the at-any-time odds—57 percent. In other words, on
+          any given day, the chances that the S&P will be higher two weeks later have
+          been 57 percent. That is far less than the 83 percent odds when the S&P is
+          higher three days after a 3:1 breadth session. This confirms the original hy-
+          pothesis that the chances for a market rally over the intermediate-term are
+          far better than average, meaning there’s a clearly bullish edge.
+               “Instead of relying on traditional indicators, most of which merely ma-
+          nipulate and regurgitate price action, look beneath the surface of the major
+          averages at the market internals such as breadth, up/down volume, new
+          highs/lows, NYSE TICK action, etc,” Rennie advises. “This is the area in
+          which I’ve found the majority of trading setups that stand up to historical
+          testing. Does a surge in new 52-week lows portend an intermediate-term
+          bottom? Is a 90 percent up volume day bullish? How about a cluster of 80
+          percent up volume days in a short time frame? Just about any concept you
+          can imagine can be quickly researched and tested with the proper prepa-
+          ration. By maintaining your own version of a master spreadsheet and con-
+          ducting your own testing and research, you’ll know when a concept truly
+          provides a bullish or bearish edge. Consistently exploit that edge, and you’ll
+          have a leg up on the competition.”
+
+              It is powerful when you find a pattern with an edge, but even more
+              powerful when your edge is the ability to find and trade many such
+              patterns.
+
+
+
+          Intraday Analysis
+          “The NYSE TICK is probably the single most helpful intraday indicator,”
+          Rennie Yang asserts. “It tells you, at a glance, how many issues last traded
+          on an uptick versus a downtick. A reading of +500, for instance, means
+          that, at that moment, 500 more issues last traded on an uptick. When you
+          first view a chart of the NYSE TICK, it will look as if it’s too noisy to be
+          of any use . . . But change your viewpoint and you’ll see an entirely differ-
+          ent picture . . . You can actually hide the NYSE TICK itself and just plot the
+          20-period moving average of the TICK to gain considerable insight into the
+          supply/demand equation. Is the average holding above zero, meaning gen-
+          erally more buying power, or is the average holding below zero, reflecting
+          better selling pressure? That’s something every day trader should know.
+               “Here’s another technique for utilizing intraday TICK readings,” Ren-
+          nie offers. “Many data feeds such as e-Signal allow you to export data in
+          real time to a spreadsheet. Through a technology known as DDE (dynamic
+

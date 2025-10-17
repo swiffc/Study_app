@@ -1,0 +1,51 @@
+P1: JYS
+c10     JWBT039-Steenbarger      December 29, 2008     13:21     Printer: Yet to come
+
+
+
+
+          Looking for the Edge                                                          323
+
+          when calculating statistical significance. For my purpose of hypothesis
+          generation, I am willing to tolerate a degree of overlap, and so will use daily
+          data to investigate relationships of up to 20 days in duration—particularly
+          if the amount of overlap relative to the size of the entire data set is small.
+          I would not, say, investigate the next 200 days’ return using daily data for
+          a sample of 1,000 trading days. I wouldn’t have a particular problem using
+          the daily data to investigate, for instance, the prior five-day price change
+          on the next five-day return with a four-year look-back period.
+
+              Your findings will be most robust if your look-back period (the
+              period that you are drawing data from) includes a variety of
+              market conditions: rising, falling, range bound, high volatility, low
+              volatility, and so on.
+
+              In general, my dependent variable will consist of prospective price
+          change, because that is what I’m interested in as a trader. The indepen-
+          dent variable(s) will consist of whatever my observations tell me might be
+          meaningfully related to prospective price change. Normally, I look at de-
+          pendent variables with respect to the next day’s return (to help with day
+          trading ideas) and the next week’s return (to help with formulating swing
+          hypotheses). If I want a sense of the market’s possible bigger picture, I’ll in-
+          vestigate returns over the next 20 trading days. Traders with different time
+          frames may use different periods, including intraday. Overall, I’ve found
+          the 1 to 20 day framework to be most useful in my investigations.
+              Once again, practice makes perfect. I would encourage you to become
+          proficient at downloading your data and assembling your spreadsheets into
+          variables before you try your hand at the actual historical investigations.
+          Your results, after all, will only be as valid as the data you enter and the
+          transformations you impose upon the data.
+
+
+                     COACHING CUE
+
+          Note how, with the Practice Sheet assembled as in the above example, you can
+          easily look at the next day’s average returns following opening gaps. Your inde-
+          pendent variable would be the opening gap, which would be written as =((b3-
+          e2)/e2)* 100 (the diﬀerence between today’s open and yesterday’s close as a
+          percentage). The day’s price change would be =((e3-b3)/b3)* 100 (the diﬀer-
+          ence between today’s close and today’s open as a percentage). You would need
+          to use stock index futures data or ETF data to get an accurate reﬂection of the
+          market open; the cash index does not reﬂect accurate opening values, as not
+          all stocks open for trading in the ﬁrst minute of the session.
+

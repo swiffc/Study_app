@@ -1,0 +1,56 @@
+P1: JYS
+c10     JWBT039-Steenbarger    December 29, 2008     13:21    Printer: Yet to come
+
+
+
+
+          318                                                 THE DAILY TRADING COACH
+
+
+                     TABLE 10.1 Sample Market Data
+
+                     Date                Market Index          Mining Stock
+
+                     12/1/2008           1200.25               9.46
+                     12/2/2008           1221.06               9.32
+                     12/3/2008           1228.01               9.33
+                     12/4/2008           1230.75               9.30
+                     12/5/2008           1255.37               9.18
+                     12/8/2008           1234.44               9.24
+                     12/9/2008           1230.24               9.22
+                     12/10/2008          1228.68               9.27
+                     12/11/2008          1235.56               9.20
+                     12/12/2008          1240.20               9.22
+                     12/15/2008          1251.98               9.12
+                     12/16/2008          1255.50               9.15
+                     12/17/2008          1239.88               9.29
+                     12/18/2008          1226.51               9.39
+
+
+
+
+          Chart and a menu of different kinds of charts will appear. You’ll click on
+          Line and select the chart option at the top left in the submenu. That is
+          a simple line chart. Then click Next, and you will see a small picture of
+          your chart, the range of your data, and whether the series are in rows or
+          columns. Your selection should be columns, because that is how you have
+          your variables separated. Click Next again and you will see Step 3 of 4 in
+          the Chart Wizard, allowing you to type in a chart title and labels for the
+          X and Y axes. Go ahead and type in Market Index and Mining Stock for the
+          title, Date for the Category (X) axis label, and Price for the Value (Y) axis
+          label. Then click Next.
+               The Step 4 of 4 screen will ask you if you want the chart as an object
+          in your spreadsheet, or if you want the chart to be on a separate sheet. Go
+          ahead and select the option for “As new sheet.” Then click Finish.
+               What you’ll see is that the Wizard has recognized the date information
+          from column A and placed it on the X-axis. The Wizard has also given us a
+          single Y-axis and scaled it according to the high and low values in the data.
+          Unfortunately, this leaves us unable to see much of the ups and downs in
+          the mining stock data, since the price of the stock is much smaller than the
+          price of the index.
+               To correct this problem, point your cursor at the line on the chart for
+          your Market Index and right click. A menu will pop up, and you will select
+          the option for Format Data Series. Click the tab for Axes and then click
+          on the button for “Plot Series on Secondary Axis.” When you do that, the
+          picture of the chart underneath the buttons will change, and you’ll notice
+

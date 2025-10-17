@@ -1,0 +1,54 @@
+P1: JYS
+c10     JWBT039-Steenbarger    December 29, 2008     13:21    Printer: Yet to come
+
+
+
+
+          314                                                 THE DAILY TRADING COACH
+
+
+
+          understanding of spreadsheets (how cells are named, how to copy infor-
+          mation and paste it into cells, how to copy data from one cell to another,
+          how to create a chart of the data in a sheet, how to write simple formulas
+          into cells), you’ll need a beginning text for Excel users. All of the things
+          we’ll be reviewing here are true basics; we won’t be using workbooks link-
+          ing multiple sheets, and we won’t be writing complex macros. Everything
+          you need to formulate straightforward hypotheses from market data can
+          be accomplished with these basics.
+               So let’s get started. Your first step in searching for market patterns
+          and themes is to download your historical data into Excel. Your data ven-
+          dors will have instructions for downloading data; generally this will in-
+          volve copying the data from the charting application or from the data ven-
+          dors’ servers and pasting them into Excel. If, for instance, you were using
+          e-Signal (www.esignal.com) as a real-time data/charting application, you
+          would activate the chart of the data you’re interested in by clicking on that
+          chart. You then click on the menu item Tools and then click on the option
+          for Data Export. A spreadsheet-like screen will pop up with the chart data
+          included. Along the very top row, you can check the boxes for the data ele-
+          ments you want in your spreadsheet. If there are data in the chart that you
+          don’t need for your pattern search, you simply uncheck the boxes for those
+          columns.
+               On that spreadsheet screen in e-Signal, if you click on the button for
+          Copy to Clipboard, you will place all of the selected data on the Windows
+          clipboard, where the data elements are stored as alphanumeric text. You
+          then open a blank sheet in Excel, click on the Excel menu item for Edit,
+          and select the option for Paste. That will place the selected data into your
+          Excel spreadsheet.
+               If you had wanted more historical data than popped up in the e-Signal
+          spreadsheet-like screen, you would have to click your chart and drag your
+          mouse to the right, moving view of the data into the past. Move it back as
+          far as you need and then go through the process of clicking on Tools, se-
+          lecting Data Export, etc. If you need more historical data than e-Signal (or
+          your current charting/data vendor) carries on their servers, that’s when
+          you’ll need to subscribe to a dedicated historical data source such as
+          Pinnacle Data (www.pinnacledata.com).
+
+              If you need data going back many years for multiple indicators or
+              instruments, you’ll want to download data from a historical data
+              vendor who has checked the data for completeness and accuracy.
+
+               If you’re using Pinnacle Data, you can automatically update your en-
+          tire database daily with its Goweb application. The program places all the
+          updated data into Excel sheets that are stored on the C drive in a folder
+

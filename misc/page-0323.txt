@@ -1,0 +1,54 @@
+P1: JYS
+c09     JWBT039-Steenbarger     December 30, 2008     13:55     Printer: Yet to come
+
+
+
+
+          Lessons from Trading Professionals                                           303
+
+
+          data exchange), it’s a relatively simple process to have one-minute NYSE
+          TICK data updating constantly in your spreadsheet. Once this has been ac-
+          complished, you can easily create your own cumulative TICK. Here’s how:
+          Set up a spreadsheet with columns A, B, and C containing the date, time,
+          and close of the NYSE TICK ($TICK in e-Signal). It should start at row
+          2 and contain the last 390 one-minute bars, the equivalent of one full trad-
+          ing day. In the first row of column D, enter a zero. In the first row of column
+          E, enter a space, followed by today’s date (the space is due to a quirk on
+          e-Signal’s part). Then jump down to the second row of column D and enter
+          the following formula:
+
+                                   = if(a2 = $E$1,c2+d1,d1)
+
+          “and fill it down through all 390 rows. This states that, if the date matches
+          today, then take the most recent closing one-minute TICK and add it to
+          the running total for the session. As the data comes in, this will automat-
+          ically build a cumulative TICK in column D, which can then be charted
+          to provide a real-time intraday chart of the cumulative TICK. Draw a line
+          at the zero mark and watch the cumulative TICK reveal the underlying
+          buying and selling pressure that is hidden in the noise of the NYSE TICK.”
+
+
+              The cumulative TICK reveals the trend of daily sentiment.
+
+
+               David Adler approaches the use of data for self-coaching in a different
+          manner, focusing on the assessment of trading performance itself. “The
+          philosophy behind TraderDNA, which I firmly believe,” he explains, “is the
+          idea of being cognizant of what happened (in terms of your performance)
+          within a given session, week, month, etc. of your trading, so that, going for-
+          ward, the negative aspects can be minimized and the positive can be max-
+          imized. The fundamental idea is that, if the trader is able to look back on
+          a certain time period of his trading and understand more about the overall
+          result, then he can be proactive . . . in preventing the same mistakes going
+          forward. Likewise, he can identify strengths and focus on situations that
+          are likely to result in a profit based upon what his past trading has shown.
+               “Our users extract their order data from their front-end software,”
+          David Adler notes, “and import the data into TraderDNA. This affords them
+          the opportunity to thoroughly analyze their data in order to understand
+          more about the strengths and weaknesses of their trading: specifically,
+          their performance trends, where their losses came from, characteristics
+          of their trades, the differences in their winners and losers, amongst other
+          things.” Here are some of the analytics provided by the software, along with
+          David’s commentary:
+

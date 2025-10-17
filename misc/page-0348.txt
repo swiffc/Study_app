@@ -1,0 +1,55 @@
+P1: JYS
+c10     JWBT039-Steenbarger     December 29, 2008     13:21     Printer: Yet to come
+
+
+
+
+          328                                                  THE DAILY TRADING COACH
+
+
+
+          length of the data; and then click Enter. The 0,1 dummy code will populate
+          each of the column H cells.
+
+
+              We want to know whether the independent variable is associated
+              with greater frequency of up/down days, as well as the magnitudes
+              of change across those days.
+
+               Now we go through the same sorting procedure described in the previ-
+          ous lesson. We highlight all the cells in the worksheet—including the new
+          column H—and click Edit and Copy. We exit the spreadsheet, instructing
+          Excel to save changes and to save the highlighted data. We open a new
+          sheet; click Edit; click Paste; and all the spreadsheet data—again minus
+          the formulas—will appear on the sheet. Once again we sort the data by
+          column F (current day’s price change) in descending order, as described
+          in the previous lesson. Again we divide the data in half and, below the
+          last entry in column G, we type in “=average(g2:g500)” and, below that,
+          “=average(g501:g999).”
+               This, as noted in the previous lesson, shows us the magnitude of the
+          average differences in next day’s returns when the current day is relatively
+          strong (top half of price change) versus relatively weak (bottom half of the
+          price change distribution).
+               In column H, next to the cells for the two averages in column G, we
+          enter the formula “=sum(H2:H500)” and, below that, “=sum(H501:H999).”
+          This tells us how many up days occurred following relatively strong days
+          in the market and how many up days occurred following relatively weak
+          days. Because we’re splitting the data in half, we should see roughly equal
+          numbers of up days in the two sums if the current day’s performance is
+          not strongly related to the next day’s price change. On the other hand, if
+          we see considerably fewer up days following the strong market days than
+          following the weak ones, we might begin to entertain a hypothesis.
+               If the average next day changes in column G look quite discrepant, but
+          the number of winning days in the two conditions in column G are similar,
+          that means that the odds of a winning day may not be significantly affected
+          by the prior day’s return, but the size of that day might be affected. In
+          general, I like to see clear differences in both criteria. Thus, if the average
+          size of the next day’s return are higher following a falling day than a rising
+          one and the odds of a rising day are higher, I’ll be most likely to use the
+          observation to frame a possible market hypothesis.
+               Note that we can dummy code independent variables as well. If, for
+          example, I wanted to see whether an up or down day (independent vari-
+          able) tended to be followed by an up or down day (dependent variable), I
+          could code column F (current day’s price change) with a code as above in
+          column H and also code column G (next day’s price change) identically in
+

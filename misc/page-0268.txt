@@ -1,0 +1,58 @@
+P1: JYS
+c08     JWBT039-Steenbarger    December 29, 2008      7:38    Printer: Yet to come
+
+
+
+
+          248                                                  THE DAILY TRADING COACH
+
+
+
+          LESSON 77: CALIBRATE YOUR RISK
+          AND REWARD
+
+          I recently used Henry Carstens’ P/L Forecaster (www.verticalsolutions
+          .com/tools.html) to simulate possible equity curves under scenarios for two
+          small traders:
+
+           1. Trader A has a small negative edge – The trader wins on 48 percent of
+              trades and the ratio of the size of winners to losers is 0.90.
+           2. Trader B has a small positive edge – The trader wins on 52 percent of
+              trades and the ratio of the size of winners to losers is 1.10.
+
+               I viewed the simulation as tracking returns over a 100-day period. The
+          average size of winning days was $100 in both scenarios. That means that,
+          if we assume that the traders began with a portfolio size of $20,000, that the
+          daily variability of their returns was somewhere around 50 basis points (1/2
+          percent, or $100/$20,000). If the traders averaged just one trade per day,
+          then it’s plausible that they were risking roughly 2 S&P 500 emini points
+          per trade and making about that much per trade.
+               By running the scenarios 10 times each, I was able to generate an array
+          of returns for the two traders:
+
+                 Forecast Number                Trader A                Trader B
+
+                  1                             −$904.2                 $769.9
+                  2                              −727.4                  667.5
+                  3                              −718.5                  614.7
+                  4                              −763.5                  783.8
+                  5                              −786.1                  528.7
+                  6                              −551.0                  830.4
+                  7                              −518.9                  933.0
+                  8                              −610.5                  500.7
+                  9                              −760.5                  791.5
+                 10                              −812.6                  884.2
+
+
+              What we see is that small edges over time add up. When the small
+          edge is negative, as in the case of Trader A, the average portfolio loss over
+          100 days is around 3 percent. When the edge is positive, we see that Trader
+          B averages a 100-day gain of about 3 percent.
+              Clearly, it doesn’t take much to turn a modest positive edge into a
+          modest negative one: the distance between 52 percent and 48 percent
+          winners and the difference between a win size that is 10 percent smaller
+          versus larger than the average loss size are not so great. Just a relatively
+          small change in how markets move, how we execute our trades, or how
+          well we concentrate and follow our ideas can turn a modest winning edge
+          into a consistent loser.
+

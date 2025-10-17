@@ -1,0 +1,55 @@
+P1: JYS
+c08     JWBT039-Steenbarger     December 29, 2008      7:38     Printer: Yet to come
+
+
+
+
+          258                                                    THE DAILY TRADING COACH
+
+
+
+               One way that I see traders utilizing this information is in the way that
+          they scale into trades. Their initial position size might be relatively small,
+          but traders will add to the position as fresh information validates their idea.
+          My trading capital per trade idea is divided into six units. I typically will en-
+          ter a position with one or two units. Only if the idea is finding support will
+          a third or fourth unit enter the picture. I have found that, if my trades are
+          going to be wrong, they’re generally wrong early in their lifespan. By en-
+          tering with minimal size, I incur small drawdowns when I’m wrong. If I
+          add to a position as it is finding support, I maximize the gains from good
+          trades. This trade management, I find, is just as important to many
+          traders’ performance as the quality of their initial ideas. Indeed, I’ve seen
+          traders throw lots of trade ideas at the wall and only add capital to the ones
+          that stick: the management of their trades makes all the difference to their
+          returns.
+               Such trade management means that you have to be actively engaged
+          in processing information while the trade is on, not just passively watch-
+          ing your position. Good trade management is quite different from chasing
+          markets that happen to be going in your favor. It is a separate execution
+          process unto itself, in which you can wait for normal pullbacks against
+          your position to add to the position at favorable levels. If you are long, for
+          example, and the market is in an uptrend, the retracements should occur
+          at successively higher price levels. By adding after the retracement, you
+          gain the profit potential when the market returns to its prior peak, but you
+          also ensure that risk/reward will be favorable for the piece of the trade that
+          you’re adding.
+
+
+              Each piece added to a trade needs a separate assessment of risk
+              and reward to guide its execution.
+
+
+               While I’m in a short-term trade, I’m closely watching intraday senti-
+          ment for clues as to whether buyers or sellers are more aggressive in the
+          market. I will watch the NYSE TICK (the number of stocks trading on
+          upticks minus those trading on downticks), and I will track the Market
+          Delta (www.marketdelta.com; the volume of ES futures transacted at the
+          market offer minus the volume transacted at the market bid). These track-
+          ings tell me if the balance of sentiment is in my direction. If the sentiment
+          turns against me, I may decide to discretionarily exit the position prior to
+          hitting my stop-loss level. That, too, is part of trade management. To be
+          sure, it is risky to front-run stop-levels: it invites impulsive behavior when-
+          ever markets tick against you. I’ve found, however, that if I’m long the ES
+          futures and we see a breakdown in the Russell 2000 (ER2) futures or a
+          move to new lows in a couple of key market sectors, the odds are good
+

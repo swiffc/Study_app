@@ -1,0 +1,53 @@
+P1: JYS
+c10     JWBT039-Steenbarger    December 29, 2008     13:21    Printer: Yet to come
+
+
+
+
+          308                                                 THE DAILY TRADING COACH
+
+
+
+          LESSON 91: USE HISTORICAL
+          PATTERNS IN TRADING
+
+          A trading guru declares that he has turned bearish because the S&P 500
+          Index has fallen below its 200-day average. Is this a reasonable basis for
+          setting your trading or investing strategy? Is there truly an edge to selling
+          the market when it moves below its moving averages?
+               The only way we can determine the answer is through investigation.
+          Otherwise, investing and trading become little more than exercises in faith
+          and superstition. Because markets have behaved in a particular way in the
+          past does not guarantee that they will act that way now. Still, history pro-
+          vides the best guide we have. Markets, like people, will never be perfectly
+          predictable. But if we’ve observed people over time in different conditions,
+          we can arrive at some generalizations about their tendencies. Similarly,
+          a careful exploration of markets under different historical conditions can
+          help us find regularities worth exploiting.
+               As it turns out, moving average strategies—so often touted in the pop-
+          ular trading press—are not so robust. As of my writing this, since 1980, the
+          average 200-day gain in the S&P 500 Index following occasions when we’ve
+          traded above the 200-day moving average has been 8.68 percent. When
+          we’ve been below the 200-day moving average, the next 200 days in the S&P
+          500 Index have returned 7.32 percent. That’s not a huge difference, and it’s
+          hardly grounds to turn bearish on a market. When David Aronson tested
+          more than 6,000 technical indicators for his excellent book, Evidence-
+          Based Technical Analysis, he found a similar lack of robustness: not a sin-
+          gle indicator emerged as a significant predictor of future market returns.
+
+              Investigate before you invest: Common trading wisdom is uncom-
+              monly wrong.
+
+               One way that historical patterns aid our self-coaching is by helping us
+          distinguish myth from fact. “The trend is your friend” we commonly hear.
+          My research on the blog, however, has consistently documented worse
+          returns following winning days, weeks, and months than following los-
+          ing ones. It is not enough to accept market wisdom at face value: just as
+          you would research the reliability of a vehicle before making a purchase, it
+          makes sense to research the reliability and validity of trading strategies.
+               There are traders who make the opposite mistake and trade mechani-
+          cally from historical market patterns. I have seen an unusual proportion of
+          these traders blow up. Market patterns are relative to the historical period
+          that we study. If I examine the past few years of returns in a bull mar-
+          ket, I will find significant patterns that will completely vanish in a bear
+

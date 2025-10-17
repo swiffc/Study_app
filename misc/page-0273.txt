@@ -1,0 +1,53 @@
+P1: JYS
+c08     JWBT039-Steenbarger      December 29, 2008       7:38     Printer: Yet to come
+
+
+
+
+          Coaching Your Trading Business                                                 253
+
+
+          to make one. If, however, you’re risking a dollar to make two or more, you
+          can be right less than half the time and still wind up in the plus column.
+
+
+              Good execution means that you calibrate risk as a function of an-
+              ticipated reward.
+
+
+               Execution provides proactive risk management. If you control how
+          much you can win and lose based on your price of entry, you keep your
+          risk known and lower than your potential reward. You can track the qual-
+          ity of your execution if you calculate the amount of heat you take on your
+          average trades. Heat is the amount of adverse price movement that occurs
+          while you’re in the trade. If you’re taking a great deal of heat to make a
+          small amount of money, you’re obviously courting disaster. When your ex-
+          ecution is good, you should take relatively little heat compared to the size
+          of your gains. Your assignment for this lesson is to calculate heat for each
+          of your recent trades and track that over time. This assignment will tell
+          you how successful you are at executing your ideas, and it will provide a
+          sensitive measure of changing risk/reward in your trading.
+               Good execution, psychologically, is all about patience. To get a good
+          price, you will have to lay off some trade ideas that end up being profitable.
+          Like the poker player, you want to bet when the odds are clearly in your
+          favor. That means mucking a lot of hands. Similarly, a business doesn’t try
+          to be all things to all people. A business owner passes up certain opportu-
+          nities to sell products in order to focus on what she does best. When you’re
+          running your trading business well, you don’t take every conceivable op-
+          portunity to make money; you wait for your highest probability opportuni-
+          ties. The clearer you are about risk and reward, the easier it will be to stick
+          to trades that offer favorable expected returns.
+
+
+                      COACHING CUE
+
+          A simple rule that has greatly aided my executions has been to wait for buyers
+          to take their turn if I’m selling the market and wait for sellers to take their turn
+          before I’m buying the market. Thus, I can only buy if the NYSE TICK has gone
+          negative and if the last X price bars are down. Similarly, I can only sell if the
+          NYSE TICK has gone positive and the most recent X price bars have been up.
+          This reduces the heat I take on trades by entering after short squeezes and
+          program trades juke the market up or down. Once in a while you’ll miss a trade
+          if you wait patiently for the other side to take their turn, but the extra ticks you
+          make on the trades you do get into more than make up for that.
+

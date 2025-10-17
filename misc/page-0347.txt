@@ -1,0 +1,53 @@
+P1: JYS
+c10     JWBT039-Steenbarger      December 29, 2008    13:21     Printer: Yet to come
+
+
+
+
+          Looking for the Edge                                                         327
+
+          markets are more likely to reverse direction. Later, you can limit your sorting
+          to the declining days and sort them by very weak and less weak markets. Many
+          times, the patterns you see among the rising days are diﬀerent from those that
+          show up among the falling days.
+
+
+
+
+          LESSON 97: CODE THE DATA
+
+          Sometimes the independent variable you’re interested in is a categori-
+          cal variable, not a set of continuous values. If I wanted to investigate
+          the relationship between a person’s weight (independent variable) and
+          their lung capacity (dependent variable), all of my data would be contin-
+          uous. If, however, I wanted to investigate the relationship between gender
+          (male/female) and lung capacity, I would now be looking at a categorical
+          variable in relationship to a continuous one. Conversely, if I wanted to sim-
+          ply identify whether a person had normal versus subnormal lung capacity,
+          I would wind up with a categorical breakdown for my dependent variable.
+               There are times in market analysis when we want to look at the
+          data categorically, rather than in a continuous fashion. In my own in-
+          vestigations, I routinely combine categorical views with continuous ones.
+          Here’s why:
+               If you reopen the spreadsheet we created, Practice Sheet, that exam-
+          ined current day returns in the S&P 500 Index as a function of the previous
+          day’s performance, you’ll see that we had Date data in column A; open-high-
+          low-close data in columns B–E; the present day’s price change in column
+          F; and the next day’s price change in column G. For the analysis in the last
+          lesson, we sorted the data based upon the present day’s price change and
+          then examined the average price change for the next day as a function of
+          strong versus weak days. Our dependent measure, next day’s price change,
+          was continuous, and we compared average values to get a sense for the
+          relationship between the independent and dependent variables.
+               Averages, however, can be misleading: a few extreme values can skew
+          the result. These outliers can make the differences between two sets of av-
+          erages look much larger than they really are. We can eliminate this possi-
+          ble source of bias by changing our dependent variable. We’ll keep the next
+          day’s price change in column G, but now will add a dummy-coded variable
+          in column H. This code will simply tell us whether the price change in col-
+          umn G is up or down. Thus, in cell H2, I would type in (without quotation
+          marks): “=if(G2>0,1,0)” and hit Enter. This instructs the cell at H2 to re-
+          turn a “1” if the price change in cell G2 is positive; anything else—a zero or
+          negative return—will return a “0.” I will then click on H2; click the Excel
+          menu item for Edit; click Copy; click cell H3 and drag all the way down the
+
