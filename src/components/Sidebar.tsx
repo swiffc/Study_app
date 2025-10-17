@@ -139,50 +139,66 @@ export const Sidebar: React.FC = () => {
   };
 
   return (
-    <div className="w-72 bg-white h-screen flex flex-col border-r border-gray-200 shadow-xl">
-      <div className="p-6 border-b border-gray-200 bg-gradient-to-br from-primary-50 to-accent-50">
-        <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-          <FileText size={20} className="text-primary-600" />
-          My Workbooks
-        </h2>
-        <p className="text-xs text-gray-600 mt-1">Study guides & manifestation tools</p>
+    <div className="w-80 bg-gradient-to-b from-white to-gray-50 h-screen flex flex-col border-r border-gray-200 shadow-2xl">
+      <div className="p-6 border-b border-gray-200 bg-gradient-to-br from-primary-600 via-accent-600 to-purple-600 text-white relative overflow-hidden">
+        {/* Decorative pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+            backgroundSize: '24px 24px',
+          }}></div>
+        </div>
+        
+        <div className="relative">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="bg-white/20 backdrop-blur-sm p-2 rounded-xl">
+              <FileText size={24} />
+            </div>
+            <h2 className="text-2xl font-black">My Workbooks</h2>
+          </div>
+          <p className="text-sm text-white/90 font-medium">Your personal library</p>
+        </div>
       </div>
 
-      <div className="p-4 border-b border-gray-200 bg-gray-50">
-        <div className="flex gap-2 mb-3">
+      <div className="p-4 border-b border-gray-200 bg-gradient-to-br from-gray-50 to-white">
+        <div className="space-y-3">
           <button
             ref={createButtonRef}
             onClick={handleCreate}
-            className="flex-1 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-4 py-2.5 rounded-lg flex items-center justify-center gap-2 font-medium shadow-md hover:shadow-lg transition-all"
+            className="w-full bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-4 py-3 rounded-xl flex items-center justify-center gap-2 font-bold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
           >
-            <Plus size={18} />
-            Create New
+            <Plus size={20} />
+            Create New Workbook
           </button>
-          <button
-            onClick={() => fileInputRef.current?.click()}
-            className="bg-white hover:bg-gray-50 border-2 border-gray-300 px-3 py-2.5 rounded-lg shadow-sm"
-            title="Import"
-          >
-            <Upload size={18} className="text-gray-700" />
-          </button>
-          {currentWorkbook && (
+          
+          <div className="flex gap-2">
             <button
-              onClick={handleExport}
-              className="bg-white hover:bg-gray-50 border-2 border-gray-300 px-3 py-2.5 rounded-lg shadow-sm"
-              title="Export"
+              onClick={() => fileInputRef.current?.click()}
+              className="flex-1 bg-white hover:bg-gray-50 border-2 border-gray-300 hover:border-primary-400 px-3 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all group"
+              title="Import"
             >
-              <Download size={18} className="text-gray-700" />
+              <Upload size={18} className="text-gray-700 group-hover:text-primary-600 mx-auto transition-colors" />
             </button>
-          )}
+            {currentWorkbook && (
+              <button
+                onClick={handleExport}
+                className="flex-1 bg-white hover:bg-gray-50 border-2 border-gray-300 hover:border-success-400 px-3 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all group"
+                title="Export"
+              >
+                <Download size={18} className="text-gray-700 group-hover:text-success-600 mx-auto transition-colors" />
+              </button>
+            )}
+          </div>
         </div>
-        <div className="relative">
+        
+        <div className="relative mt-3">
           <button
             onClick={() => setShowExamples(!showExamples)}
-            className="w-full bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white px-4 py-2.5 rounded-lg flex items-center justify-center gap-2 text-sm font-medium shadow-md transition-all"
+            className="w-full bg-gradient-to-r from-gold-500 to-orange-500 hover:from-gold-600 hover:to-orange-600 text-white px-4 py-3 rounded-xl flex items-center justify-center gap-2 font-bold shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            <BookOpen size={16} />
+            <BookOpen size={18} />
             Example Workbooks
-            <ChevronDown size={14} className={`transition-transform ${showExamples ? 'rotate-180' : ''}`} />
+            <ChevronDown size={16} className={`transition-transform duration-300 ${showExamples ? 'rotate-180' : ''}`} />
           </button>
           
           {showExamples && (
@@ -370,45 +386,56 @@ export const Sidebar: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto bg-gray-50">
-        {workbooks.map(workbook => (
-          <div
-            key={workbook.id}
-            onClick={async () => {
-              await loadWorkbook(workbook.id);
-              navigate(`/workbook/${workbook.id}`);
-            }}
-            className={`mx-2 my-1.5 p-4 cursor-pointer rounded-lg hover:shadow-md transition-all flex items-center justify-between group ${
-              currentWorkbook?.id === workbook.id 
-                ? 'bg-gradient-to-r from-primary-100 to-accent-100 border-2 border-primary-300 shadow-md' 
-                : 'bg-white border border-gray-200 hover:border-primary-200'
-            }`}
-          >
-            <div className="flex-1 min-w-0">
-              <div className={`font-semibold truncate ${
-                currentWorkbook?.id === workbook.id ? 'text-primary-900' : 'text-gray-900'
-              }`}>
-                {workbook.name}
+      <div className="flex-1 overflow-y-auto bg-gradient-to-b from-gray-50 to-white p-3">
+        {workbooks.length > 0 ? (
+          <div className="space-y-2">
+            {workbooks.map((workbook, index) => (
+              <div
+                key={workbook.id}
+                onClick={async () => {
+                  await loadWorkbook(workbook.id);
+                  navigate(`/workbook/${workbook.id}`);
+                }}
+                className={`p-4 cursor-pointer rounded-2xl transition-all duration-300 flex items-center justify-between group animate-slide-in ${
+                  currentWorkbook?.id === workbook.id 
+                    ? 'bg-gradient-to-r from-primary-500 to-accent-500 shadow-lg scale-[1.02] text-white' 
+                    : 'bg-white hover:bg-gradient-to-r hover:from-primary-50 hover:to-accent-50 border-2 border-gray-200 hover:border-primary-300 shadow-sm hover:shadow-md'
+                }`}
+                style={{ animationDelay: `${index * 50}ms` }}
+              >
+                <div className="flex-1 min-w-0">
+                  <div className={`font-bold truncate text-base mb-1 ${
+                    currentWorkbook?.id === workbook.id ? 'text-white' : 'text-gray-900'
+                  }`}>
+                    {workbook.name}
+                  </div>
+                  <div className={`text-xs flex items-center gap-1.5 font-medium ${
+                    currentWorkbook?.id === workbook.id ? 'text-white/90' : 'text-gray-500'
+                  }`}>
+                    <span>📅</span>
+                    <span>{new Date(workbook.updatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+                  </div>
+                </div>
+                <button
+                  onClick={(e) => handleDelete(workbook.id, e)}
+                  className={`opacity-0 group-hover:opacity-100 p-2 rounded-xl transition-all duration-200 ${
+                    currentWorkbook?.id === workbook.id 
+                      ? 'hover:bg-white/20 text-white' 
+                      : 'hover:bg-red-50 text-red-500 hover:text-red-600'
+                  }`}
+                >
+                  <Trash2 size={16} />
+                </button>
               </div>
-              <div className={`text-xs mt-1 flex items-center gap-2 ${
-                currentWorkbook?.id === workbook.id ? 'text-primary-700' : 'text-gray-500'
-              }`}>
-                <span>📅 {new Date(workbook.updatedAt).toLocaleDateString()}</span>
-              </div>
-            </div>
-            <button
-              onClick={(e) => handleDelete(workbook.id, e)}
-              className="opacity-0 group-hover:opacity-100 text-red-500 hover:text-red-600 hover:bg-red-50 p-2 rounded transition-all"
-            >
-              <Trash2 size={16} />
-            </button>
+            ))}
           </div>
-        ))}
-        {workbooks.length === 0 && (
+        ) : (
           <div className="p-8 text-center">
-            <div className="text-gray-400 mb-2">📚</div>
-            <div className="text-gray-600 font-medium">No workbooks yet</div>
-            <div className="text-sm text-gray-500 mt-1">Create one to start your journey!</div>
+            <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-primary-100 to-accent-100 rounded-full flex items-center justify-center">
+              <FileText className="text-primary-600" size={36} />
+            </div>
+            <div className="text-gray-900 font-bold text-lg mb-1">No workbooks yet</div>
+            <div className="text-sm text-gray-600">Create one to start your journey!</div>
           </div>
         )}
       </div>
